@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  background: var(--foreground);
+  background: #ffffff;
   color: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
