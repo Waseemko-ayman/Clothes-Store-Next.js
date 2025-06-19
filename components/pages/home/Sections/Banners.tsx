@@ -56,12 +56,12 @@ const Banners = () => {
       <Container>
         <div className="grid md:grid-cols-2 gap-6">
           {BANNERS_DATA.filter((item) => item.type === 'big').map((item) => (
-            <Banner key={item.id} {...item} height="h-[50vh]" />
+            <Banner key={item.id} height="h-[50vh]" {...item} />
           ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-12">
           {BANNERS_DATA.filter((item) => item.type === 'small').map((item) => (
-            <Banner key={item.id} {...item} height="h-[35vh]" />
+            <Banner key={item.id} height="h-[35vh]" {...item} />
           ))}
         </div>
       </Container>

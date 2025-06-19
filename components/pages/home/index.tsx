@@ -5,6 +5,7 @@ import FeaturedProducts from './Sections/FeaturedProducts';
 import RepairServices from './Sections/RepairServices';
 import NewArrivals from './Sections/NewArrivals';
 import Banners from './Sections/Banners';
+import NewsletterSignup from '@/components/molecules/NewsletterSignup';
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <RepairServices />
       <NewArrivals />
       <Banners />
+      <NewsletterSignup />
     </>
   );
 };
