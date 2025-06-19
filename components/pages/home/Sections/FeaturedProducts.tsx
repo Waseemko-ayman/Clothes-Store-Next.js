@@ -12,6 +12,7 @@ import React from 'react';
 
 const FeaturedProducts = () => {
   const router = useRouter();
+  const featuredProducts = PRODUCTS.filter((p) => p.section === 'featured');
   return (
     <Layer>
       <Container>
@@ -20,7 +21,7 @@ const FeaturedProducts = () => {
           description="Summer Collection New Modern Design"
         />
         <ProdcutsContainer>
-          {PRODUCTS.slice(0, 8).map(
+          {featuredProducts.map(
             ({ id, src, imgText, tradeMark, productTitle, price }) => (
               <ProductCard
                 key={id}

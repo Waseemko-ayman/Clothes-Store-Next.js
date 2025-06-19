@@ -11,6 +11,7 @@ import React from 'react';
 
 const NewArrivals = () => {
   const router = useRouter();
+  const newArrivals = PRODUCTS.filter((p) => p.section === 'newArrivals');
   return (
     <Layer>
       <Container>
@@ -19,7 +20,7 @@ const NewArrivals = () => {
           description="Summer Collection New Modern Design"
         />
         <ProdcutsContainer>
-          {PRODUCTS.slice(8, 18).map(
+          {newArrivals.map(
             ({ id, src, imgText, tradeMark, productTitle, price }) => (
               <ProductCard
                 key={id}

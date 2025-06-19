@@ -56,6 +56,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 78,
+    section: 'featured',
   },
   {
     id: 2,
@@ -64,6 +65,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 65,
+    section: 'featured',
   },
   {
     id: 3,
@@ -72,6 +74,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 88,
+    section: 'featured',
   },
   {
     id: 4,
@@ -80,6 +83,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 57,
+    section: 'featured',
   },
   {
     id: 5,
@@ -88,6 +92,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'featured',
   },
   {
     id: 6,
@@ -96,6 +101,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'featured',
   },
   {
     id: 7,
@@ -104,6 +110,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'featured',
   },
   {
     id: 8,
@@ -112,6 +119,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'featured',
   },
   {
     id: 9,
@@ -120,6 +128,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 10,
@@ -128,6 +137,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 11,
@@ -136,6 +146,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 12,
@@ -144,6 +155,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 13,
@@ -152,6 +164,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 14,
@@ -160,6 +173,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 15,
@@ -168,6 +182,7 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
   {
     id: 16,
@@ -176,5 +191,6 @@ export const PRODUCTS = [
     tradeMark: 'adidas',
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
+    section: 'newArrivals',
   },
 ];
