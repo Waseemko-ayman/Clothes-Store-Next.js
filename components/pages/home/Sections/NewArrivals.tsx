@@ -2,6 +2,7 @@
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import MainTitle from '@/components/atoms/MainTitle';
+import MotionDiv from '@/components/atoms/MotionDiv';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
 import { PRODUCTS } from '@/mock';
@@ -21,16 +22,18 @@ const NewArrivals = () => {
         />
         <ProdcutsContainer>
           {newArrivals.map(
-            ({ id, src, imgText, tradeMark, productTitle, price }) => (
-              <ProductCard
-                key={id}
-                imgSrc={src}
-                imgText={imgText}
-                tradeMark={tradeMark}
-                productTitle={productTitle}
-                price={price}
-                handleClick={() => router.push(PATHS.SHOP.ITEM(id))}
-              />
+            ({ id, src, imgText, tradeMark, productTitle, price }, index) => (
+              <MotionDiv key={id} index={index}>
+                <ProductCard
+                  key={id}
+                  imgSrc={src}
+                  imgText={imgText}
+                  tradeMark={tradeMark}
+                  productTitle={productTitle}
+                  price={price}
+                  handleClick={() => router.push(PATHS.SHOP.ITEM(id))}
+                />
+              </MotionDiv>
             )
           )}
         </ProdcutsContainer>

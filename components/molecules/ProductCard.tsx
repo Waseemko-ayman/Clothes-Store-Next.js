@@ -36,7 +36,11 @@ const ProductCard = ({
         <h4 className="text-[#088178] text-base mt-2 font-bold">
           {productTitle}
         </h4>
-        <FaStar size="14px" className="text-amber-300 my-2" />
+        <div className='flex items-center gap-1'>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <FaStar key={index} size="18px" className="text-amber-300 my-2" />
+          ))}
+        </div>
         <h5 className="text-[#088178] text-lg font-bold">${price}</h5>
       </div>
       <Button

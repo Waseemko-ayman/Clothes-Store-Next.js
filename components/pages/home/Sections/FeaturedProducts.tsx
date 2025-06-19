@@ -9,6 +9,7 @@ import { PRODUCTS } from '@/mock';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import MotionDiv from '@/components/atoms/MotionDiv';
 
 const FeaturedProducts = () => {
   const router = useRouter();
@@ -22,16 +23,18 @@ const FeaturedProducts = () => {
         />
         <ProdcutsContainer>
           {featuredProducts.map(
-            ({ id, src, imgText, tradeMark, productTitle, price }) => (
-              <ProductCard
-                key={id}
-                imgSrc={src}
-                imgText={imgText}
-                tradeMark={tradeMark}
-                productTitle={productTitle}
-                price={price}
-                handleClick={() => router.push(PATHS.SHOP.ITEM(id))}
-              />
+            ({ id, src, imgText, tradeMark, productTitle, price }, index) => (
+              <MotionDiv key={id} index={index}>
+                <ProductCard
+                  key={id}
+                  imgSrc={src}
+                  imgText={imgText}
+                  tradeMark={tradeMark}
+                  productTitle={productTitle}
+                  price={price}
+                  handleClick={() => router.push(PATHS.SHOP.ITEM(id))}
+                />
+              </MotionDiv>
             )
           )}
         </ProdcutsContainer>

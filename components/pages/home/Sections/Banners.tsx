@@ -1,5 +1,6 @@
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
+import MotionDiv from '@/components/atoms/MotionDiv';
 import Banner from '@/components/molecules/Banner';
 import React from 'react';
 
@@ -55,14 +56,22 @@ const Banners = () => {
     <Layer>
       <Container>
         <div className="grid md:grid-cols-2 gap-6">
-          {BANNERS_DATA.filter((item) => item.type === 'big').map((item) => (
-            <Banner key={item.id} height="h-[50vh]" {...item} />
-          ))}
+          {BANNERS_DATA.filter((item) => item.type === 'big').map(
+            (item, index) => (
+              <MotionDiv key={item.id} index={index}>
+                <Banner key={item.id} height="h-[50vh]" {...item} />
+              </MotionDiv>
+            )
+          )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-12">
-          {BANNERS_DATA.filter((item) => item.type === 'small').map((item) => (
-            <Banner key={item.id} height="h-[35vh]" {...item} />
-          ))}
+          {BANNERS_DATA.filter((item) => item.type === 'small').map(
+            (item, index) => (
+              <MotionDiv key={item.id} index={index}>
+                <Banner key={item.id} height="h-[35vh]" {...item} />
+              </MotionDiv>
+            )
+          )}
         </div>
       </Container>
     </Layer>
