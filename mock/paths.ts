@@ -2,7 +2,7 @@ export const PATHS = {
   HOME: '/',
   SHOP: {
     ROOT: '/shop',
-    ITEM: '/shop/:id',
+    ITEM: (id: number) => `/shop/${id}`,
   },
   BLOG: '/blog',
   ABOUT: '/about',

@@ -1,5 +1,4 @@
 'use client';
-
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import MainTitle from '@/components/atoms/MainTitle';
@@ -10,17 +9,17 @@ import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-const FeaturedProducts = () => {
+const NewArrivals = () => {
   const router = useRouter();
   return (
     <Layer>
       <Container>
         <MainTitle
-          title="Featured Product"
+          title="New Arrivals"
           description="Summer Collection New Modern Design"
         />
         <ProdcutsContainer>
-          {PRODUCTS.slice(0, 8).map(
+          {PRODUCTS.slice(8, 18).map(
             ({ id, src, imgText, tradeMark, productTitle, price }) => (
               <ProductCard
                 key={id}
@@ -39,4 +38,4 @@ const FeaturedProducts = () => {
   );
 };
 
-export default FeaturedProducts;
+export default NewArrivals;
