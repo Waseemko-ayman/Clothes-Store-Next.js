@@ -1,4 +1,12 @@
 import { PATHS } from './paths';
+import {
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTelegram,
+  FaTwitter,
+} from 'react-icons/fa6';
 
 export const navItems = [
   { name: 'Home', link: '/' },
@@ -192,5 +200,109 @@ export const PRODUCTS = [
     productTitle: 'Cartoon Astronaut T-Shirts',
     price: 94,
     section: 'newArrivals',
+  },
+];
+
+export const FOOTER_LINKS_DATA = {
+  followUs: [
+    {
+      id: 1,
+      url: 'https://github.com/Waseemko-ayman',
+      icon: FaGithub,
+    },
+    {
+      id: 2,
+      url: 'https://twitter.com/waseemabdalhady',
+      icon: FaTwitter,
+    },
+    {
+      id: 3,
+      url: 'https://www.linkedin.com/in/waseem-abd-elhadi-1b293624b/',
+      icon: FaLinkedin,
+    },
+    {
+      id: 4,
+      url: 'https://www.instagram.com/waseem.abdalhady/',
+      icon: FaInstagram,
+    },
+    {
+      id: 5,
+      url: 'https://t.me/waseem_abdalhady',
+      icon: FaTelegram,
+    },
+    {
+      id: 6,
+      url: 'mailto:wasimabdelhadi78@gmail.com',
+      icon: FaEnvelope,
+    },
+  ],
+  About: [
+    {
+      id: 1,
+      url: '#',
+      text: 'About Us',
+    },
+    {
+      id: 2,
+      url: '#',
+      text: 'Delivery Information',
+    },
+    {
+      id: 3,
+      url: '#',
+      text: 'Privacy Policy',
+    },
+    {
+      id: 4,
+      url: '#',
+      text: 'Terms & Conditions',
+    },
+    {
+      id: 5,
+      url: '#',
+      text: 'Contact Us',
+    },
+  ],
+  myAccount: [
+    {
+      id: 1,
+      url: '#',
+      text: 'Sign In',
+    },
+    {
+      id: 2,
+      url: '#',
+      text: 'View Cart',
+    },
+    {
+      id: 3,
+      url: '#',
+      text: 'My Wishlist',
+    },
+    {
+      id: 4,
+      url: '#',
+      text: 'Track My Order',
+    },
+    {
+      id: 5,
+      url: '#',
+      text: 'Help',
+    },
+  ],
+};
+
+export const APP_STORE = [
+  {
+    id: 1,
+    imgSrc: '/assets/pay/app.jpg',
+    imgAlt: 'app store',
+    url: '#',
+  },
+  {
+    id: 2,
+    imgSrc: '/assets/pay/play.jpg',
+    imgAlt: 'google play',
+    url: '#',
   },
 ];
