@@ -1,8 +1,10 @@
+'use client';
 import React from 'react';
 import Container from '../atoms/Container';
 import Layer from '../atoms/Layer';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
+import { motion } from 'framer-motion';
 
 const NewsletterSignup = () => {
   return (
@@ -11,7 +13,13 @@ const NewsletterSignup = () => {
       style={{ backgroundImage: 'url(/assets/banner/signUp.jpg)' }}
     >
       <Container otherClassName="w-full flex flex-col items-center justify-center lg:flex-row lg:justify-between gap-2.5">
-        <div className="text-center lg:text-start">
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="text-center lg:text-start"
+        >
           <h2 className="text-white text-3xl font-bold">
             Sign Up For Newsletters
           </h2>
@@ -19,8 +27,14 @@ const NewsletterSignup = () => {
             Get E-mail updates about our latest shop and{' '}
             <span className="text-[#ffa500]">special offers</span>
           </p>
-        </div>
-        <form className="max-w-full flex items-center flex-col sm:flex-row gap-2.5 sm:gap-0 justify-center">
+        </motion.div>
+        <motion.form
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-full flex items-center flex-col sm:flex-row gap-2.5 sm:gap-0 justify-center"
+        >
           <Input
             type="email"
             inputName="email"
@@ -35,7 +49,7 @@ const NewsletterSignup = () => {
           >
             Sign Up
           </Button>
-        </form>
+        </motion.form>
       </Container>
     </Layer>
   );
