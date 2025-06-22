@@ -5,7 +5,7 @@ import Layer from '@/components/atoms/Layer';
 import MainTitle from '@/components/atoms/MainTitle';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
-import { PRODUCTS } from '@/mock';
+import { CLOTHES } from '@/mock';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -13,7 +13,7 @@ import MotionDiv from '@/components/atoms/MotionDiv';
 
 const FeaturedProducts = () => {
   const router = useRouter();
-  const featuredProducts = PRODUCTS.filter((p) => p.section === 'featured');
+  const featuredProducts = CLOTHES.filter((p) => p.section === 'featured');
   return (
     <Layer>
       <Container>

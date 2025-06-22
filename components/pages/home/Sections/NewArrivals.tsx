@@ -5,14 +5,14 @@ import MainTitle from '@/components/atoms/MainTitle';
 import MotionDiv from '@/components/atoms/MotionDiv';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
-import { PRODUCTS } from '@/mock';
+import { CLOTHES } from '@/mock';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const NewArrivals = () => {
   const router = useRouter();
-  const newArrivals = PRODUCTS.filter((p) => p.section === 'newArrivals');
+  const newArrivals = CLOTHES.filter((p) => p.section === 'newArrivals');
   return (
     <Layer>
       <Container>

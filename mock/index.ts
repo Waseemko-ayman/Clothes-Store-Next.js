@@ -56,7 +56,7 @@ export const FETURES = [
   },
 ];
 
-export const PRODUCTS = [
+export const CLOTHES = [
   {
     id: 1,
     src: '/assets/products/prod1.jpg',
@@ -304,5 +304,23 @@ export const APP_STORE = [
     imgSrc: '/assets/pay/play.jpg',
     imgAlt: 'google play',
     url: '#',
+  },
+];
+
+export const CONTACT_INFO = [
+  {
+    id: 1,
+    title: 'Address',
+    info: 'Occupied Palestine, Gaza',
+  },
+  {
+    id: 2,
+    title: 'Phone',
+    info: '+972592164680',
+  },
+  {
+    id: 3,
+    title: 'Whats app',
+    info: '+972592164680',
   },
 ];
