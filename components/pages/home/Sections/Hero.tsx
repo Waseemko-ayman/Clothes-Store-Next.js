@@ -6,7 +6,7 @@ import Button from '@/components/atoms/Button';
 
 const Hero = () => {
   return (
-    <div className="min-h-[90vh] relative bg-cover bg-center content-center bg-[#d3d5da]">
+    <div className="min-h-[90vh] relative bg-cover bg-center content-center bg-[var(--first-color)]">
       <Container otherClassName="flex flex-col sm:flex-row items-center justify-between gap-10 sm:gap-3 z-10">
         <motion.div
           initial="hidden"
@@ -17,7 +17,7 @@ const Hero = () => {
           }}
         >
           <motion.p
-            className="text-xl text-[#465b52]"
+            className="text-xl text-[var(--second-color)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -26,17 +26,17 @@ const Hero = () => {
           </motion.p>
 
           <motion.h1
-            className="py-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#222] font-bold"
+            className="py-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[var(--fifth-color)] font-bold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Super value deals{' '}
-            <span className="text-[#088178]">On all products</span>
+            <span className="text-[var(--forth-color)]">On all products</span>
           </motion.h1>
 
           <motion.p
-            className="text-base text-[#465b52]"
+            className="text-base text-[var(--second-color)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

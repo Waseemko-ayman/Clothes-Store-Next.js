@@ -70,7 +70,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="text-[#465b52] text-base mt-[15px] mb-5"
+              className="text-[var(--second-color)] text-base mt-[15px] mb-5"
             >
               From App Store or Google Play
             </motion.p>
@@ -79,7 +79,7 @@ const Footer = () => {
                 <motion.a
                   key={id}
                   href={url}
-                  className="border border-[#088178] rounded-[6px] px-1 hover:shadow-[10px_10px_34px_#08817917] transition duration-300"
+                  className="border border-[var(--forth-color)] rounded-[6px] px-1 hover:shadow-[10px_10px_34px_#08817917] transition duration-300"
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -94,7 +94,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="text-[#465b52] text-base mt-[15px] mb-5"
+              className="text-[var(--second-color)] text-base mt-[15px] mb-5"
             >
               Secured Payment Gateays
             </motion.p>

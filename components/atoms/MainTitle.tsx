@@ -15,8 +15,12 @@ const MainTitle = ({ title, description }: MainTitleProps) => {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className="sm:text-4xl md:text-5xl font-bold text-[#222]">{title}</h2>
-      <p className="text-base text-[#465b52] mt-3.5 mb-5">{description}</p>
+      <h2 className="sm:text-4xl md:text-5xl font-bold text-[var(--fifth-color)]">
+        {title}
+      </h2>
+      <p className="text-base text-[var(--second-color)] mt-3.5 mb-5">
+        {description}
+      </p>
     </motion.div>
   );
 };

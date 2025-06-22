@@ -35,12 +35,16 @@ const RepairServicesComp = ({
           transition={{ duration: 0.6 }}
           className="font-bold"
         >
-          {title && <h2 className="text-xl text-white">{title}</h2>}
+          {title && (
+            <h2 className="text-xl text-[var(--white-color)]">{title}</h2>
+          )}
           {subTitle && (
-            <h4 className="text-3xl md:text-5xl text-white my-5">{subTitle}</h4>
+            <h4 className="text-3xl md:text-5xl text-[var(--white-color)] my-5">
+              {subTitle}
+            </h4>
           )}
           {description && (
-            <p className="text-white text-base font-normal my-5">
+            <p className="text-[var(--white-color)] text-base font-normal my-5">
               {description}
             </p>
           )}

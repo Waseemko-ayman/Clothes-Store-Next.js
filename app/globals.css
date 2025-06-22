@@ -6,10 +6,12 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --first-color: #d3d5da;
+  --second-color: #465b52;
+  --third-color: #f59e0b;
+  --forth-color: #088178;
+  --fifth-color: #222;
+  --white-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,8 +22,8 @@
 }
 
 * {
-  --webkit-box-sizing: border-box;
-  --moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -44,4 +46,8 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #c6c6c6;
   border-radius: 10px;
+}
+
+.before\\:content-var::before {
+  content: var(--before-content);
 }

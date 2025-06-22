@@ -16,9 +16,9 @@ const Input = ({
     inputName: string;
   } & React.HTMLAttributes<HTMLElement>
 >) => {
-  const StyledInput = `w-[280px] h-12 p-2.5 bg-white outline-none placeholder:transition placeholder:duration-300 transition-all duration-300 focus:placeholder:opacity-0 ${
+  const StyledInput = `w-[280px] h-12 p-2.5 bg-[var(--white-color)] outline-none placeholder:transition placeholder:duration-300 transition-all duration-300 focus:placeholder:opacity-0 ${
     variant === 'primary'
-      ? 'border border-[#ccc] focus:border-[#088178] rounded-none'
+      ? 'border border-[#ccc] focus:border-[var(--forth-color)] rounded-none'
       : 'border-none rounded-l-md rounded-r-none'
   } ${otherClassName}`;
 

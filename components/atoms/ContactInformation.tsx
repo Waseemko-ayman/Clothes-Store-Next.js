@@ -9,7 +9,8 @@ const ContactInformation = ({
 }) => {
   return (
     <p className="mb-0.5">
-      <span className="text-[#088178] font-bold">{title}:</span> {info}
+      <span className="text-[var(--forth-color)] font-bold">{title}:</span>{' '}
+      {info}
     </p>
   );
 };

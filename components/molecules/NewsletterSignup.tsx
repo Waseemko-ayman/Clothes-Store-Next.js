@@ -20,12 +20,12 @@ const NewsletterSignup = () => {
           transition={{ duration: 0.6 }}
           className="text-center lg:text-start"
         >
-          <h2 className="text-white text-3xl font-bold">
+          <h2 className="text-[var(--white-color)] text-3xl font-bold">
             Sign Up For Newsletters
           </h2>
-          <p className="text-[#d3d5da] text-base">
+          <p className="text-[var(--first-color)] text-base">
             Get E-mail updates about our latest shop and{' '}
-            <span className="text-[#ffa500]">special offers</span>
+            <span className="text-[var(--third-color)]">special offers</span>
           </p>
         </motion.div>
         <motion.form
@@ -45,7 +45,7 @@ const NewsletterSignup = () => {
           <Button
             variant="primary"
             borderRadius="rounded-none sm:rounded-l-none sm:rounded-r-md"
-            otherClassName="w-full sm:w-fit hover:!tracking-normal hover:border hover:border-[#088178]"
+            otherClassName="w-full sm:w-fit hover:!tracking-normal hover:border hover:border-[var(--forth-color)]"
           >
             Sign Up
           </Button>
