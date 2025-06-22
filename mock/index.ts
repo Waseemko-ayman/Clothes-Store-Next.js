@@ -324,3 +324,51 @@ export const CONTACT_INFO = [
     info: '+972592164680',
   },
 ];
+
+export const NEVER_READ = [
+  {
+    id: 1,
+    src: 'b1.jpg',
+    imgTitle: 'The Cotton - Jersy Zip - Up hoodie',
+    title: 'The Cotton - Jersy Zip - Up hoodie',
+    description:
+      'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
+    beforeContent: '13/01',
+  },
+  {
+    id: 2,
+    src: 'b2.jpg',
+    imgTitle: 'How to Style a Quiff',
+    title: 'How to Style a Quiff',
+    description:
+      'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
+    beforeContent: '13/04',
+  },
+  {
+    id: 3,
+    src: 'b3.jpg',
+    imgTitle: 'Must - Have Skater girl Items',
+    title: 'Must - Have Skater girl Items',
+    description:
+      'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
+    beforeContent: '12/01',
+  },
+  {
+    id: 4,
+    src: 'b4.jpg',
+    imgTitle: 'Runway - Inspired Trends',
+    title: 'Runway - Inspired Trends',
+    description:
+      'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
+    beforeContent: '16/01',
+  },
+  {
+    id: 5,
+    src: 'b6.jpg',
+    imgTitle: 'AW20 Mensweare Trends',
+    title: 'AW20 Mensweare Trends',
+    description:
+      'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
+    beforeContent: '10/03',
+  },
+];
