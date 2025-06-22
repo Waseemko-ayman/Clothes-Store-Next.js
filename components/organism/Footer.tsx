@@ -1,40 +1,48 @@
+'use client';
 import Image from 'next/image';
 import React from 'react';
 import Container from '../atoms/Container';
 import Layer from '../atoms/Layer';
 import FooterLinks from '../molecules/FooterLinks';
 import Link from 'next/link';
-import { APP_STORE } from '@/mock';
+import { APP_STORE, CONTACT_INFO } from '@/mock';
+import { motion } from 'framer-motion';
+import Contactnformation from '../atoms/ContactInformation';
+import SecondaryHeading from '../atoms/secondaryHeading';
 
 const Footer = () => {
-  const StyledHeading = 'text-[17px] font-bold mb-3.5';
   return (
     <Layer>
       <footer>
         <Container otherClassName="flex items-center justify-between flex-wrap gap-5">
           <div className="info">
-            <Image
+            <motion.img
               src="/assets/landing/logo.png"
               alt="logo"
               className="mb-8"
               width={140}
               height={40}
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
             />
-            <h4 className={StyledHeading}>Contact</h4>
-            <div className="mb-6">
-              <p className="mb-0.5">
-                <span className="text-[#088178] font-bold">Address:</span>{' '}
-                Occupied Palestine, Gaza, Sudani
-              </p>
-              <p className="mb-0.5">
-                <span className="text-[#088178] font-bold">Phone:</span> +01
-                22222 356
-              </p>
-              <p className="mb-0.5">
-                <span className="text-[#088178] font-bold">Hours:</span>{' '}
-                10:00-18:00, Man-Sat
-              </p>
-            </div>
+            <SecondaryHeading title="Contact" />
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
+              {CONTACT_INFO.map((item) => (
+                <Contactnformation
+                  key={item.id}
+                  title={item.title}
+                  info={item.info}
+                />
+              ))}
+            </motion.div>
             <FooterLinks
               secTitle="Follow Us"
               listClassName="flex items-center gap-2.5"
@@ -56,30 +64,50 @@ const Footer = () => {
             />
           </div>
           <div>
-            <h4 className={StyledHeading}>Install App</h4>
-            <p className="text-[#465b52] text-base mt-[15px] mb-5">
+            <SecondaryHeading title="Install App" />
+            <motion.p
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="text-[#465b52] text-base mt-[15px] mb-5"
+            >
               From App Store or Google Play
-            </p>
+            </motion.p>
             <div className="flex items-center justify-start flex-wrap gap-1.5">
-              {APP_STORE.map(({ id, imgSrc, imgAlt, url }) => (
-                <Link
+              {APP_STORE.map(({ id, imgSrc, imgAlt, url }, index) => (
+                <motion.a
                   key={id}
                   href={url}
                   className="border border-[#088178] rounded-[6px] px-1 hover:shadow-[10px_10px_34px_#08817917] transition duration-300"
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  viewport={{ once: true, amount: 0.2 }}
                 >
                   <Image src={imgSrc} alt={imgAlt} width={170} height={48} />
-                </Link>
+                </motion.a>
               ))}
             </div>
-            <p className="text-[#465b52] text-base mt-[15px] mb-5">
+            <motion.p
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="text-[#465b52] text-base mt-[15px] mb-5"
+            >
               Secured Payment Gateays
-            </p>
+            </motion.p>
             <Link href="#">
-              <Image
+              <motion.img
                 src="/assets/pay/pay.png"
                 alt="pay"
                 width={224}
                 height={32}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
               />
             </Link>
           </div>
