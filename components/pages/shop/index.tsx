@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import RepairServices from './Sections/RepairServices';
+import Clothes from './Sections/Clothes';
 
 const ShopPage = () => {
   return (
-    <div>ShopPage</div>
-  )
-}
+    <>
+      <RepairServices />
+      <Clothes />
+    </>
+  );
+};
 
-export default ShopPage
+export default ShopPage;

@@ -13,7 +13,7 @@ const NavLinks = ({
   onLinkClick?: () => void;
 }) => {
   const StyledLinks =
-    'relative py-1 text-base font-semibold cursor-pointer text-[#1a1a1a] hover:text-[#088178] transition duration-200';
+    'relative py-1 text-base font-semibold cursor-pointer text-[#1a1a1a] hover:text-[var(--forth-color)] transition duration-200';
   return (
     <nav className="">
       <ul
@@ -34,7 +34,7 @@ const NavLinks = ({
             }}
             className={`${StyledLinks} ${
               item.name !== 'Cart' &&
-              'after:absolute after:left-0 after:bottom-0 after:bg-[#088178] after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
+              'after:absolute after:left-0 after:bottom-0 after:bg-[var(--forth-color)] after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
             } ${isMobile ? 'text-lg mb-4' : ''}`}
             onClick={onLinkClick}
           >
@@ -42,7 +42,7 @@ const NavLinks = ({
               {item.name === 'Cart' ? (
                 <div className="flex items-center gap-1">
                   <FaCartShopping className={`${StyledLinks}`} size="25px" />
-                  <span className="text-white bg-[#088178] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
+                  <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
                     0
                   </span>
                 </div>

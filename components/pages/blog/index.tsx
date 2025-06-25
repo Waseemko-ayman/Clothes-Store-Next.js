@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import RepairServices from './Sections/RepairServices';
+import NeverRead from './Sections/NeverRead';
 
 const BlogPage = () => {
   return (
-    <div>BlogPage</div>
-  )
-}
+    <>
+      <RepairServices />
+      <NeverRead />
+    </>
+  );
+};
 
-export default BlogPage
+export default BlogPage;

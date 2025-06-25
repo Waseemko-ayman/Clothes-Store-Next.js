@@ -32,12 +32,18 @@ const ProductCard = ({
         className="max-w-full rounded-[20px] mb-2.5"
       />
       <div>
-        <span className="text-base text-[#d3d5da]">{tradeMark}</span>
-        <h4 className="text-[#088178] text-base mt-2 font-bold">
+        <span className="text-base text-[var(--first-color)]">{tradeMark}</span>
+        <h4 className="text-[var(--forth-color)] text-base mt-2 font-bold">
           {productTitle}
         </h4>
-        <FaStar size="14px" className="text-amber-300 my-2" />
-        <h5 className="text-[#088178] text-lg font-bold">${price}</h5>
+        <div className="flex items-center gap-1">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <FaStar key={index} size="18px" className="text-amber-300 my-2" />
+          ))}
+        </div>
+        <h5 className="text-[var(--forth-color)] text-lg font-bold">
+          ${price}
+        </h5>
       </div>
       <Button
         variant="circle"

@@ -1,28 +1,21 @@
 'use client';
-
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import MainTitle from '@/components/atoms/MainTitle';
+import MotionDiv from '@/components/atoms/MotionDiv';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
 import { CLOTHES } from '@/mock';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import MotionDiv from '@/components/atoms/MotionDiv';
 
-const FeaturedProducts = () => {
+const Clothes = () => {
   const router = useRouter();
-  const featuredProducts = CLOTHES.filter((p) => p.section === 'featured');
   return (
     <Layer>
       <Container>
-        <MainTitle
-          title="Featured Product"
-          description="Summer Collection New Modern Design"
-        />
         <ProdcutsContainer>
-          {featuredProducts.map(
+          {CLOTHES.map(
             ({ id, src, imgText, tradeMark, productTitle, price }, index) => (
               <MotionDiv key={id} index={index}>
                 <ProductCard
@@ -43,4 +36,4 @@ const FeaturedProducts = () => {
   );
 };
 
-export default FeaturedProducts;
+export default Clothes;

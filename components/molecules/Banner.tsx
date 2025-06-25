@@ -37,7 +37,7 @@ const Banner = ({
 
   return (
     <div
-      className={`relative text-white bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8`}
+      className={`relative text-[var(--white-color)] bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8`}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="relative flex flex-col items-start z-10">

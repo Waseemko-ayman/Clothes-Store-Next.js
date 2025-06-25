@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React from 'react';
 import Container from '../atoms/Container';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <header className="bg-[#d3d5da] py-5 sticky top-0 z-50 shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
+    <header className="bg-[var(--first-color)] py-5 sticky top-0 z-50 shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
       <Container>
         <div className="flex items-center justify-between">
           <Link href={PATHS.HOME}>
