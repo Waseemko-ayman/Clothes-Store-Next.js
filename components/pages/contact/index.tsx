@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+import RepairServices from './Sections/RepairServices';
+import Visit from './Sections/Visit';
+import LeaveMessage from './Sections/LeaveMessage';
 
 const ContactPage = () => {
   return (
-    <div>ContactPage</div>
-  )
-}
+    <>
+      <RepairServices />
+      <Visit />
+      <LeaveMessage />
+    </>
+  );
+};
 
-export default ContactPage
+export default ContactPage;
