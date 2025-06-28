@@ -5,7 +5,8 @@ interface ButtonProps {
   variant: 'primary' | 'secondary' | 'outline' | 'cover' | 'circle';
   borderRadius?: string;
   otherClassName?: string;
-  handleClick?: () => void;
+  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: 'submit' | 'button' | 'reset';
 }
 
 // const Button = ({ children, variant, brderRadius, ...props }: React.ComponentProps<'button'>) => {
@@ -14,6 +15,7 @@ const Button = ({
   variant,
   borderRadius = 'rounded-md',
   otherClassName = '',
+  type = 'submit',
   handleClick,
 }: ButtonProps) => {
   return (
@@ -22,7 +24,7 @@ const Button = ({
         variant !== 'cover' ? 'py-3 px-8 hover:tracking-widest' : 'py-4 px-20'
       } cursor-pointer text-base outline-none font-semibold transition-all duration-200 ${borderRadius} ${
         variant === 'primary'
-          ? 'bg-[var(--forth-color)] text-[var(--white-color)] hover:bg-[var(--white-color)] hover:text-[var(--forth-color)]'
+          ? 'bg-[var(--forth-color)] text-[var(--white-color)] hover:bg-[#054b46]'
           : variant === 'secondary'
           ? 'bg-[var(--white-color)] text-black hover:bg-[var(--forth-color)] hover:text-[var(--white-color)]'
           : variant === 'outline'
@@ -40,6 +42,7 @@ const Button = ({
             : 'none',
       }}
       onClick={handleClick}
+      type={type}
     >
       {children}
     </button>

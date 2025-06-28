@@ -7,10 +7,14 @@
 
 @theme inline {
   --first-color: #d3d5da;
-  --second-color: #465b52;
+  --seconde-color: #465b52;
   --third-color: #f59e0b;
   --forth-color: #088178;
+  --dark-forth-color: '#054b46';
   --fifth-color: #222;
+  --six-color: #777;
+  --seven-color: #ccc;
+  --purple-color: #920592;
   --white-color: white;
 }
 

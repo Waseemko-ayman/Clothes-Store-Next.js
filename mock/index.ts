@@ -1,9 +1,13 @@
+import FormValues from '@/interfaces/FormValue';
 import { PATHS } from './paths';
 import {
+  FaClock,
   FaEnvelope,
   FaGithub,
   FaInstagram,
   FaLinkedin,
+  FaMap,
+  FaPhone,
   FaTelegram,
   FaTwitter,
 } from 'react-icons/fa6';
@@ -370,5 +374,120 @@ export const NEVER_READ = [
     description:
       'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
     beforeContent: '10/03',
+  },
+];
+
+export const CONTACT_DATA = [
+  {
+    id: 1,
+    icon: FaMap,
+    community: 'Occupied Palestine, Gaza',
+  },
+  {
+    id: 2,
+    icon: FaEnvelope,
+    community: 'wasimabdelhadi78@gmail.com',
+  },
+  {
+    id: 3,
+    icon: FaPhone,
+    community: '+972592164680',
+  },
+  {
+    id: 4,
+    icon: FaClock,
+    community: 'Monday to Saturday: 9:00am to 16:00pm',
+  },
+];
+
+export const PERSON_INFO = [
+  {
+    id: 1,
+    name: 'John Doe',
+    src: 'personal-1',
+    information: [
+      {
+        id: 1,
+        infoText: 'Senior Marking Manager',
+      },
+      {
+        id: 2,
+        infoText: 'Phone: +000 123 00 77',
+      },
+      {
+        id: 3,
+        infoText: 'Email: contact@example.com',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: 'William Smith',
+    src: 'personal-2',
+    information: [
+      {
+        id: 1,
+        infoText: 'Senior Marking Manager',
+      },
+      {
+        id: 2,
+        infoText: 'Phone: +000 123 00 77',
+      },
+      {
+        id: 3,
+        infoText: 'Email: contact@example.com',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: 'Emma Stone',
+    src: 'personal-3',
+    information: [
+      {
+        id: 1,
+        infoText: 'Senior Marking Manager',
+      },
+      {
+        id: 2,
+        infoText: 'Phone: +000 123 00 77',
+      },
+      {
+        id: 3,
+        infoText: 'Email: contact@example.com',
+      },
+    ],
+  },
+];
+
+export const INPUT_TYPE: {
+  id: number;
+  type: 'text' | 'email' | 'textarea';
+  name: keyof FormValues;
+  placeholder: string;
+}[] = [
+  {
+    id: 1,
+    type: 'text',
+    name: 'username',
+    placeholder: 'Your Name',
+  },
+  {
+    id: 2,
+    type: 'email',
+    name: 'email',
+    placeholder: 'E-mail',
+  },
+  {
+    id: 3,
+    type: 'text',
+    name: 'subject',
+    placeholder: 'Subject',
+  },
+  {
+    id: 4,
+    type: 'textarea',
+    name: 'message',
+    placeholder: 'Your Message',
   },
 ];

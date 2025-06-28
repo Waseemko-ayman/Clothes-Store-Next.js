@@ -13,7 +13,7 @@ const Copyrights = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="text-base text-[var(--second-color)] my-5"
+          className="text-base text-[var(--seconde-color)] my-5"
         >
           &copy; {dateNow.getFullYear()}, Programmed by Waseem Abd Elhadi
           Developer

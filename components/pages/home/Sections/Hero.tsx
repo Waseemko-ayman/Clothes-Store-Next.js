@@ -17,7 +17,7 @@ const Hero = () => {
           }}
         >
           <motion.p
-            className="text-xl text-[var(--second-color)]"
+            className="text-xl text-[var(--seconde-color)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -36,7 +36,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p
-            className="text-base text-[var(--second-color)]"
+            className="text-base text-[var(--seconde-color)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

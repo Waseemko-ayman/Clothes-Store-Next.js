@@ -6,7 +6,7 @@ import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Featurs = () => {
+const FeatursSec = () => {
   return (
     <Layer>
       <Container>
@@ -40,4 +40,4 @@ const Featurs = () => {
   );
 };
 
-export default Featurs;
+export default FeatursSec;

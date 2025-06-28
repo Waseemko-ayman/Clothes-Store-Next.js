@@ -1,6 +1,6 @@
 import React from 'react';
 import Hero from './Sections/Hero';
-import Featurs from './Sections/Featurs';
+import FeatursSec from '../../organism/FeatursSec';
 import FeaturedProducts from './Sections/FeaturedProducts';
 import RepairServices from './Sections/RepairServices';
 import NewArrivals from './Sections/NewArrivals';
@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <Featurs />
+      <FeatursSec />
       <FeaturedProducts />
       <RepairServices />
       <NewArrivals />

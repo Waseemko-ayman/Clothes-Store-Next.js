@@ -1,4 +1,6 @@
+import FormValues from '@/interfaces/FormValue';
 import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
 
 const Input = ({
   type,
@@ -6,6 +8,7 @@ const Input = ({
   placeholder,
   otherClassName,
   inputName,
+  register,
   ...props
 }: React.PropsWithChildren<
   {
@@ -13,12 +16,13 @@ const Input = ({
     placeholder: string;
     variant?: 'primary' | 'secondary';
     otherClassName?: string;
-    inputName: string;
+    inputName: keyof FormValues;
+    register: UseFormRegister<FormValues>;
   } & React.HTMLAttributes<HTMLElement>
 >) => {
   const StyledInput = `w-[280px] h-12 p-2.5 bg-[var(--white-color)] outline-none placeholder:transition placeholder:duration-300 transition-all duration-300 focus:placeholder:opacity-0 ${
     variant === 'primary'
-      ? 'border border-[#ccc] focus:border-[var(--forth-color)] rounded-none'
+      ? 'border border-[var(--seven-color)] focus:border-[var(--forth-color)] rounded-none'
       : 'border-none rounded-l-md rounded-r-none'
   } ${otherClassName}`;
 
@@ -27,18 +31,17 @@ const Input = ({
       {type === 'textarea' ? (
         <textarea
           placeholder={placeholder}
-          className={StyledInput}
-          name={inputName}
-          id=""
+          className={`${StyledInput} resize-none`}
+          {...(typeof register === 'function' ? register(inputName) : {})}
         />
       ) : (
         <input
           type={type}
-          name={inputName}
           data-slot="input"
           autoComplete="off"
           placeholder={placeholder}
           className={StyledInput}
+          {...(typeof register === 'function' ? register(inputName) : {})}
           {...props}
         />
       )}

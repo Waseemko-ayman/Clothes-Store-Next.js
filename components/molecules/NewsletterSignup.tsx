@@ -45,7 +45,7 @@ const NewsletterSignup = () => {
           <Button
             variant="primary"
             borderRadius="rounded-none sm:rounded-l-none sm:rounded-r-md"
-            otherClassName="w-full sm:w-fit hover:!tracking-normal hover:border hover:border-[var(--forth-color)]"
+            otherClassName="w-full sm:w-fit hover:!tracking-normal"
           >
             Sign Up
           </Button>
