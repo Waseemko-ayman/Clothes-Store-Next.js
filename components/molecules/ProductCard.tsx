@@ -11,6 +11,7 @@ interface ProductCardProps {
   productTitle: string;
   price: number;
   handleClick?: () => void;
+  handleBtnClick?: () => void;
 }
 
 const ProductCard = ({
@@ -20,9 +21,13 @@ const ProductCard = ({
   productTitle,
   price,
   handleClick,
+  handleBtnClick,
 }: ProductCardProps) => {
   return (
-    <div className="relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300">
+    <div
+      className="relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300"
+      onClick={handleClick}
+    >
       <Image
         src={imgSrc}
         alt={imgText}
@@ -48,7 +53,10 @@ const ProductCard = ({
       <Button
         variant="circle"
         otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center"
-        handleClick={handleClick}
+        handleClick={(e) => {
+          e.stopPropagation();
+          handleBtnClick?.();
+        }}
       >
         <FaCartShopping size="20px" />
       </Button>
