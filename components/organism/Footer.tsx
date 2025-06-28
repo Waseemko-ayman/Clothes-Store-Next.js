@@ -70,7 +70,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="text-[var(--second-color)] text-base mt-[15px] mb-5"
+              className="text-[var(--seconde-color)] text-base mt-[15px] mb-5"
             >
               From App Store or Google Play
             </motion.p>
@@ -94,7 +94,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="text-[var(--second-color)] text-base mt-[15px] mb-5"
+              className="text-[var(--seconde-color)] text-base mt-[15px] mb-5"
             >
               Secured Payment Gateays
             </motion.p>

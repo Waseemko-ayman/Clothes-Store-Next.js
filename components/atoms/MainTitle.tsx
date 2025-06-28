@@ -18,7 +18,7 @@ const MainTitle = ({ title, description }: MainTitleProps) => {
       <h2 className="sm:text-4xl md:text-5xl font-bold text-[var(--fifth-color)]">
         {title}
       </h2>
-      <p className="text-base text-[var(--second-color)] mt-3.5 mb-5">
+      <p className="text-base text-[var(--seconde-color)] mt-3.5 mb-5">
         {description}
       </p>
     </motion.div>

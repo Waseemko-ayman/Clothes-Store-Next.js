@@ -34,7 +34,7 @@ const FooterLinks = ({
             <Link
               href={item.url}
               target="_blank"
-              className="text-[var(--second-color)] hover:pl-1 transition-all duration-300"
+              className="text-[var(--seconde-color)] hover:pl-1 transition-all duration-300"
             >
               {/* By type guard To check if an item is of a type that contains icon or text */}
               {'icon' in item ? (
