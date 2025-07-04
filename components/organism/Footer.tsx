@@ -12,7 +12,7 @@ import SecondaryHeading from '../atoms/secondaryHeading';
 
 const Footer = () => {
   return (
-    <Layer>
+    <Layer otherClassName="overflow-hidden">
       <footer>
         <Container otherClassName="flex items-center justify-between flex-wrap gap-5">
           <div className="info">
