@@ -14,7 +14,28 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
+const Images = [
+  {
+    id: 1,
+    src: 'prod1',
+  },
+  {
+    id: 2,
+    src: 'prod2',
+  },
+  {
+    id: 3,
+    src: 'prod3',
+  },
+  {
+    id: 4,
+    src: 'prod4',
+  },
+];
+
 const ProductDetailsPage = () => {
+  const [targetSrc, setTargetSrc] = React.useState('');
+
   const router = useRouter();
   const featuredProducts = CLOTHES.filter((p) => p.section === 'featured');
   // Shuffle the array randomly
@@ -24,34 +45,23 @@ const ProductDetailsPage = () => {
     <Layer>
       <Container>
         <div className="flex gap-10 max-[992px]:flex-col">
-          <div className="w-[500px] max-[992px]:w-full mx-auto">
+          <div className="w-[500px] max-md:w-full mx-auto">
             <img
               id="img"
-              src="/assets/products/prod1.jpg"
+              src={`/assets/products/${targetSrc || 'prod1'}.jpg`}
               alt=""
               className="w-full rounded-sm max-md:max-w-full"
             />
             <div className="flex justify-between flex-wrap gap-1 max-w-full w-full my-2.5 mx-auto max-md:justify-center">
-              <img
-                src="/assets/products/prod1.jpg"
-                alt=""
-                className="max-w-full w-[120px] cursor-pointer rounded-sm  max-md:w-full hover:scale-[1.1] transition duration-300"
-              />
-              <img
-                src="/assets/products/prod1.jpg"
-                alt=""
-                className="max-w-full w-[120px] cursor-pointer rounded-sm  max-md:w-full hover:scale-[1.1] transition duration-300"
-              />
-              <img
-                src="/assets/products/prod1.jpg"
-                alt=""
-                className="max-w-full w-[120px] cursor-pointer rounded-sm  max-md:w-full hover:scale-[1.1] transition duration-300"
-              />
-              <img
-                src="/assets/products/prod1.jpg"
-                alt=""
-                className="max-w-full w-[120px] cursor-pointer rounded-sm  max-md:w-full hover:scale-[1.1] transition duration-300"
-              />
+              {Images.map((item) => (
+                <img
+                  key={item.id}
+                  src={`/assets/products/${item.src}.jpg`}
+                  alt=""
+                  className="max-w-full w-[120px] cursor-pointer rounded-sm max-md:w-[100px] hover:scale-[1.1] transition duration-300"
+                  onClick={() => setTargetSrc(item.src)}
+                />
+              ))}
             </div>
           </div>
           <div className="pt-[30px] w-1/2 max-[992px]:w-full">
@@ -79,7 +89,7 @@ const ProductDetailsPage = () => {
                 <option value="1">Large</option>
               </select>
             </div>
-            <div className="flex items-center gap-2.5 mb-10">
+            <div className="flex items-center flex-wrap gap-2.5 mb-10">
               <input
                 type="number"
                 min="1"
@@ -87,12 +97,14 @@ const ProductDetailsPage = () => {
                 required
                 className="w-14 h-10 border border-[var(--six-color)] pl-1 rounded-[3px] focus:border-[var(--forth-color)] outline-none"
               />
-              <Button variant="primary" otherClassName="!py-2 !px-[15px]">
-                Add To Cart
-              </Button>
-              <Button variant="primary" otherClassName="!py-2 !px-[15px]">
-                Buy Now
-              </Button>
+              <div className='flex items-center gap-2.5'>
+                <Button variant="primary" otherClassName="!py-2 !px-[15px]">
+                  Add To Cart
+                </Button>
+                <Button variant="primary" otherClassName="!py-2 !px-[15px]">
+                  Buy Now
+                </Button>
+              </div>
             </div>
             <div className="text">
               <h3 className="font-bold text-[22px] mb-5">Product Details</h3>
