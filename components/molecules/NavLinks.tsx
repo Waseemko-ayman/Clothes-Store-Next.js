@@ -12,8 +12,9 @@ const NavLinks = ({
   isMobile?: boolean;
   onLinkClick?: () => void;
 }) => {
-  const StyledLinks =
-    'relative py-1 text-base font-semibold cursor-pointer text-[#1a1a1a] hover:text-[var(--forth-color)] transition duration-200';
+  const StyledLinks = `relative py-1 text-base font-semibold cursor-pointer text-[var(${
+    isMobile ? '--white-color' : '--fifth-color'
+  })] hover:text-[var(--forth-color)] transition duration-200`;
   return (
     <nav className="">
       <ul
@@ -34,6 +35,7 @@ const NavLinks = ({
             }}
             className={`${StyledLinks} ${
               item.name !== 'Cart' &&
+              !isMobile &&
               'after:absolute after:left-0 after:bottom-0 after:bg-[var(--forth-color)] after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
             } ${isMobile ? 'text-lg mb-4' : ''}`}
             onClick={onLinkClick}
