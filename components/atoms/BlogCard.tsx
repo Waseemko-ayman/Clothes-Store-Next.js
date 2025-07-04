@@ -22,11 +22,11 @@ const BlogCard = ({
 }: BlogCardProps) => {
   return (
     <div
-      className={`flex items-center justify-center w-full gap-10 ${otherClassNameBox}`}
+      className={`flex items-center justify-center flex-wrap w-full gap-10 ${otherClassNameBox}`}
     >
       <div
-        className={`relative before:content-var before:absolute before:text-[80px] before:font-bold before:text-[#b1b1b1] before:left-0 before:-top-[60px] before:-z-10`}
-        style={{ ['--before-content' as string]: `"${beforeContent}"` }}
+        className="relative before:absolute before:text-[80px] before:font-bold before:text-[#b1b1b1] before:left-0 before:-top-[70px] before:-z-10 before:content-[attr(data-before)]"
+        data-before={beforeContent}
       >
         <img
           src={`/assets/blog/${imgSrc}`}
@@ -35,16 +35,20 @@ const BlogCard = ({
           className="max-w-full w-[500px] z-10"
         />
       </div>
-      <div className="max-[992px]:text-center">
-        <h3 className="text-[var(--fifth-color)] text-3xl md:text-xl font-bold">
+      <div className="max-xl:text-center">
+        <h3 className="text-[var(--fifth-color)] text-xl md:text-3xl font-bold">
           {title}
         </h3>
-        <p className="text-[#777] max-w-full w-[600px] max-md:w-[350px] max-md:text-[18px] mt-[15px] mb-5">
+        <p className="text-[#777] max-w-full w-[600px] max-md:w-[300px] max-md:text-[18px] mt-[15px] mb-5">
           {description}
         </p>
         <Link
           href="#"
-          className="block text-[var(--fifth-color)] relative text-sm font-bold uppercase w-[190px] max-md:text-base max-[992px]:m-auto transition duration-300 hover:text-[var(--forth-color)] after:absolute after:w-[50px] after:h-0.5 after:-right-2.5 after:top-[50%] after:-translate-y-[50%] after:bg-[var(--fifth-color)] after:transition after:duration-300 hover:after:bg-[var(--forth-color)] after:max-[992px]:-right-[30px] after:max-md:-right-10"
+          className="relative block w-[190px] text-sm max-md:text-base font-bold uppercase text-[var(--fifth-color)] transition duration-300 hover:text-[var(--forth-color)]
+    after:absolute after:h-0.5 after:bg-[var(--fifth-color)] hover:after:bg-[var(--forth-color)] after:transition after:duration-300
+    after:w-[50px] after:left-1/2 after:-translate-x-1/2 after:-bottom-2.5
+    xl:after:top-1/2 xl:after:left-auto xl:after:-right-8 xl:after:-translate-y-1/2 xl:after:bottom-auto
+    max-xl:mx-auto"
         >
           Continue Reading
         </Link>
