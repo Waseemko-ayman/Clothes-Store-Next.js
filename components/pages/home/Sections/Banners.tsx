@@ -59,7 +59,14 @@ const Banners = () => {
           {BANNERS_DATA.filter((item) => item.type === 'big').map(
             (item, index) => (
               <MotionDiv key={item.id} index={index}>
-                <Banner key={item.id} height="h-[50vh]" {...item} />
+                <Banner
+                  key={item.id}
+                  height="h-[50vh]"
+                  otherClassNameContainer={
+                    index === 0 ? 'bg-right' : 'bg-center'
+                  }
+                  {...item}
+                />
               </MotionDiv>
             )
           )}
