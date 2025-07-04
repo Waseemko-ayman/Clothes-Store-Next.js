@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import ProductsTable from './Sections/ProductsTable';
+import RepairServices from './Sections/RepairServices';
 
 const CartPage = () => {
   return (
-    <div>CartPage</div>
-  )
-}
+    <>
+      <RepairServices />
+      <ProductsTable />
+    </>
+  );
+};
 
-export default CartPage
+export default CartPage;
