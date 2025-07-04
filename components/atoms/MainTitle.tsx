@@ -15,7 +15,7 @@ const MainTitle = ({ title, description }: MainTitleProps) => {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >
-      <h2 className="sm:text-4xl md:text-5xl font-bold text-[var(--fifth-color)]">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--fifth-color)]">
         {title}
       </h2>
       <p className="text-base text-[var(--seconde-color)] mt-3.5 mb-5">
