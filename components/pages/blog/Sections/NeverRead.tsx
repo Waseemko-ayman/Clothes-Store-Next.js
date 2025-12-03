@@ -2,7 +2,7 @@
 import BlogCard from '@/components/atoms/BlogCard';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import MotionDiv from '@/components/atoms/MotionDiv';
+import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import { NEVER_READ } from '@/mock';
 import React from 'react';
 
@@ -28,7 +28,7 @@ const NeverRead = () => {
             description,
             beforeContent,
           }: NeverReadProps) => (
-            <MotionDiv key={id}>
+            <AnimatedWrapper key={id}>
               <BlogCard
                 imgSrc={src}
                 imgTitle={imgTitle}
@@ -37,7 +37,7 @@ const NeverRead = () => {
                 beforeContent={beforeContent}
                 otherClassNameBox={id !== NEVER_READ.length ? 'mb-[100px]' : ''}
               />
-            </MotionDiv>
+            </AnimatedWrapper>
           )
         )}
       </Container>
