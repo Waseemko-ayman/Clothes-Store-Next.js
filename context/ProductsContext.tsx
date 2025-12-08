@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { API_URL } from '@/config/api';
@@ -7,16 +8,30 @@ import { createContext, useContext, useEffect } from 'react';
 
 interface ClothesProps extends APIRequest {
   clothes: ProductCardProps[];
+  product: ProductCardProps | null;
+  getSingle: (id: string | number, getConfig?: any) => Promise<any> | void;
 }
 
-export const ProductsContext = createContext<ClothesProps | undefined>(
-  undefined
-);
+export const ProductsContext = createContext<ClothesProps | undefined>({
+  clothes: [],
+  product: null,
+  isLoading: true,
+  error: false,
+  refresh: () => {},
+  getSingle: async () => {},
+});
 
 export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { data: clothes, isLoading, error, get } = useAPI(`${API_URL}/clothes`);
+  const {
+    data: clothes,
+    product,
+    isLoading,
+    error,
+    get,
+    getSingle,
+  } = useAPI(`${API_URL}/clothes`);
 
   useEffect(() => {
     get();
@@ -27,7 +42,9 @@ export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <ProductsContext.Provider value={{ clothes, isLoading, error, refresh }}>
+    <ProductsContext.Provider
+      value={{ clothes, product, isLoading, error, refresh, getSingle }}
+    >
       {children}
     </ProductsContext.Provider>
   );
