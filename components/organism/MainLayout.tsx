@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Copyrights from './Copyrights';
 import NewsletterSignup from '../molecules/NewsletterSignup';
+import { ToastContainer } from 'react-toastify';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -12,6 +13,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <NewsletterSignup />
       <Footer />
       <Copyrights />
+      <ToastContainer />
     </>
   );
 };
