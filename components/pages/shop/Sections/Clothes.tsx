@@ -8,15 +8,11 @@ import ProductCard from '@/components/molecules/ProductCard';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import { ProductCardProps } from '@/interfaces';
-import { useCartContext } from '@/context/CartContext';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
-import { useToast } from '@/lib/toast';
 import { useProductsContext } from '@/context/ProductsContext';
 
 const Clothes = () => {
   const router = useRouter();
-  const { addToCart } = useCartContext();
-  const { showToast } = useToast();
 
   // API Context
   const { clothes, isLoading } = useProductsContext();
@@ -37,11 +33,8 @@ const Clothes = () => {
                   tradeMark={item?.tradeMark}
                   productTitle={item?.productTitle}
                   price={item?.price}
+                  productData={item}
                   handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
-                  onAddToCart={() => {
-                    addToCart(item);
-                    showToast('Added to cart');
-                  }}
                 />
               </AnimatedWrapper>
             ))}

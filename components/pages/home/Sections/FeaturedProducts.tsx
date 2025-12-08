@@ -31,16 +31,17 @@ const FeaturedProducts = () => {
         ) : (
           <ProdcutsContainer>
             {featuredProducts.map(
-              ({ id, src, imgText, tradeMark, productTitle, price }, index) => (
-                <AnimatedWrapper key={id} custom={index}>
+              (item, index) => (
+                <AnimatedWrapper key={item?.id} custom={index}>
                   <ProductCard
-                    key={id}
-                    imgSrc={src}
-                    imgText={imgText}
-                    tradeMark={tradeMark}
-                    productTitle={productTitle}
-                    price={price}
-                    handleClick={() => router.push(PATHS.SHOP.ITEM(id))}
+                    key={item?.id}
+                    imgSrc={item?.src}
+                    imgText={item?.imgText}
+                    tradeMark={item?.tradeMark}
+                    productTitle={item?.productTitle}
+                    price={item?.price}
+                    productData={item}
+                    handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
                   />
                 </AnimatedWrapper>
               )

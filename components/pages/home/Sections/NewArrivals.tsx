@@ -29,21 +29,20 @@ const NewArrivals = () => {
           <Loading />
         ) : (
           <ProdcutsContainer>
-            {newArrivals.map(
-              ({ id, src, imgText, tradeMark, productTitle, price }, index) => (
-                <AnimatedWrapper key={id} custom={index}>
-                  <ProductCard
-                    key={id}
-                    imgSrc={src}
-                    imgText={imgText}
-                    tradeMark={tradeMark}
-                    productTitle={productTitle}
-                    price={price}
-                    handleClick={() => router.push(PATHS.SHOP.ITEM(id))}
-                  />
-                </AnimatedWrapper>
-              )
-            )}
+            {newArrivals.map((item, index) => (
+              <AnimatedWrapper key={item?.id} custom={index}>
+                <ProductCard
+                  key={item?.id}
+                  imgSrc={item?.src}
+                  imgText={item?.imgText}
+                  tradeMark={item?.tradeMark}
+                  productTitle={item?.productTitle}
+                  price={item?.price}
+                  productData={item}
+                  handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
+                />
+              </AnimatedWrapper>
+            ))}
           </ProdcutsContainer>
         )}
       </Container>
