@@ -58,8 +58,8 @@ const Header = () => {
                   src="/assets/landing/logo.png"
                   alt="Cata Logo"
                   title="Cata Logo"
-                  width={140}
-                  height={140}
+                  width={50}
+                  height={50}
                 />
               </motion.div>
             </Link>
@@ -95,8 +95,8 @@ const Header = () => {
                   src="/assets/landing/logo.png"
                   alt="Cata Logo"
                   title="Cata Logo"
-                  width={140}
-                  height={140}
+                  width={60}
+                  height={60}
                 />
               </motion.div>
             </Link>
