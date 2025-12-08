@@ -1,0 +1,558 @@
+{
+  "clothes": [
+    {
+      "id": "0",
+      "slug": "Cartoon Astronaut T-Shirts 1",
+      "src": "prod1",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 78,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "1",
+      "slug": "Cartoon Astronaut T-Shirts 2",
+      "src": "prod2",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 65,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "2",
+      "slug": "Cartoon Astronaut T-Shirts 3",
+      "src": "prod3",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 88,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "3",
+      "slug": "Cartoon Astronaut T-Shirts 4",
+      "src": "prod4",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 57,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "4",
+      "slug": "Cartoon Astronaut T-Shirts 5",
+      "src": "prod5",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "5",
+      "slug": "Cartoon Astronaut T-Shirts 6",
+      "src": "prod6",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "6",
+      "slug": "Cartoon Astronaut T-Shirts 7",
+      "src": "prod7",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "7",
+      "slug": "Cartoon Astronaut T-Shirts 8",
+      "src": "prod8",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "8",
+      "slug": "Cartoon Astronaut T-Shirts 9",
+      "src": "prod9",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "9",
+      "slug": "Cartoon Astronaut T-Shirts 10",
+      "src": "prod10",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "10",
+      "slug": "Cartoon Astronaut T-Shirts 11",
+      "src": "prod11",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "11",
+      "slug": "Cartoon Astronaut T-Shirts 12",
+      "src": "prod12",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "12",
+      "slug": "Cartoon Astronaut T-Shirts 13",
+      "src": "prod13",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "13",
+      "slug": "Cartoon Astronaut T-Shirts 14",
+      "src": "prod14",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "14",
+      "slug": "Cartoon Astronaut T-Shirts 15",
+      "src": "prod15",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    },
+    {
+      "id": "15",
+      "slug": "Cartoon Astronaut T-Shirts 16",
+      "src": "prod16",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "newArrivals"
+    }
+  ],
+  "cart": [
+    {
+      "id": "3",
+      "slug": "Cartoon Astronaut T-Shirts 4",
+      "src": "prod4",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 57,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "3",
+      "slug": "Cartoon Astronaut T-Shirts 4",
+      "src": "prod4",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 57,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "2",
+      "slug": "Cartoon Astronaut T-Shirts 3",
+      "src": "prod3",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 88,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "2",
+      "slug": "Cartoon Astronaut T-Shirts 3",
+      "src": "prod3",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 88,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "2",
+      "slug": "Cartoon Astronaut T-Shirts 3",
+      "src": "prod3",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 88,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "2",
+      "slug": "Cartoon Astronaut T-Shirts 3",
+      "src": "prod3",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 88,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    },
+    {
+      "id": "7",
+      "slug": "Cartoon Astronaut T-Shirts 8",
+      "src": "prod8",
+      "gallery": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4"
+      ],
+      "imgText": "T-Shirts",
+      "tradeMark": "adidas",
+      "productTitle": "Cartoon Astronaut T-Shirts",
+      "price": 94,
+      "quantity": 1,
+      "size": [
+        "XL",
+        "XXL",
+        "Small",
+        "Large"
+      ],
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, tempore autem? Similique, praesentium? Quidem soluta incidunt accusantium voluptatem fuga. Cupiditate, odit labore! Alias, dicta animi? Reiciendis adipisci cupiditate eaque? Quae ipsam, perspiciatis voluptas, sed et aperiam earum quasi quas animi enim est adipisci tempore. Sunt dignissimos voluptatum modi ducimus quibusdam.",
+      "section": "featured"
+    }
+  ]
+}
