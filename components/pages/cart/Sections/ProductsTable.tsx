@@ -1,100 +1,123 @@
-/* eslint-disable @next/next/no-img-element */
+'use client';
+import React, { useEffect, useState } from 'react';
+import Button from '@/components/atoms/Button';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import React from 'react';
-import {
-  FaCircleChevronLeft,
-  FaCircleChevronRight,
-  FaTrash,
-} from 'react-icons/fa6';
-
-const tabeleData = {
-  tableHeaders: ['Remove', 'Image', 'Product', 'Price', 'Quantity', 'Subtotal'],
-  tabelContent: [
-    {
-      srcImg: 'prod1',
-      productName: 'Cartoon Astronaut T-Shirts-8',
-      price: 78.0,
-      quantity: 1,
-      subtotal: 78.0,
-    },
-    {
-      srcImg: 'prod2',
-      productName: 'Cartoon Astronaut T-Shirts-9',
-      price: 85.0,
-      quantity: 2,
-      subtotal: 170.0,
-    },
-    {
-      srcImg: 'prod3',
-      productName: 'Cartoon Astronaut T-Shirts-10',
-      price: 90.0,
-      quantity: 1,
-      subtotal: 90.0,
-    },
-  ],
-};
+import MotionSection from '@/components/molecules/FramerMotion/MotionSection';
+import { API_URL } from '@/config/api';
+import { useCartContext } from '@/context/CartContext';
+import useAPI from '@/Hooks/useAPI';
+import { useToast } from '@/lib/toast';
+import { PATHS } from '@/mock/paths';
+import Image from 'next/image';
+import CartTable from '@/components/molecules/CartTable';
+import { FaBorderAll, FaTable } from 'react-icons/fa6';
+import CartCards from '@/components/molecules/CartCards';
 
 const ProductsTable = () => {
-  const commonClassName = `p-[15px] border border-[#2d2d2d80]`;
-  const fullWidth = 'max-w-full w-full';
-  const ArrowIconStyle =
-    'text-[var(--seconde-color)] text-lg cursor-pointer transition-all hover:text-[var(--forth-color)]';
+  const [viewMode, setViewMode] = useState<'table' | 'cards'>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('cart_view_mode');
+      return stored === 'table' || stored === 'cards' ? stored : 'table';
+    }
+    return 'table';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cart_view_mode', viewMode);
+  }, [viewMode]);
+
+  const { del } = useAPI(`${API_URL}/cart`);
+  const { cartItems, updateQuantity, removeFromCart } = useCartContext();
+  const { showToast } = useToast();
+
+  const tabeleData = {
+    tableHeaders: [
+      'Remove',
+      'Image',
+      'Product',
+      'Price',
+      'Quantity',
+      'Subtotal',
+    ],
+    tabelContent: cartItems,
+  };
+
+  const handleDelete = async (id: number | string, itemTitle: string) => {
+    removeFromCart(id);
+    del(id);
+    showToast(`${itemTitle} removed from cart`);
+  };
 
   return (
     <Layer>
-      <Container otherClassName="overflow-x-auto max-[991px]:pb-5">
-        <table
-          className={`text-center border-spacing-0 whitespace-nowrap ${fullWidth}`}
-        >
-          <thead>
-            <tr className={fullWidth}>
-              {tabeleData.tableHeaders.map((header, index) => (
-                <th
-                  key={index}
-                  className={`text-[var(--white-color)] bg-[var(--forth-color)] uppercase border-y-[var(--forth-color)] text-center ${commonClassName}`}
+      <Container otherClassName="max-[991px]:pb-5">
+        <div className="flex justify-center md:justify-end gap-2 mb-4">
+          <Button
+            otherClassName={`!px-4 !py-2 ${
+              viewMode === 'table'
+                ? 'bg-[var(--forth-color)] text-white'
+                : 'bg-[var(--seven-color)] text-[var(--six-color)]'
+            }`}
+            handleClick={() => setViewMode('table')}
+          >
+            <FaTable size={20} />
+          </Button>
+          <Button
+            otherClassName={`!px-4 !py-2 ${
+              viewMode === 'cards'
+                ? 'bg-[var(--forth-color)] text-white'
+                : 'bg-[var(--seven-color)] text-[var(--six-color)]'
+            }`}
+            handleClick={() => setViewMode('cards')}
+          >
+            <FaBorderAll size={20} />
+          </Button>
+        </div>
+
+        {tabeleData.tabelContent.length > 0 ? (
+          viewMode === 'table' ? (
+            <CartTable
+              tabeleData={tabeleData}
+              updateQuantity={updateQuantity}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <CartCards
+              cartItems={cartItems}
+              updateQuantity={updateQuantity}
+              handleDelete={handleDelete}
+            />
+          )
+        ) : (
+          <div className="py-5">
+            <MotionSection index={0}>
+              <Image
+                src="/assets/empty-cart.png"
+                alt="Empty Cart"
+                width={150}
+                height={150}
+                className="mx-auto"
+              />
+            </MotionSection>
+            <div className="text-center mt-5">
+              <MotionSection index={1}>
+                <h2 className="text-lg text-[var(--enjoy-gray-650)] font-normal mb-5">
+                  Your shopping basket is ready and calling you to shop!
+                </h2>
+              </MotionSection>
+              <MotionSection index={2}>
+                <Button
+                  href={PATHS.SHOP.ROOT}
+                  variant="primary"
+                  otherClassName="!py-2.5 !px-5"
                 >
-                  {header}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {tabeleData.tabelContent.map((item, index) => (
-              <tr key={index} className="text-[var(--seconde-color)] font-bold">
-                <td className={`${commonClassName}`}>
-                  <FaTrash className="mx-auto text-[var(--seconde-color)] text-lg font-black cursor-pointer transition duration-300 hover:text-red-500" />
-                </td>
-                <td className={`${commonClassName}`}>
-                  <img
-                    src={`/assets/products/${item.srcImg}.jpg`}
-                    alt={item.productName}
-                    className="max-w-full w-[100px] mx-auto"
-                  />
-                </td>
-                <td className={`${commonClassName}`}>{item.productName}</td>
-                <td className={`${commonClassName}`}>
-                  <p
-                    id={`price${index + 1}`}
-                    className="relative w-fit px-2.5 my-0 mx-auto"
-                  >
-                    ${item.price.toFixed(2)}
-                  </p>
-                </td>
-                <td className={`text-lg ${commonClassName}`}>
-                  <div className="flex items-center justify-center gap-3">
-                    <FaCircleChevronLeft className={ArrowIconStyle} />
-                    <span className="mx-2.5">{item.quantity}</span>
-                    <FaCircleChevronRight className={ArrowIconStyle} />
-                  </div>
-                </td>
-                <td className={`${commonClassName}`}>
-                  <p>${item.subtotal.toFixed(2)}</p>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  Proceed to checkout
+                </Button>
+              </MotionSection>
+            </div>
+          </div>
+        )}
       </Container>
     </Layer>
   );
