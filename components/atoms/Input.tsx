@@ -1,4 +1,4 @@
-import FormValues from '@/interfaces/FormValue';
+import { FormValues } from '@/interfaces';
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
