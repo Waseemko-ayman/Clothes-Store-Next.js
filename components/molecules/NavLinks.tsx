@@ -3,6 +3,7 @@ import { navItems } from '@/mock';
 import Link from 'next/link';
 import React from 'react';
 import { FaCartShopping } from 'react-icons/fa6';
+import { FiUser } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useCartContext } from '@/context/CartContext';
 import { usePathname } from 'next/navigation';
@@ -39,7 +40,7 @@ const NavLinks = ({
               delay: idx * 0.08,
             }}
             className={`${StyledLinks} ${
-              item.name !== 'Cart' &&
+              item.name !== 'Cart' && item.name !== 'Login' &&
               !isMobile &&
               'after:absolute after:left-0 after:bottom-0 after:bg-[var(--forth-color)] after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
             } ${isMobile ? 'text-lg mb-4' : ''} ${
@@ -59,6 +60,8 @@ const NavLinks = ({
                     {cartItems?.length}
                   </span>
                 </div>
+              ) : item.name === 'Login' ? (
+                <FiUser className="" size="25px" />
               ) : (
                 item.name
               )}

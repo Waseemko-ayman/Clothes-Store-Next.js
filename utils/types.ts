@@ -13,3 +13,19 @@ export type ButtonVarinats =
   | 'circle';
 export type ButtonTypes = 'submit' | 'button' | 'reset';
 export type ButtonIconPosition = 'left' | 'right';
+export type InputTypes =
+  | 'text'
+  | 'password'
+  | 'search'
+  | 'number'
+  | 'email'
+  | 'phone'
+  | 'tel'
+  | 'select'
+  | 'multi-select'
+  | 'date'
+  | 'editor'
+  | 'radio'
+  | 'file'
+  | 'textarea'
+  | 'checkbox';

@@ -12,6 +12,7 @@ export interface APIRequest {
 export interface FormValues {
   username: string;
   email: string;
+  password: string;
   subject: string;
   message: string;
 }
@@ -91,4 +92,15 @@ export interface QuantityControllerProps {
     quantity?: number;
   };
   updateQuantity: (key: number | string, quantity: number) => void;
+}
+
+export interface AuthHeaderProps {
+  title: string;
+  description: string;
+}
+
+export interface AuthRedirectProps {
+  text: string;
+  linkText: string;
+  href: string;
 }
