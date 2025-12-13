@@ -18,6 +18,7 @@ export const navItems = [
   { name: 'Blog', link: PATHS.BLOG },
   { name: 'About', link: PATHS.ABOUT },
   { name: 'Contact', link: PATHS.CONTACT },
+  { name: 'Login', link: PATHS.AUTH.LOGIN },
   { name: 'Cart', link: PATHS.CART },
 ];
 
@@ -342,5 +343,53 @@ export const INPUT_TYPE: {
     type: 'textarea',
     name: 'message',
     placeholder: 'Your Message',
+  },
+];
+
+export const loginInputs = [
+  {
+    id: 1,
+    label: 'Email Address',
+    type: 'email',
+    name: 'email',
+    placeholder: 'you@example.com',
+  },
+  {
+    id: 2,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+];
+
+export const signupInputs = [
+  {
+    id: 1,
+    label: 'Username',
+    type: 'text',
+    name: 'name',
+    placeholder: 'Your Name',
+  },
+  {
+    id: 2,
+    label: 'Email Address',
+    type: 'email',
+    name: 'email',
+    placeholder: 'you@example.com',
+  },
+  {
+    id: 3,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+  {
+    id: 4,
+    type: 'password',
+    label: 'Password Confirmation',
+    name: 'password_confirmation',
+    placeholder: 'repassword',
   },
 ];
