@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 const NewsletterSignup = () => {
   return (
     <Layer
-      otherClassName="bg-center bg-cover bg-no-repeat min-h-[25vh] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/20 flex"
+      otherClassName="overflow-hidden bg-center bg-cover bg-no-repeat min-h-[25vh] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/20 flex"
       style={{ backgroundImage: 'url(/assets/banner/signUp.jpg)' }}
     >
       <Container otherClassName="w-full flex flex-col items-center justify-center lg:flex-row lg:justify-between gap-2.5">

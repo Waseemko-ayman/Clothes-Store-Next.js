@@ -1,4 +1,4 @@
-import FormValues from '@/interfaces/FormValue';
+import { FormValues } from '@/interfaces';
 import { PATHS } from './paths';
 import {
   FaClock,
@@ -18,6 +18,7 @@ export const navItems = [
   { name: 'Blog', link: PATHS.BLOG },
   { name: 'About', link: PATHS.ABOUT },
   { name: 'Contact', link: PATHS.CONTACT },
+  { name: 'Login', link: PATHS.AUTH.LOGIN },
   { name: 'Cart', link: PATHS.CART },
 ];
 
@@ -57,153 +58,6 @@ export const FETURES = [
     title: 'F24/7 Support',
     image: '/assets/features/Service 24_7-bro.svg',
     bgColor: 'bg-[#edc5c5]',
-  },
-];
-
-export const CLOTHES = [
-  {
-    id: 1,
-    src: '/assets/products/prod1.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 78,
-    section: 'featured',
-  },
-  {
-    id: 2,
-    src: '/assets/products/prod2.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 65,
-    section: 'featured',
-  },
-  {
-    id: 3,
-    src: '/assets/products/prod3.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 88,
-    section: 'featured',
-  },
-  {
-    id: 4,
-    src: '/assets/products/prod4.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 57,
-    section: 'featured',
-  },
-  {
-    id: 5,
-    src: '/assets/products/prod5.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'featured',
-  },
-  {
-    id: 6,
-    src: '/assets/products/prod6.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'featured',
-  },
-  {
-    id: 7,
-    src: '/assets/products/prod7.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'featured',
-  },
-  {
-    id: 8,
-    src: '/assets/products/prod8.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'featured',
-  },
-  {
-    id: 9,
-    src: '/assets/products/prod9.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 10,
-    src: '/assets/products/prod10.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 11,
-    src: '/assets/products/prod11.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 12,
-    src: '/assets/products/prod12.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 13,
-    src: '/assets/products/prod13.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 14,
-    src: '/assets/products/prod14.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 15,
-    src: '/assets/products/prod15.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
-  },
-  {
-    id: 16,
-    src: '/assets/products/prod16.jpg',
-    imgText: 'T-Shirts',
-    tradeMark: 'adidas',
-    productTitle: 'Cartoon Astronaut T-Shirts',
-    price: 94,
-    section: 'newArrivals',
   },
 ];
 
@@ -489,5 +343,53 @@ export const INPUT_TYPE: {
     type: 'textarea',
     name: 'message',
     placeholder: 'Your Message',
+  },
+];
+
+export const loginInputs = [
+  {
+    id: 1,
+    label: 'Email Address',
+    type: 'email',
+    name: 'email',
+    placeholder: 'you@example.com',
+  },
+  {
+    id: 2,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+];
+
+export const signupInputs = [
+  {
+    id: 1,
+    label: 'Username',
+    type: 'text',
+    name: 'name',
+    placeholder: 'Your Name',
+  },
+  {
+    id: 2,
+    label: 'Email Address',
+    type: 'email',
+    name: 'email',
+    placeholder: 'you@example.com',
+  },
+  {
+    id: 3,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+  {
+    id: 4,
+    type: 'password',
+    label: 'Password Confirmation',
+    name: 'password_confirmation',
+    placeholder: 'repassword',
   },
 ];

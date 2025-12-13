@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import React from 'react';
 import Button from '../atoms/Button';
 import { FaStar } from 'react-icons/fa';
 import { FaCartShopping } from 'react-icons/fa6';
+import { useToast } from '@/lib/toast';
+import { useCartContext } from '@/context/CartContext';
 
 interface ProductCardProps {
   imgSrc: string;
@@ -10,8 +13,8 @@ interface ProductCardProps {
   tradeMark: string;
   productTitle: string;
   price: number;
+  productData: any;
   handleClick?: () => void;
-  handleBtnClick?: () => void;
 }
 
 const ProductCard = ({
@@ -20,16 +23,20 @@ const ProductCard = ({
   tradeMark,
   productTitle,
   price,
+  productData,
   handleClick,
-  handleBtnClick,
 }: ProductCardProps) => {
+  // Contexts
+  const { addToCart } = useCartContext();
+  const { showToast } = useToast();
+
   return (
     <div
       className="relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300"
       onClick={handleClick}
     >
       <Image
-        src={imgSrc}
+        src={`/assets/products/${imgSrc}.jpg`}
         alt={imgText}
         title={imgText}
         width={500}
@@ -55,7 +62,8 @@ const ProductCard = ({
         otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center"
         handleClick={(e) => {
           e.stopPropagation();
-          handleBtnClick?.();
+          addToCart?.(productData);
+          showToast('Added to cart');
         }}
       >
         <FaCartShopping size="20px" />

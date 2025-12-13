@@ -6,10 +6,10 @@ import Layer from '@/components/atoms/Layer';
 import PersonInfoCard from '@/components/molecules/PersonInfoCard';
 import { INPUT_TYPE, PERSON_INFO } from '@/mock';
 import Link from 'next/link';
-import FormValues from '@/interfaces/FormValue';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { FormValues } from '@/interfaces';
 
 const alphanumericWithArabicRegex = /^[A-Za-z\u0621-\u064A0-9_ ]{5,}$/;
 const messageRegex = /^[\s\S]{20,}$/;
