@@ -17,7 +17,7 @@ const Footer = () => {
         <Container otherClassName="flex items-center justify-between flex-wrap gap-5">
           <div className="info">
             <motion.img
-              src="/assets/landing/logo.png"
+              src="/assets/landing/logo.webp"
               alt="logo"
               className="mb-8"
               width={140}

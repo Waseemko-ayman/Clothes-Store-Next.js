@@ -55,7 +55,7 @@ const Header = () => {
                 }}
               >
                 <Image
-                  src="/assets/landing/logo.png"
+                  src="/assets/landing/logo.webp"
                   alt="Cata Logo"
                   title="Cata Logo"
                   width={50}
@@ -92,7 +92,7 @@ const Header = () => {
                 }}
               >
                 <Image
-                  src="/assets/landing/logo.png"
+                  src="/assets/landing/logo.webp"
                   alt="Cata Logo"
                   title="Cata Logo"
                   width={60}
