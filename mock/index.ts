@@ -393,3 +393,20 @@ export const signupInputs = [
     placeholder: 'repassword',
   },
 ];
+
+export const resetInputs = [
+  {
+    id: 1,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+  {
+    id: 2,
+    type: 'password',
+    label: 'Password Confirmation',
+    name: 'password_confirmation',
+    placeholder: 'repassword',
+  },
+];

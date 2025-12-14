@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ButtonIconPosition, ButtonTypes, ButtonVarinats } from '@/utils/types';
+import {
+  ButtonIconPosition,
+  ButtonTypes,
+  ButtonVarinats,
+  InputTypes,
+} from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
 
@@ -103,4 +108,25 @@ export interface AuthRedirectProps {
   text: string;
   linkText: string;
   href: string;
+}
+
+export interface FieldType {
+  id: number | string;
+  name: string;
+  type: InputTypes | string;
+  label: string;
+  placeholder: string;
+}
+
+export interface StatusPasswordProps {
+  title: string;
+  description: string;
+  icon: 'check' | 'lock';
+  iconBgColor?: string;
+  iconColor?: string;
+  linkText?: string;
+  linkHref?: string;
+  infoText?: string;
+  gradientFrom?: string;
+  gradientTo?: string;
 }
