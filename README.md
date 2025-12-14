@@ -1,5 +1,11 @@
 # Clothes Shopping — Next.js Storefront
 
+![Next.js](https://img.shields.io/badge/Next.js-13-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.3-green)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Vercel](https://img.shields.io/badge/deploy-vercel-black)
+
 A modern, responsive e-commerce storefront built with Next.js and TypeScript.  
 This project provides a clean, component-driven UI for browsing products, managing a shopping cart, and handling user authentication flows.
 
@@ -34,7 +40,7 @@ This project provides a clean, component-driven UI for browsing products, managi
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/Waseemko-ayman)
+- [@Waseemko-ayman](https://www.github.com/Waseemko-ayman)
 
 ---
 
