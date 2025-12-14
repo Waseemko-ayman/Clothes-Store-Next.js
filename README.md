@@ -37,12 +37,6 @@ This project provides a clean, component-driven UI for browsing products, managi
 
 ---
 
-## Authors
-
-- [@Waseemko-ayman](https://www.github.com/Waseemko-ayman)
-
----
-
 ### Install
 ```bash
 npm install
@@ -50,3 +44,9 @@ npm install
 yarn
 # or
 pnpm install
+
+---
+
+## Authors
+
+- [@Waseemko-ayman](https://www.github.com/Waseemko-ayman)
