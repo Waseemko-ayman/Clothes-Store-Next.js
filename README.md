@@ -30,6 +30,14 @@ This project provides a clean, component-driven UI for browsing products, managi
 - Node.js 18 or newer
 - npm, yarn, or pnpm
 
+---
+
+## Authors
+
+- [@octokatherine](https://www.github.com/Waseemko-ayman)
+
+---
+
 ### Install
 ```bash
 npm install
