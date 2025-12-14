@@ -8,15 +8,11 @@ import Link from 'next/link';
 // import { Card } from '@/components/ui/card';
 import { Eye, EyeOff } from 'lucide-react';
 import Input from '@/components/atoms/Input';
-import Button from '@/components/atoms/Button';
 import { PATHS } from '@/mock/paths';
 import AuthRedirect from '@/components/molecules/AuthRedirect';
-import FormErrorAlert from '@/components/molecules/FormErrorAlert';
-import BackgroundGradient from '@/components/molecules/BackgroundGradientWrapper';
-import ButtonLoading from '@/components/atoms/ButtonLoading';
 import { loginInputs } from '@/mock';
 import { InputTypes } from '@/utils/types';
-import AuthHeader from '@/components/molecules/AuthHeader';
+import AuthTemplate from '@/components/Template/AuthTemplate';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -57,86 +53,70 @@ const LoginPage = () => {
   //   }
   // };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-[var(--first-color)]">
-      <BackgroundGradient />
-
-      <div className="w-full max-w-md relative z-10 shadow-2xl border-0 overflow-hidden">
-        <div className="p-8 bg-white">
-          <AuthHeader
-            title="Welcome Back"
-            description="Sign in to your account to continue"
-          />
-          <FormErrorAlert error={error} />
-
-          <form className="space-y-6">
-            {loginInputs.map((input) => {
-              const { id, label, type, name, placeholder } = input;
-              const isPasswordField = name === 'password';
-              const showPasswordIcon = isPasswordField
-                ? showPassword
-                  ? EyeOff
-                  : Eye
-                : undefined;
-              return (
-                <div key={id} className="space-y-2 flex flex-col">
-                  <label htmlFor={name} className="text-[var(--fifth-color)]">
-                    {label}
-                  </label>
-                  <Input
-                    type={
-                      isPasswordField
-                        ? showPassword
-                          ? 'text'
-                          : 'password'
-                        : (input.type as InputTypes)
-                    }
-                    placeholder={placeholder}
-                    inputName={name}
-                    value={type === 'email' ? email : password}
-                    onChange={
-                      type === 'email'
-                        ? handleEmailChange
-                        : handlePasswordChange
-                    }
-                    otherClassName="w-full !rounded-md"
-                    Icon={showPasswordIcon}
-                    iconClassName="text-[var(--forth-color)]"
-                    onIconClick={handleShowPass}
-                  />
-                </div>
-              );
-            })}
-
-            <div className="flex items-center justify-end">
-              <Link
-                href={PATHS.AUTH.FORGOT_PASSWORD}
-                className="text-sm hover:underline transition-colors text-[var(--forth-color)]"
-              >
-                Forgot password?
-              </Link>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              otherClassName="w-full hover:shadow-lg disabled:opacity-50"
-            >
-              {loading ? <ButtonLoading text="Signing in..." /> : 'Sign In'}
-            </Button>
-          </form>
-
-          {/* Sign Up Link */}
-          <AuthRedirect
-            text="Don’t have an account?"
-            linkText="Create account"
-            href={PATHS.AUTH.SIGNUP}
-          />
-        </div>
-
-        <div className="h-2 bg-gradient-to-r from-[var(--forth-color)] to-[var(--second-color)]"></div>
+  const formContent = (
+    <>
+      {loginInputs.map((input) => {
+        const { id, label, type, name, placeholder } = input;
+        const isPasswordField = name === 'password';
+        const showPasswordIcon = isPasswordField
+          ? showPassword
+            ? EyeOff
+            : Eye
+          : undefined;
+        return (
+          <div key={id} className="space-y-2 flex flex-col">
+            <label htmlFor={name} className="text-[var(--fifth-color)]">
+              {label}
+            </label>
+            <Input
+              type={
+                isPasswordField
+                  ? showPassword
+                    ? 'text'
+                    : 'password'
+                  : (input.type as InputTypes)
+              }
+              placeholder={placeholder}
+              inputName={name}
+              value={type === 'email' ? email : password}
+              onChange={
+                type === 'email' ? handleEmailChange : handlePasswordChange
+              }
+              otherClassName="w-full !rounded-md"
+              Icon={showPasswordIcon}
+              iconClassName="text-[var(--forth-color)]"
+              onIconClick={handleShowPass}
+            />
+          </div>
+        );
+      })}
+      <div className="flex items-center justify-end">
+        <Link
+          href={PATHS.AUTH.FORGOT_PASSWORD}
+          className="text-sm hover:underline transition-colors text-[var(--forth-color)]"
+        >
+          Forgot password?
+        </Link>
       </div>
-    </div>
+    </>
+  );
+
+  return (
+    <AuthTemplate
+      headerTitle="Welcome Back"
+      headerDescription="Sign in to your account to continue"
+      error={error}
+      formChildren={formContent}
+      submitBtnText="Sign In"
+      loadingText="Signing in..."
+      loading={loading}
+    >
+      <AuthRedirect
+        text="Don’t have an account?"
+        linkText="Create account"
+        href={PATHS.AUTH.SIGNUP}
+      />
+    </AuthTemplate>
   );
 };
 
