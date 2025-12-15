@@ -130,3 +130,17 @@ export interface StatusPasswordProps {
   gradientFrom?: string;
   gradientTo?: string;
 }
+
+export interface AuthTemplateProps {
+  error: string;
+  handleFormSubmit?: (e: React.FormEvent) => Promise<void>;
+  headerTitle: string;
+  headerDescription: string;
+  formChildren?: React.ReactNode;
+  children?: React.ReactNode;
+  loadingText: string;
+  submitBtnText: string;
+  loading: boolean;
+  fieldsTypes?: FieldType[];
+  pageName?: string;
+}
