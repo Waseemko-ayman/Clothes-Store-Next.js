@@ -105,7 +105,6 @@ const ResetPasswordPage = () => {
       submitBtnText="Reset Password"
       loadingText="Resetting password..."
       loading={loading}
-      paddingSize="p-10"
       fieldsTypes={resetInputs}
       pageName="signup"
     >

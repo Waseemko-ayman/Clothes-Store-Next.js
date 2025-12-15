@@ -23,7 +23,6 @@ const SignupPage = () => {
       submitBtnText="Sign Up"
       loadingText="Signing up..."
       loading={loading}
-      paddingSize="p-10"
       fieldsTypes={signupInputs}
       pageName="signup"
     >
