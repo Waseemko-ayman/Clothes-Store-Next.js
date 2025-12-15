@@ -11,7 +11,9 @@ export async function generateMetadata({
   const { id } = await params;
 
   return {
-    title: `Product Details - Item ${id}`,
+    // title: `Product Details - Item ${id}`,
+    // description: `Details of product with ID ${id}`,
+    title: `Product Details - Clothes Shopping`,
     description: `Details of product with ID ${id}`,
   };
 }
