@@ -76,6 +76,10 @@ html {
   border-radius: 10px;
 }
 
+ul {
+  list-style: none;
+}
+
 .before\\:content-var::before {
   content: var(--before-content);
 }
