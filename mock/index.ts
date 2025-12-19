@@ -10,7 +10,11 @@ import {
   FaPhone,
   FaTelegram,
   FaTwitter,
+  FaUser,
 } from 'react-icons/fa6';
+import { FiLogOut } from 'react-icons/fi';
+import { IoMdPricetag } from 'react-icons/io';
+import { MapPin, Package, Settings, User } from 'lucide-react';
 
 export const navItems = [
   { name: 'Home', link: '/' },
@@ -408,5 +412,74 @@ export const resetInputs = [
     label: 'Password Confirmation',
     name: 'password_confirmation',
     placeholder: 'repassword',
+  },
+];
+
+export const userList = [
+  { id: 1, title: 'My Account', link: PATHS.MY_ACCOUNT, icon: FaUser },
+  {
+    id: 2,
+    title: 'Orders',
+    link: PATHS.ORDERS,
+    icon: IoMdPricetag,
+  },
+  {
+    id: 3,
+    title: 'logout',
+    icon: FiLogOut,
+  },
+];
+
+export const userInfoButtons = [
+  {
+    id: 1,
+    icon: User,
+    text: 'Profile',
+  },
+  {
+    id: 2,
+    icon: Package,
+    text: 'Orders',
+  },
+  {
+    id: 3,
+    icon: MapPin,
+    text: 'Addresses',
+  },
+  {
+    id: 4,
+    icon: Settings,
+    text: 'Settings',
+  },
+];
+
+export const profileSecInputs = [
+  {
+    id: 1,
+    type: 'text',
+    label: 'First Name',
+    name: 'firstName',
+    placeholder: 'Your Name',
+  },
+  {
+    id: 2,
+    type: 'text',
+    label: 'Last Name',
+    name: 'lastName',
+    placeholder: 'Your Name',
+  },
+  {
+    id: 3,
+    type: 'email',
+    label: 'Email Address',
+    name: 'email',
+    placeholder: 'your@example.com',
+  },
+  {
+    id: 4,
+    type: 'tel',
+    label: 'Phone Number',
+    name: 'phone',
+    placeholder: '+1 (555) 123-4567',
   },
 ];
