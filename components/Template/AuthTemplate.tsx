@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import BackgroundGradient from '../molecules/BackgroundGradientWrapper';
 import AuthHeader from '../molecules/AuthHeader';
 import FormErrorAlert from '../molecules/FormErrorAlert';
 import Button from '../atoms/Button';
@@ -8,25 +7,9 @@ import ButtonLoading from '../atoms/ButtonLoading';
 import Input from '../atoms/Input';
 import { Eye, EyeOff } from 'lucide-react';
 import { InputTypes } from '@/utils/types';
-import { FieldType } from '@/interfaces';
-
-export interface AuthTemplateProps {
-  error: string;
-  handleFormSubmit?: (e: React.FormEvent) => Promise<void>;
-  paddingSize?: string;
-  headerTitle: string;
-  headerDescription: string;
-  formChildren?: React.ReactNode;
-  children?: React.ReactNode;
-  loadingText: string;
-  submitBtnText: string;
-  loading: boolean;
-  fieldsTypes?: FieldType[];
-  pageName?: string;
-}
+import { AuthTemplateProps } from '@/interfaces';
 
 const AuthTemplate: React.FC<AuthTemplateProps> = ({
-  paddingSize = 'p-4',
   error,
   handleFormSubmit,
   headerTitle,
@@ -86,35 +69,29 @@ const AuthTemplate: React.FC<AuthTemplateProps> = ({
   );
 
   return (
-    <div
-      className={`bg-[var(--first-color)] min-h-[87vh] flex items-center justify-center relative overflow-hidden ${paddingSize}`}
-    >
-      <BackgroundGradient />
+    <div className="w-full max-w-md relative z-10 shadow-2xl border-0 overflow-hidden">
+      <div className="p-5 min-[425px]:p-8 bg-white">
+        <AuthHeader title={headerTitle} description={headerDescription} />
+        <FormErrorAlert error={error} />
 
-      <div className="w-full max-w-md relative z-10 shadow-2xl border-0 overflow-hidden">
-        <div className="p-8 bg-white">
-          <AuthHeader title={headerTitle} description={headerDescription} />
-          <FormErrorAlert error={error} />
+        <form onSubmit={handleFormSubmit} className="space-y-5">
+          {pageName === 'signup' || pageName === 'reset-password'
+            ? formContent
+            : formChildren}
+          <Button
+            type="submit"
+            disabled={loading}
+            otherClassName="w-full hover:shadow-lg disabled:opacity-50"
+            // Icon={Mail}
+          >
+            {loading ? <ButtonLoading text={loadingText} /> : submitBtnText}
+          </Button>
+        </form>
 
-          <form onSubmit={handleFormSubmit} className="space-y-5">
-            {pageName === 'signup' || pageName === 'reset-password'
-              ? formContent
-              : formChildren}
-            <Button
-              type="submit"
-              disabled={loading}
-              otherClassName="w-full hover:shadow-lg disabled:opacity-50"
-              // Icon={Mail}
-            >
-              {loading ? <ButtonLoading text={loadingText} /> : submitBtnText}
-            </Button>
-          </form>
-
-          {children}
-        </div>
-
-        <div className="h-2 bg-gradient-to-r from-[var(--forth-color)] to-[var(--second-color)]"></div>
+        {children}
       </div>
+
+      <div className="h-2 bg-gradient-to-r from-[var(--forth-color)] to-[var(--second-color)]"></div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 
 export interface APIRequest {
   isLoading: boolean;
@@ -54,6 +55,7 @@ export interface ButtonProps {
   type?: ButtonTypes;
   Icon?: React.ElementType;
   iconPosition?: ButtonIconPosition;
+  iconClassName?: string;
   disabled?: boolean;
   // bgColor?: string;
   // hoverBgColor?: string;
@@ -129,4 +131,84 @@ export interface StatusPasswordProps {
   infoText?: string;
   gradientFrom?: string;
   gradientTo?: string;
+}
+
+export interface AuthTemplateProps {
+  error: string;
+  handleFormSubmit?: (e: React.FormEvent) => Promise<void>;
+  headerTitle: string;
+  headerDescription: string;
+  formChildren?: React.ReactNode;
+  children?: React.ReactNode;
+  loadingText: string;
+  submitBtnText: string;
+  loading: boolean;
+  fieldsTypes?: FieldType[];
+  pageName?: string;
+}
+
+export interface NavItemProps {
+  name: string | ReactNode;
+  linkPath?: string;
+  otherClassNameIcon?: string;
+  showArrow?: boolean;
+  onClick?: () => void;
+  icon?: React.ElementType | string | any;
+  otherClassName?: string;
+  isMobile?: boolean;
+}
+
+export interface NavItem {
+  name: string;
+  link: string;
+}
+
+export interface NavItemLinkProps {
+  item: NavItem;
+  linksStyleing: string;
+}
+
+export interface AccountSectionHeaderProps {
+  title: string;
+  description: string;
+  action?: React.ReactNode;
+}
+export interface InputProps extends React.HTMLAttributes<HTMLElement> {
+  type: InputTypes | string;
+  placeholder: string;
+  variant?: 'primary' | 'secondary';
+  otherClassName?: string;
+  inputName: any;
+  Icon?: React.ElementType;
+  iconClassName?: string;
+  onIconClick?: () => void;
+  register?: UseFormRegister<FormValues>;
+  value?: string | number;
+  label?: string;
+  labelClassName?: string;
+  isRequired?: boolean;
+  onChange?: (e: React.ChangeEvent<any>) => void;
+}
+
+export interface AccountOrderCardProps {
+  id: string;
+  date: string;
+  status: string;
+  total: string;
+  items: number;
+}
+
+export interface AccountAddrCardProps {
+  id: number;
+  type: string;
+  address: string;
+  city: string;
+  default: boolean;
+}
+
+export interface AccountSettingsCardProps {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ElementType;
 }
