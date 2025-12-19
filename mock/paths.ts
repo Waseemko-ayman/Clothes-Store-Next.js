@@ -8,6 +8,8 @@ export const PATHS = {
   ABOUT: '/about',
   CONTACT: '/contact',
   CART: '/cart',
+  MY_ACCOUNT: '/my-account',
+  ORDERS: '/orders',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/signup',
