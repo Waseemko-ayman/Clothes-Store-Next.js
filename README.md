@@ -1,4 +1,4 @@
-# Clothes Shopping — Next.js Storefront
+# Clothes Shopping Store — Next.js
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.3.1-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)
