@@ -1,12 +1,12 @@
-# Clothes Shopping Store — Next.js
+# Clothing E-Commerce Store — Next.js
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.3.1-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1.10-green)
 ![Vercel](https://img.shields.io/badge/deploy-vercel-black)
 
-A modern, responsive e-commerce storefront built with Next.js and TypeScript.  
-This project provides a clean, component-driven UI for browsing products, managing a shopping cart, and handling user authentication flows.
+A modern, responsive clothing e-commerce website built with Next.js and TypeScript.
+The project offers a clean, component-driven experience for browsing clothing collections, managing a shopping cart, and handling user authentication flows.
 
 ---
 
