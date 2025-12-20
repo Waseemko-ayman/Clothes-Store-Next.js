@@ -459,14 +459,14 @@ export const profileSecInputs = [
     type: 'text',
     label: 'First Name',
     name: 'firstName',
-    placeholder: 'Your Name',
+    placeholder: 'Enter first name',
   },
   {
     id: 2,
     type: 'text',
     label: 'Last Name',
     name: 'lastName',
-    placeholder: 'Your Name',
+    placeholder: 'Enter last name',
   },
   {
     id: 3,
