@@ -1,44 +1,43 @@
+'use client';
 import AccountSectionHeader from '@/components/molecules/AccountSectionHeader';
-import AccountSettingsCard from '@/components/molecules/AccountSettingsCard';
-import { Bell, CreditCard, Lock } from 'lucide-react';
-import React from 'react';
+import SettingsCards from '@/components/molecules/SettingsCards';
+import React, { useState } from 'react';
+import PasswordSettings from './PasswordSettings';
+import { SettingsStateProps } from '@/interfaces';
 
-const SettingsData = [
-  {
-    id: 1,
-    title: 'Email Notifications',
-    description: 'Receive updates about your orders',
-    icon: Bell,
-  },
-  {
-    id: 2,
-    title: 'Password',
-    description: 'Change your password',
-    icon: Lock,
-  },
-  {
-    id: 3,
-    title: 'Payment Methods',
-    description: 'Manage your saved payment options',
-    icon: CreditCard,
-  },
-];
+const contentMap: { [key: string]: React.ReactNode } = {
+  emailNotifications: <p>Email Notifications</p>,
+  password: <PasswordSettings />,
+  paymentMethods: <p>Payment Methods</p>,
+};
 
 const Settings = () => {
+  const [currentSetting, setCurrentSetting] =
+    useState<SettingsStateProps | null>(null);
+
+  const handleManage = (data: SettingsStateProps) => {
+    setCurrentSetting(data);
+  };
+
   return (
     <div className="space-y-4">
       <div className="bg-[var(--white-color)] border-[var(--seven-color)]">
         <AccountSectionHeader
-          title="Account Settings"
-          description="Manage your preferences and security"
+          title={currentSetting ? currentSetting.title : 'Account Settings'}
+          description={
+            currentSetting
+              ? currentSetting.description
+              : 'Manage your preferences and security'
+          }
+          handleBack={
+            currentSetting ? () => setCurrentSetting(null) : undefined
+          }
         />
-        <div className="pt-6 space-y-6">
-          <div className="space-y-4">
-            {SettingsData.map((setting) => (
-              <AccountSettingsCard key={setting.id} setting={setting} />
-            ))}
-          </div>
-        </div>
+        {currentSetting ? (
+          contentMap[currentSetting.key]
+        ) : (
+          <SettingsCards handleManage={handleManage} />
+        )}
       </div>
     </div>
   );
