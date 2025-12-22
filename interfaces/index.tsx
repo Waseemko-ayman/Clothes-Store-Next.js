@@ -218,3 +218,24 @@ export interface AccountSettingsCardProps extends SettingsStateProps {
   id: number;
   icon: React.ElementType;
 }
+
+export interface NotificationSwitchProps {
+  id: string;
+  label: string;
+  desc: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  disabled?: boolean;
+}
+
+export interface PaymentMethod {
+  id: string;
+  type: 'card' | 'paypal' | 'bank';
+  name: string;
+  last4?: string;
+  expiry?: string;
+  email?: string;
+  accountNumber?: string;
+  isDefault: boolean;
+  logo: string;
+}

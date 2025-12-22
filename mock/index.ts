@@ -1,4 +1,4 @@
-import { FormValues } from '@/interfaces';
+import { FormValues, PaymentMethod } from '@/interfaces';
 import { PATHS } from './paths';
 import {
   FaClock,
@@ -537,5 +537,63 @@ export const passSettingsInputs = [
     type: 'password',
     name: 'confirmNewPassword',
     placeholder: 'Confirm new password',
+  },
+];
+
+export const initialNotifications = [
+  {
+    id: 'order-updates',
+    label: 'Order updates',
+    desc: 'Get notified about your order status and shipping',
+    value: true,
+  },
+  {
+    id: 'security-alerts',
+    label: 'Security alerts',
+    desc: 'Important notifications about your account security',
+    value: true,
+  },
+  {
+    id: 'marketing',
+    label: 'Marketing & promotional emails',
+    desc: 'Receive updates about new features and special offers',
+    value: false,
+  },
+];
+
+export const paymentMethodsData: PaymentMethod[] = [
+  {
+    id: '1',
+    type: 'card',
+    name: 'Visa ending in 4242',
+    last4: '4242',
+    expiry: '12/25',
+    isDefault: true,
+    logo: '💳',
+  },
+  {
+    id: '2',
+    type: 'card',
+    name: 'Mastercard ending in 8888',
+    last4: '8888',
+    expiry: '09/26',
+    isDefault: false,
+    logo: '💳',
+  },
+  {
+    id: '3',
+    type: 'paypal',
+    name: 'PayPal',
+    email: 'user@example.com',
+    isDefault: false,
+    logo: '🅿️',
+  },
+  {
+    id: '4',
+    type: 'bank',
+    name: 'Bank Account',
+    accountNumber: '****1234',
+    isDefault: false,
+    logo: '🏦',
   },
 ];
