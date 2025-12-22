@@ -1,7 +1,8 @@
+'use client';
 import Button from '@/components/atoms/Button';
 import { userInfoButtons } from '@/mock';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const AccountSidebar = ({
   activeTab,
@@ -10,17 +11,55 @@ const AccountSidebar = ({
   activeTab: string;
   setActiveTab: (tab: string) => void;
 }) => {
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setAvatarPreview(previewUrl);
+
+      // If you want to read the file as Data URL instead of Object URL
+      // const reader = new FileReader();
+      // reader.onloadend = () => {
+      //   setAvatarPreview(reader.result as string);
+      // };
+      // reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (avatarPreview) URL.revokeObjectURL(avatarPreview);
+    };
+  }, [avatarPreview]);
+
   return (
     <aside className="space-y-4">
       <div className="bg-[var(--white-color)] border-[var(--seven-color)]">
         <div className="text-center pb-4">
-          <Image
-            src="/assets/user-avatar.png"
-            alt="user"
-            width={96}
-            height={96}
-            className="mx-auto mb-3 rounded-full border-2 border-[var(--forth-color)]"
-          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="relative w-[120px] h-[120px] overflow-hidden rounded-full shadow-lg flex items-center justify-center cursor-pointer mx-auto mb-3"
+          >
+            <Image
+              src={avatarPreview || '/assets/user-avatar.png'}
+              alt="user"
+              fill
+              className="object-cover rounded-full border-2 border-[var(--forth-color)]"
+            />
+
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              className="hidden"
+            />
+          </button>
+
           <h1 className="text-[var(--fifth-color)] font-semibold">
             Waseem Abd Elhadi
           </h1>
