@@ -42,7 +42,7 @@ const Button = forwardRef<
         : variant === 'ghost'
         ? 'text-[var(--forth-color)] hover:bg-gray-200'
         : ''
-    } ${Icon ? 'flex items-center gap-2' : ''} ${otherClassName}`;
+    } ${Icon ? '!flex items-center gap-2 w-fit' : ''} ${otherClassName}`;
 
     const content = (
       <>
