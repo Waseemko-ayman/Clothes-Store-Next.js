@@ -10,7 +10,7 @@ import { useToast } from '@/lib/toast';
 import CartTable from '@/components/molecules/CartTable';
 import { FaBorderAll, FaTable } from 'react-icons/fa6';
 import CartCards from '@/components/molecules/CartCards';
-import EmptyCart from '@/components/molecules/EmptyCart';
+import EmptyState from '@/components/molecules/EmptyState';
 
 const ProductsTable = () => {
   const [viewMode, setViewMode] = useState<'table' | 'cards'>(() => {
@@ -90,7 +90,11 @@ const ProductsTable = () => {
             />
           )
         ) : (
-          <EmptyCart />
+          <EmptyState
+            imageSrc="empty-cart.png"
+            messageText="Your shopping basket is ready and calling you to shop!"
+            buttonText="Proceed to checkout"
+          />
         )}
       </Container>
     </Layer>
