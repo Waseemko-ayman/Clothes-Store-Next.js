@@ -539,3 +539,24 @@ export const passSettingsInputs = [
     placeholder: 'Confirm new password',
   },
 ];
+
+export const initialNotifications = [
+  {
+    id: 'order-updates',
+    label: 'Order updates',
+    desc: 'Get notified about your order status and shipping',
+    value: true,
+  },
+  {
+    id: 'security-alerts',
+    label: 'Security alerts',
+    desc: 'Important notifications about your account security',
+    value: true,
+  },
+  {
+    id: 'marketing',
+    label: 'Marketing & promotional emails',
+    desc: 'Receive updates about new features and special offers',
+    value: false,
+  },
+];

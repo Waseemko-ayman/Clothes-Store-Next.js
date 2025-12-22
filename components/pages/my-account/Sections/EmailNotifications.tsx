@@ -1,5 +1,6 @@
 'use client';
 import Button from '@/components/atoms/Button';
+import NotificationSwitch from '@/components/molecules/NotificationSwitch';
 import CardWrapper from '@/components/Template/CardWrapper';
 import {
   Select,
@@ -9,18 +10,33 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { initialNotifications } from '@/mock';
 import React, { useState } from 'react';
 
 const EmailNotifications = () => {
   const [allNotifications, setAllNotifications] = useState(true);
-  const [orderUpdates, setOrderUpdates] = useState(true);
-  const [securityAlerts, setSecurityAlerts] = useState(true);
-  const [marketing, setMarketing] = useState(false);
   const [frequency, setFrequency] = useState('instant');
+  const [notifications, setNotifications] = useState(initialNotifications);
+
+  const handleSwitchChange = (id: string, value: boolean) => {
+    setNotifications((prev) =>
+      prev.map((notif) => (notif.id === id ? { ...notif, value } : notif))
+    );
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Save changes');
+    const payload = {
+      allNotifications,
+      // Convert notifications array to an object
+      // e.g., { 'order-updates': true, 'security-alerts': false, ... }
+      notifications: notifications.reduce(
+        (acc, n) => ({ ...acc, [n.id]: n.value }),
+        {}
+      ),
+      frequency,
+    };
+    console.log('Save changes', payload);
   };
 
   return (
@@ -46,65 +62,17 @@ const EmailNotifications = () => {
         </div>
 
         <div className="space-y-5">
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <label
-                htmlFor="order-updates"
-                className="text-base font-medium text-foreground"
-              >
-                Order updates
-              </label>
-              <p className="text-sm text-muted-foreground">
-                Get notified about your order status and shipping
-              </p>
-            </div>
-            <Switch
-              id="order-updates"
-              checked={orderUpdates}
-              onCheckedChange={setOrderUpdates}
+          {notifications.map((notif) => (
+            <NotificationSwitch
+              key={notif.id}
+              id={notif.id}
+              label={notif.label}
+              desc={notif.desc}
+              checked={notif.value}
+              onChange={(value) => handleSwitchChange(notif.id, value)}
               disabled={!allNotifications}
             />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <label
-                htmlFor="security-alerts"
-                className="text-base font-medium text-foreground"
-              >
-                Security alerts
-              </label>
-              <p className="text-sm text-muted-foreground">
-                Important notifications about your account security
-              </p>
-            </div>
-            <Switch
-              id="security-alerts"
-              checked={securityAlerts}
-              onCheckedChange={setSecurityAlerts}
-              disabled={!allNotifications}
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <label
-                htmlFor="marketing"
-                className="text-base font-medium text-foreground"
-              >
-                Marketing & promotional emails
-              </label>
-              <p className="text-sm text-muted-foreground">
-                Receive updates about new features and special offers
-              </p>
-            </div>
-            <Switch
-              id="marketing"
-              checked={marketing}
-              onCheckedChange={setMarketing}
-              disabled={!allNotifications}
-            />
-          </div>
+          ))}
         </div>
 
         <div className="pt-6 border-t border-border space-y-3">

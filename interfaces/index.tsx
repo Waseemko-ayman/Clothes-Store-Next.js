@@ -218,3 +218,12 @@ export interface AccountSettingsCardProps extends SettingsStateProps {
   id: number;
   icon: React.ElementType;
 }
+
+export interface NotificationSwitchProps {
+  id: string;
+  label: string;
+  desc: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  disabled?: boolean;
+}
