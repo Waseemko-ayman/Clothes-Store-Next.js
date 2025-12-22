@@ -102,8 +102,8 @@ export interface QuantityControllerProps {
 }
 
 export interface AuthHeaderProps {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }
 
 export interface AuthRedirectProps {
@@ -136,8 +136,8 @@ export interface StatusPasswordProps {
 export interface AuthTemplateProps {
   error: string;
   handleFormSubmit?: (e: React.FormEvent) => Promise<void>;
-  headerTitle: string;
-  headerDescription: string;
+  headerTitle?: string;
+  headerDescription?: string;
   formChildren?: React.ReactNode;
   children?: React.ReactNode;
   loadingText: string;
@@ -145,6 +145,7 @@ export interface AuthTemplateProps {
   loading: boolean;
   fieldsTypes?: FieldType[];
   pageName?: string;
+  otherClassName?: string;
 }
 
 export interface NavItemProps {
@@ -172,6 +173,7 @@ export interface AccountSectionHeaderProps {
   title: string;
   description: string;
   action?: React.ReactNode;
+  handleBack?: () => void;
 }
 export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   type: InputTypes | string;
@@ -206,9 +208,13 @@ export interface AccountAddrCardProps {
   default: boolean;
 }
 
-export interface AccountSettingsCardProps {
-  id: number;
+export interface SettingsStateProps {
+  key: string;
   title: string;
   description: string;
+}
+
+export interface AccountSettingsCardProps extends SettingsStateProps {
+  id: number;
   icon: React.ElementType;
 }

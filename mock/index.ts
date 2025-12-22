@@ -14,7 +14,15 @@ import {
 } from 'react-icons/fa6';
 import { FiLogOut } from 'react-icons/fi';
 import { IoMdPricetag } from 'react-icons/io';
-import { MapPin, Package, Settings, User } from 'lucide-react';
+import {
+  Bell,
+  CreditCard,
+  Lock,
+  MapPin,
+  Package,
+  Settings,
+  User,
+} from 'lucide-react';
 
 export const navItems = [
   { name: 'Home', link: '/' },
@@ -101,7 +109,7 @@ export const FOOTER_LINKS_DATA = {
   About: [
     {
       id: 1,
-      url: '#',
+      url: PATHS.ABOUT,
       text: 'About Us',
     },
     {
@@ -121,19 +129,19 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 5,
-      url: '#',
+      url: PATHS.CONTACT,
       text: 'Contact Us',
     },
   ],
   myAccount: [
     {
       id: 1,
-      url: '#',
+      url: PATHS.AUTH.LOGIN,
       text: 'Sign In',
     },
     {
       id: 2,
-      url: '#',
+      url: PATHS.CART,
       text: 'View Cart',
     },
     {
@@ -143,7 +151,7 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 4,
-      url: '#',
+      url: PATHS.ORDERS,
       text: 'Track My Order',
     },
     {
@@ -459,14 +467,14 @@ export const profileSecInputs = [
     type: 'text',
     label: 'First Name',
     name: 'firstName',
-    placeholder: 'Your Name',
+    placeholder: 'Enter first name',
   },
   {
     id: 2,
     type: 'text',
     label: 'Last Name',
     name: 'lastName',
-    placeholder: 'Your Name',
+    placeholder: 'Enter last name',
   },
   {
     id: 3,
@@ -481,5 +489,53 @@ export const profileSecInputs = [
     label: 'Phone Number',
     name: 'phone',
     placeholder: '+1 (555) 123-4567',
+  },
+];
+
+export const SettingsData = [
+  {
+    id: 1,
+    title: 'Email Notifications',
+    key: 'emailNotifications',
+    description: 'Receive updates about your orders',
+    icon: Bell,
+  },
+  {
+    id: 2,
+    key: 'password',
+    title: 'Password',
+    description: 'Change your password',
+    icon: Lock,
+  },
+  {
+    id: 3,
+    key: 'paymentMethods',
+    title: 'Payment Methods',
+    description: 'Manage your saved payment options',
+    icon: CreditCard,
+  },
+];
+
+export const passSettingsInputs = [
+  {
+    id: 1,
+    label: 'Current Password',
+    type: 'password',
+    name: 'currentPassword',
+    placeholder: 'Enter current password',
+  },
+  {
+    id: 2,
+    label: 'New Password',
+    type: 'password',
+    name: 'newPassword',
+    placeholder: 'Enter new password',
+  },
+  {
+    id: 3,
+    label: 'Confirm New Password',
+    type: 'password',
+    name: 'confirmNewPassword',
+    placeholder: 'Confirm new password',
   },
 ];
