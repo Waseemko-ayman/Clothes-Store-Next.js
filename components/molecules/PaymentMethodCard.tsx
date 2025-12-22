@@ -12,7 +12,7 @@ const PaymentMethodCard = ({
   handleRemove: (id: string) => void;
 }) => {
   return (
-    <div className="relative bg-white border border-[var(--seven-color)] rounded-xl overflow-hidden hover:shadow-lg hover:border-[var(--forth-color)]/30 transition-all duration-300">
+    <div className="relative bg-white border border-[var(--seven-color)] rounded-xl overflow-hidden shadow-lg hover:border-[var(--forth-color)]/30 transition-all duration-300">
       <div className="p-5">
         {method.isDefault && (
           <Badge className="absolute top-4 right-4 bg-primary/10 text-primary hover:bg-primary/20 border-primary/20">
@@ -65,7 +65,6 @@ const PaymentMethodCard = ({
           </Button>
         </div>
       </div>
-      <div className="h-1 bg-gradient-to-r from-[var(--first-color)] via-[var(--forth-color)]/20 to-[var(--first-color)]"></div>
     </div>
   );
 };
