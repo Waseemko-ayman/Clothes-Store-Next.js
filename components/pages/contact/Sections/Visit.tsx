@@ -42,9 +42,8 @@ const Visit = () => {
           src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d308094.92893109133!2d34.334548544417466!3d31.441661138729188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2s!4v1675959939174!5m2!1sar!2s"
           width="600"
           height="450"
-          style={{ border: 0 }}
           loading="lazy"
-          className="max-[991px]:max-w-full max-[991px]:w-full"
+          className="max-[991px]:max-w-full max-[991px]:w-full border-0"
         ></iframe>
       </Container>
     </Layer>
