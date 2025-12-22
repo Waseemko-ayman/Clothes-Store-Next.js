@@ -1,6 +1,6 @@
 'use client';
+import NoticeCard from '@/components/molecules/NoticeCard';
 import AuthTemplate from '@/components/Template/AuthTemplate';
-import CardWrapper from '@/components/Template/CardWrapper';
 import { passSettingsInputs } from '@/mock';
 import React, { useState } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
@@ -20,16 +20,13 @@ const PasswordSettings = () => {
         fieldsTypes={passSettingsInputs}
         pageName="update-password"
       />
-      <CardWrapper otherClassName="!bg-gray-100 mt-8">
-        <div className="flex items-start gap-2">
-          <FaExclamationTriangle className="text-yellow-500" size="20" />
-          <p className="text-sm text-gray-500">
-            <span className="text-black font-semibold">Security Tip:</span>{' '}
-            Choose a strong password that you don&rsquo;t use elsewhere.
-            Consider using a password manager to keep your accounts secure.
-          </p>
-        </div>
-      </CardWrapper>
+      <NoticeCard
+        icon={<FaExclamationTriangle className="text-yellow-500" size={20} />}
+      >
+        <span className="text-black font-semibold">Security Tip:</span> Choose a
+        strong password that you don&rsquo;t use elsewhere. Consider using a
+        password manager to keep your accounts secure.
+      </NoticeCard>
     </div>
   );
 };
