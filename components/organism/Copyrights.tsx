@@ -16,7 +16,6 @@ const Copyrights = () => {
           className="text-base text-[var(--seconde-color)] my-5"
         >
           &copy; {dateNow.getFullYear()}, Programmed by Waseem Abd Elhadi
-          Developer
         </motion.p>
       </Container>
     </div>
