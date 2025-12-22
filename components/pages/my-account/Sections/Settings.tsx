@@ -4,9 +4,10 @@ import SettingsCards from '@/components/molecules/SettingsCards';
 import React, { useState } from 'react';
 import PasswordSettings from './PasswordSettings';
 import { SettingsStateProps } from '@/interfaces';
+import EmailNotifications from './EmailNotifications';
 
 const contentMap: { [key: string]: React.ReactNode } = {
-  emailNotifications: <p>Email Notifications</p>,
+  emailNotifications: <EmailNotifications />,
   password: <PasswordSettings />,
   paymentMethods: <p>Payment Methods</p>,
 };
