@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Container from '@/components/atoms/Container';
 import Button from '@/components/atoms/Button';
+import { PATHS } from '@/mock/paths';
 
 const Hero = () => {
   return (
@@ -49,7 +50,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <Button variant="cover" otherClassName="mt-4">
+            <Button
+              href={PATHS.SHOP.ROOT}
+              variant="cover"
+              otherClassName="mt-4 inline-block"
+            >
               Shop Now
             </Button>
           </motion.div>
