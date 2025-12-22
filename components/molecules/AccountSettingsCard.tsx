@@ -5,10 +5,12 @@ import { AccountSettingsCardProps } from '@/interfaces';
 
 const AccountSettingsCard = ({
   setting,
+  onManage,
 }: {
   setting: AccountSettingsCardProps;
+  onManage: (settingTitle: string) => void;
 }) => {
-  const { title, description, icon } = setting;
+  const { key, title, description, icon } = setting;
   const Icon = icon;
   return (
     <CardWrapper>
@@ -22,6 +24,7 @@ const AccountSettingsCard = ({
       <Button
         variant="outline"
         otherClassName="!text-[var(--forth-color)] hover:!text-white !py-2 !px-4"
+        handleClick={() => onManage(key)}
       >
         Manage
       </Button>
