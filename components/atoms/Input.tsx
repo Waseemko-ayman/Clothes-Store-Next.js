@@ -30,7 +30,7 @@ const Input = ({
     <>
       {label && (
         <label
-          className={`block text-sm font-semibold text-gray-500 mb-2 ${labelClassName}`}
+          className={`block text-sm font-semibold text-[var(--seconde-color)] mb-2 ${labelClassName}`}
         >
           {label}
           {isRequired && <span className="text-red-500"> *</span>}
