@@ -58,6 +58,12 @@ const Button = forwardRef<
           href={href}
           ref={ref as Ref<HTMLAnchorElement>}
           className={classes}
+          style={{
+            backgroundImage:
+              variant === 'cover'
+                ? 'url(/assets/landing/buttonLanding.png)'
+                : 'none',
+          }}
           {...props}
         >
           {content}
