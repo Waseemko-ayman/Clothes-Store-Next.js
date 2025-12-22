@@ -66,7 +66,7 @@ const ForgotPasswordPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           otherClassName="w-full !rounded-md"
         />
-        <p className="text-xs mt-2" style={{ color: 'var(--six-color)' }}>
+        <p className="text-xs mt-2 text-[var(--six-color)]">
           We&rsquo;ll send a password reset link to this email
         </p>
       </div>
