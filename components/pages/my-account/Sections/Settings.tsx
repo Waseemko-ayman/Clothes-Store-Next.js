@@ -5,11 +5,12 @@ import React, { useState } from 'react';
 import PasswordSettings from './PasswordSettings';
 import { SettingsStateProps } from '@/interfaces';
 import EmailNotifications from './EmailNotifications';
+import PaymentMethods from './PaymentMethods';
 
 const contentMap: { [key: string]: React.ReactNode } = {
   emailNotifications: <EmailNotifications />,
   password: <PasswordSettings />,
-  paymentMethods: <p>Payment Methods</p>,
+  paymentMethods: <PaymentMethods />,
 };
 
 const Settings = () => {
