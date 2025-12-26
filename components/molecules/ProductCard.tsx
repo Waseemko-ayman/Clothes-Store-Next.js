@@ -63,7 +63,7 @@ const ProductCard = ({
         handleClick={(e) => {
           e.stopPropagation();
           addToCart?.(productData);
-          showToast('Added to cart');
+          showToast(`Add ${productTitle} to cart`);
         }}
       >
         <FaCartShopping size="20px" />
