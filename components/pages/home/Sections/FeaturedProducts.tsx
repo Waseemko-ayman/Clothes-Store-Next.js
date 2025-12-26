@@ -2,11 +2,11 @@
 
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import Loading from '@/components/atoms/Loading';
 import MainTitle from '@/components/atoms/MainTitle';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import ProductCard from '@/components/molecules/ProductCard';
+import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 import { useProductsContext } from '@/context/ProductsContext';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
@@ -19,6 +19,7 @@ const FeaturedProducts = () => {
   const { clothes, isLoading } = useProductsContext();
 
   const featuredProducts = clothes.filter((p) => p.section === 'featured');
+
   return (
     <Layer>
       <Container>
@@ -26,12 +27,12 @@ const FeaturedProducts = () => {
           title="Featured Product"
           description="Summer Collection New Modern Design"
         />
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <ProdcutsContainer>
-            {featuredProducts.map(
-              (item, index) => (
+        <ProdcutsContainer>
+          {isLoading
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <ProductCardSkeleton key={i} />
+              ))
+            : featuredProducts.map((item, index) => (
                 <AnimatedWrapper key={item?.id} custom={index}>
                   <ProductCard
                     key={item?.id}
@@ -44,10 +45,8 @@ const FeaturedProducts = () => {
                     handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
                   />
                 </AnimatedWrapper>
-              )
-            )}
-          </ProdcutsContainer>
-        )}
+              ))}
+        </ProdcutsContainer>
       </Container>
     </Layer>
   );
