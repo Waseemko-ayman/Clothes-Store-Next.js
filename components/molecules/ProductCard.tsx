@@ -6,6 +6,7 @@ import { FaCartShopping, FaRegStar, FaStarHalfStroke } from 'react-icons/fa6';
 import { useToast } from '@/lib/toast';
 import { useCartContext } from '@/context/CartContext';
 import { ProductCardProps } from '@/interfaces';
+import { GlowingEffect } from '../ui/glowing-effect';
 
 const ProductCard = ({
   productData,
@@ -60,6 +61,13 @@ const ProductCard = ({
       className={`relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
       onClick={handleClick}
     >
+      <GlowingEffect
+        spread={40}
+        glow={true}
+        disabled={false}
+        proximity={64}
+        inactiveZone={0.01}
+      />
       <div className="relative">
         <Image
           src={`/assets/products/${image}.jpg`}
