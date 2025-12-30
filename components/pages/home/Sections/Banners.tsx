@@ -2,54 +2,8 @@ import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import Banner from '@/components/molecules/Banner';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
+import { BANNERS_DATA } from '@/mock';
 import React from 'react';
-
-export const BANNERS_DATA = [
-  {
-    id: 1,
-    bgImage: '/assets/banner/b4.jpg',
-    subTitle: 'crazy deals',
-    title: 'buy 1 get 1 free',
-    description: 'The best classic dress is on sale at cara',
-    btnText: 'Learn More',
-    type: 'big',
-    overlay: false,
-  },
-  {
-    id: 2,
-    bgImage: '/assets/banner/b3.jpg',
-    subTitle: 'spring/summer',
-    title: 'upcomming season',
-    description: 'The best classic dress is on sale at cara',
-    btnText: 'Collection',
-    type: 'big',
-    overlay: false,
-  },
-  {
-    id: 3,
-    bgImage: '/assets/banner/b5.jpg',
-    subTitle: 'Seasonal sale',
-    title: 'Winter Collection -50% Off',
-    type: 'small',
-    overlay: true,
-  },
-  {
-    id: 4,
-    bgImage: '/assets/banner/b6.jpg',
-    subTitle: 'New Footwear Collection',
-    title: 'Spring/Summer 2023',
-    type: 'small',
-    overlay: true,
-  },
-  {
-    id: 5,
-    bgImage: '/assets/banner/b7.jpg',
-    subTitle: 'T-Shirt',
-    title: 'New Trandy Prinls',
-    type: 'small',
-    overlay: true,
-  },
-];
 
 const Banners = () => {
   return (

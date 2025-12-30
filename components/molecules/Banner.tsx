@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../atoms/Button';
+import { WobbleCard } from '../ui/wobble-card';
 
 interface BannerProps {
   height: string;
@@ -38,25 +39,24 @@ const Banner = ({
     );
 
   return (
-    <div
-      className={`relative text-[var(--white-color)] bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8 ${otherClassNameContainer}`}
-      style={{
-        backgroundImage: `url(${bgImage})`,
-      }}
-    >
-      <div className="relative flex flex-col items-start z-10">
-        {renderTitle()}
-        {description && type === 'big' && (
-          <span className="text-sm font-medium py-3.5">{description}</span>
-        )}
-        {btnText && type === 'big' && (
-          <Button variant="outline" borderRadius="rounded-none">
-            {btnText}
-          </Button>
-        )}
+    <WobbleCard bgImage={bgImage}>
+      <div
+        className={`relative text-[var(--white-color)] bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8 ${otherClassNameContainer}`}
+      >
+        <div className="relative flex flex-col items-start z-10">
+          {renderTitle()}
+          {description && type === 'big' && (
+            <span className="text-sm font-medium py-3.5">{description}</span>
+          )}
+          {btnText && type === 'big' && (
+            <Button variant="outline" borderRadius="rounded-none">
+              {btnText}
+            </Button>
+          )}
+        </div>
+        {overlay && <div className="absolute inset-0 bg-black/20 z-0" />}
       </div>
-      {overlay && <div className="absolute inset-0 bg-black/20 z-0" />}
-    </div>
+    </WobbleCard>
   );
 };
 
