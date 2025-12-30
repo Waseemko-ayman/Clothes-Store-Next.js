@@ -32,20 +32,21 @@ const FeaturedProducts = () => {
             ? Array.from({ length: 4 }).map((_, i) => (
                 <ProductCardSkeleton key={i} />
               ))
-            : featuredProducts.map((item, index) => (
+            : (
+              featuredProducts.map((item, index) => (
                 <AnimatedWrapper key={item?.id} custom={index}>
                   <ProductCard
                     key={item?.id}
-                    imgSrc={item?.src}
-                    imgText={item?.imgText}
-                    tradeMark={item?.tradeMark}
-                    productTitle={item?.productTitle}
-                    price={item?.price}
+                    image={item.image}
+                    title={item.title}
                     productData={item}
-                    handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
+                    handleClick={() =>
+                      item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
+                    }
                   />
                 </AnimatedWrapper>
-              ))}
+              ))
+              )}
         </ProdcutsContainer>
       </Container>
     </Layer>
