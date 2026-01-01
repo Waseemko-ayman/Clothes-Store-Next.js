@@ -2,7 +2,7 @@ export const PATHS = {
   HOME: '/',
   SHOP: {
     ROOT: '/shop',
-    ITEM: (id: number) => `/shop/${id}`,
+    ITEM: (slug: string) => `/shop/${slug}`,
   },
   BLOG: '/blog',
   ABOUT: '/about',
@@ -10,10 +10,22 @@ export const PATHS = {
   CART: '/cart',
   MY_ACCOUNT: '/my-account',
   ORDERS: '/orders',
+  PRIVACEY_POLICY: '/privacy-policy',
+  HELP: '/help',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/signup',
     FORGOT_PASSWORD: '/auth/forgot-password',
     RESET_PASSWORD: '/auth/reset-password',
+  },
+  DASHBOARD: {
+    ROOT: '/dashboard',
+    PRODUCTS: '/dashboard/products',
+    ORDERS: {
+      ROOT: '/dashboard/orders',
+      ITEM: '/dashboard/orders/:id/products',
+    },
+    RATINGS: '/dashboard/ratings',
+    SETTINGS: '/dashboard/settings',
   },
 };

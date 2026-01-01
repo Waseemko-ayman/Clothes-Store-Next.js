@@ -7,7 +7,7 @@ import {
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { FieldError, UseFormRegister } from 'react-hook-form';
 
 export interface APIRequest {
   isLoading: boolean;
@@ -24,18 +24,25 @@ export interface FormValues {
 }
 
 export interface ProductCardProps {
-  id: number;
-  slug: string;
-  src: string;
-  gallery: string[];
-  imgText: string;
-  tradeMark: string;
-  productTitle: string;
-  price: number;
-  quantity: number;
-  size: string[];
-  description: string;
-  section: string;
+  id?: number;
+  slug?: string;
+  image: string;
+  title: string;
+  gallery?: string[];
+  trade_mark?: string;
+  price?: number;
+  old_price?: number;
+  discount?: number;
+  quantity?: number;
+  ratings?: number[];
+  comment?: string;
+  date_added?: string;
+  size?: string[];
+  description?: string;
+  section?: string;
+  productData: any;
+  handleClick?: () => void;
+  otherClassName?: string;
 }
 
 export interface CartContextType {
@@ -184,9 +191,15 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   Icon?: React.ElementType;
   iconClassName?: string;
   onIconClick?: () => void;
+  options?: string[];
   register?: UseFormRegister<FormValues>;
-  value?: string | number;
+  error?: FieldError;
+  control?: any;
+  isMulti?: boolean;
+  value?: string;
   label?: string;
+  SelectValuePlaceholder?: string;
+  disabled?: boolean;
   labelClassName?: string;
   isRequired?: boolean;
   onChange?: (e: React.ChangeEvent<any>) => void;
@@ -238,4 +251,78 @@ export interface PaymentMethod {
   accountNumber?: string;
   isDefault: boolean;
   logo: string;
+}
+
+export interface ResponsiveDialogDrawerProps {
+  children: React.ReactNode;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  isMobile?: boolean;
+  trigger: React.ReactNode;
+  contentClassName?: string;
+  headerClassName?: string;
+}
+
+export interface CustomDialogDrawerProps extends ResponsiveDialogDrawerProps {
+  title?: string;
+  description?: string;
+}
+
+export interface GenericAllProps {
+  value: string;
+  title: string;
+  description: string;
+  apiEndpoint?: string;
+  deleteEndpoint?: string;
+  createTabValue?: string;
+  placeholder?: string;
+  onEditIdChange?: (id: string | number | null) => void;
+  onTabChange?: (val: string) => void;
+  showEdit?: boolean;
+  showActionsColumn?: boolean;
+  refreshKeyProp?: string;
+  customFilter?: (rows: any[], currentFilter: string) => any[];
+  filterOptions?: { id: number; label: string }[];
+  onFilterChange?: (filter: string) => void;
+  deleteLocation?: string;
+}
+
+export interface DataTableHeaderProps {
+  totalItems: number;
+  filteredItems: number;
+  searchTerm: string;
+  onSearchChange: (value: string) => void;
+  placeholder: string;
+  filter?: string;
+  handleFilterChange?: (value: string) => void;
+  filterOptions?: { id: number; label: string }[];
+}
+
+export interface DataTableProps<T extends { id: number | string }> {
+  title?: string;
+  placeholder?: string;
+  data: T[];
+  onEdit?: (id: string | number) => void;
+  onDelete?: (id: string | number) => void;
+  showEdit?: boolean;
+  showActionsColumn?: boolean;
+  onRowPatched?: (id: string | number, patch: Partial<T>) => void;
+  filter?: string;
+  setFilter?: (value: string) => void;
+  filterOptions?: { id: number; label: string }[];
+  isLoading: boolean;
+  error: string;
+  deleteLocation?: string;
+}
+
+export interface DataTableBodyProps<T> {
+  columns: (keyof T)[];
+  data: any[];
+  onEdit?: (id: string | number) => void;
+  onDelete?: (id: string | number) => void;
+  searchTerm: string;
+  showEdit?: boolean;
+  showActionsColumn?: boolean;
+  onRowPatched?: (id: string | number, patch: Partial<T>) => void;
+  deleteLocation?: string;
 }

@@ -1,81 +1,103 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
 import Container from '@/components/atoms/Container';
 import Button from '@/components/atoms/Button';
 import { PATHS } from '@/mock/paths';
+import { BackgroundLines } from '@/components/ui/background-lines';
+import { LayoutTextFlip } from '@/components/ui/layout-text-flip';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+
+  // عامل تباطؤ (weight)
+  const yTitle = useTransform(scrollY, [0, 800], [0, 160]);
+  const yHeading = useTransform(scrollY, [0, 800], [0, 140]);
+  const yText = useTransform(scrollY, [0, 800], [0, 120]);
+  const yButton = useTransform(scrollY, [0, 800], [0, 100]);
+
   return (
-    <div className="min-h-[90vh] relative bg-cover bg-center content-center bg-[var(--first-color)]">
-      <Container otherClassName="flex flex-col sm:flex-row items-center justify-between gap-10 sm:gap-3 z-10 max-sm:text-center">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.2 } },
-          }}
-        >
-          <motion.p
-            className="text-xl text-[var(--seconde-color)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Trade-in-offer
-          </motion.p>
-
-          <motion.h1
-            className="py-4 text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[var(--fifth-color)] font-bold"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Super value deals{' '}
-            <span className="text-[var(--forth-color)]">On all products</span>
-          </motion.h1>
-
-          <motion.p
-            className="text-base text-[var(--seconde-color)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Save more with coupons & up to 70% off!
-          </motion.p>
-
+    <BackgroundLines>
+      <div className="min-h-[90vh] relative flex item-center justify-center w-full flex-col">
+        <Container otherClassName="text-center z-10 max-sm:text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.2 } },
+            }}
           >
-            <Button
-              href={PATHS.SHOP.ROOT}
-              variant="cover"
-              otherClassName="mt-4 inline-block"
+            <motion.div
+              style={{ y: yTitle }}
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--forth-color)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              Shop Now
-            </Button>
+              <LayoutTextFlip
+                text="Wénor "
+                words={['Collection', 'Style', 'Fashion', 'Vibe']}
+              />
+            </motion.div>
+
+            <motion.h1
+              style={{ y: yHeading }}
+              className="py-4 text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-[var(--fifth-color)] font-bold"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Define your look <br />
+              <span className="text-[var(--forth-color)]">
+                Wear confidence every day
+              </span>
+            </motion.h1>
+
+            <motion.p
+              style={{ y: yText }}
+              className="text-base text-[var(--seconde-color)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Modern fashion designed for simplicity, comfort, and timeless
+              style.
+            </motion.p>
+
+            <motion.div
+              style={{ y: yButton }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <Button
+                href={PATHS.SHOP.ROOT}
+                variant="cover"
+                otherClassName="mt-4 inline-block"
+              >
+                Shop Now
+              </Button>
+            </motion.div>
           </motion.div>
-        </motion.div>
-        <motion.img
-          src="/assets/landing/landing.png"
-          alt="person"
-          title="person"
-          width={900}
-          height={900}
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{
-            type: 'spring',
-            stiffness: 60,
-            damping: 12,
-            delay: 0.1,
-          }}
-        />
-      </Container>
-    </div>
+          {/* <motion.img
+            src="/assets/landing/landing.png"
+            alt="person"
+            title="person"
+            width={900}
+            height={900}
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              type: 'spring',
+              stiffness: 60,
+              damping: 12,
+              delay: 0.1,
+            }}
+          /> */}
+        </Container>
+      </div>
+    </BackgroundLines>
   );
 };
 

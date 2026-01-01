@@ -1,6 +1,7 @@
 import { FormValues, PaymentMethod } from '@/interfaces';
 import { PATHS } from './paths';
 import {
+  FaBox,
   FaClock,
   FaEnvelope,
   FaGithub,
@@ -8,21 +9,31 @@ import {
   FaLinkedin,
   FaMap,
   FaPhone,
+  FaStar,
   FaTelegram,
   FaTwitter,
   FaUser,
 } from 'react-icons/fa6';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiShoppingCart } from 'react-icons/fi';
 import { IoMdPricetag } from 'react-icons/io';
 import {
   Bell,
+  Cookie,
   CreditCard,
+  FileText,
+  Home,
   Lock,
+  Mail,
   MapPin,
   Package,
+  RotateCcw,
+  Ruler,
   Settings,
+  Shield,
   User,
+  Users,
 } from 'lucide-react';
+import { FaShippingFast, FaTachometerAlt } from 'react-icons/fa';
 
 export const navItems = [
   { name: 'Home', link: '/' },
@@ -119,7 +130,7 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 3,
-      url: '#',
+      url: PATHS.PRIVACEY_POLICY,
       text: 'Privacy Policy',
     },
     {
@@ -156,7 +167,7 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 5,
-      url: '#',
+      url: PATHS.HELP,
       text: 'Help',
     },
   ],
@@ -427,12 +438,18 @@ export const userList = [
   { id: 1, title: 'My Account', link: PATHS.MY_ACCOUNT, icon: FaUser },
   {
     id: 2,
+    title: 'Dashboard',
+    link: PATHS.DASHBOARD.ROOT,
+    icon: FaTachometerAlt,
+  },
+  {
+    id: 3,
     title: 'Orders',
     link: PATHS.ORDERS,
     icon: IoMdPricetag,
   },
   {
-    id: 3,
+    id: 4,
     title: 'logout',
     icon: FiLogOut,
   },
@@ -595,5 +612,203 @@ export const paymentMethodsData: PaymentMethod[] = [
     accountNumber: '****1234',
     isDefault: false,
     logo: '🏦',
+  },
+];
+
+export const sidebarLinks = [
+  {
+    title: 'Wénor',
+    href: PATHS.HOME,
+    icon: Home,
+  },
+  {
+    title: 'dashboard',
+    href: PATHS.DASHBOARD.ROOT,
+    icon: FaTachometerAlt,
+  },
+  {
+    title: 'products',
+    href: PATHS.DASHBOARD.PRODUCTS,
+    icon: FaBox,
+  },
+  {
+    title: 'ratings',
+    href: PATHS.DASHBOARD.RATINGS,
+    icon: FaStar,
+  },
+  {
+    title: 'orders',
+    href: PATHS.DASHBOARD.ORDERS.ROOT,
+    icon: FiShoppingCart,
+  },
+  // {
+  //   title: 'employees',
+  //   href: PATHS.DASHBOARD.EMPLOYEES,
+  //   icon: FiUsers,
+  // },
+  // {
+  //   title: 'customers',
+  //   href: PATHS.DASHBOARD.CUSTOMERS,
+  //   icon: FiUsers,
+  // },
+  {
+    title: 'settings',
+    href: PATHS.DASHBOARD.SETTINGS,
+    icon: Settings,
+  },
+];
+
+export const BANNERS_DATA = [
+  {
+    id: 1,
+    bgImage: '/assets/banner/b4.jpg',
+    subTitle: 'crazy deals',
+    title: 'buy 1 get 1 free',
+    description: 'The best classic dress is on sale at cara',
+    btnText: 'Learn More',
+    type: 'big',
+    overlay: false,
+  },
+  {
+    id: 2,
+    bgImage: '/assets/banner/b3.jpg',
+    subTitle: 'spring/summer',
+    title: 'upcomming season',
+    description: 'The best classic dress is on sale at cara',
+    btnText: 'Collection',
+    type: 'big',
+    overlay: false,
+  },
+  {
+    id: 3,
+    bgImage: '/assets/banner/b5.jpg',
+    subTitle: 'Seasonal sale',
+    title: 'Winter Collection -50% Off',
+    type: 'small',
+    overlay: true,
+  },
+  {
+    id: 4,
+    bgImage: '/assets/banner/b6.jpg',
+    subTitle: 'New Footwear Collection',
+    title: 'Spring/Summer 2023',
+    type: 'small',
+    overlay: true,
+  },
+  {
+    id: 5,
+    bgImage: '/assets/banner/b7.jpg',
+    subTitle: 'T-Shirt',
+    title: 'New Trandy Prinls',
+    type: 'small',
+    overlay: true,
+  },
+];
+
+export const MyOrderStatuses = [
+  { id: 1, label: 'All' },
+  { id: 2, label: 'Completed' },
+  { id: 3, label: 'Pending' },
+  { id: 4, label: 'Cancelled' },
+  { id: 5, label: 'Paid' },
+  { id: 6, label: 'Processing' },
+];
+
+export const PrivacyPolicyContent = [
+  {
+    id: 1,
+    Icon: FileText,
+    title: 'Information We Collect',
+    description: 'We collect information to provide better services:',
+    items: [
+      'Personal details such as name, email, and address',
+      'Order and payment information',
+      'Browsing data such as IP address and cookies',
+    ],
+  },
+  {
+    id: 2,
+    Icon: Users,
+    title: 'How We Use Your Information',
+    items: [
+      'Process and deliver orders',
+      'Provide customer support',
+      'Improve our website and services',
+      'Send optional promotional content',
+    ],
+  },
+  {
+    id: 3,
+    Icon: Lock,
+    title: 'Data Protection',
+    description:
+      'We apply industry-standard security measures to protect your data from unauthorized access or misuse.',
+  },
+  {
+    id: 4,
+    Icon: Cookie,
+    title: 'Cookies',
+    description:
+      'Cookies enhance your experience. You can disable them through browser settings, though some features may not work properly.',
+  },
+  {
+    id: 5,
+    Icon: Shield,
+    title: 'Third-Party Services',
+    description:
+      'We share data only with trusted services such as payment and shipping providers, strictly for order fulfillment.',
+  },
+  {
+    id: 6,
+    Icon: Users,
+    title: 'Your Rights',
+    description:
+      'You may request access, correction, or deletion of your data at any time. We respond within a reasonable period.',
+  },
+  {
+    id: 7,
+    Icon: Mail,
+    title: 'Contact Us',
+    description: 'For questions about this policy, contact us at ',
+    highlight: true,
+    link: true,
+  },
+];
+
+export const HelpContent = [
+  {
+    id: 1,
+    Icon: FaShippingFast,
+    title: 'How long does delivery take?',
+    description:
+      'Delivery times vary by location. Estimated delivery details are available on the Delivery Information page.',
+  },
+  {
+    id: 2,
+    Icon: RotateCcw,
+    title: 'Can I return an item?',
+    description: 'Yes, items can be returned according to our Refund Policy.',
+  },
+  {
+    id: 3,
+    Icon: CreditCard,
+    title: 'What payment methods do you accept?',
+    description:
+      'We accept secure online payment methods available at checkout.',
+  },
+  {
+    id: 4,
+    Icon: Ruler,
+    title: 'How do I choose the right size?',
+    description:
+      'Please refer to the size guide available on each product page.',
+  },
+  {
+    id: 5,
+    Icon: Mail,
+    title: 'Still need help? Our support team is happy to assist you.',
+    description: 'Still need help? Our support team is happy to assist you.',
+    highlight: true,
+    link: true,
   },
 ];
