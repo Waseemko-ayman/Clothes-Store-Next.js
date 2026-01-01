@@ -1,12 +1,14 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 
 interface MainTitleProps {
   title: string;
   description: string;
+  Icon?: React.ElementType;
 }
 
-const MainTitle = ({ title, description }: MainTitleProps) => {
+const MainTitle = ({ title, description, Icon }: MainTitleProps) => {
   return (
     <motion.div
       className="text-center mb-12"
@@ -15,6 +17,11 @@ const MainTitle = ({ title, description }: MainTitleProps) => {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >
+      {Icon && (
+        <div className="mb-4 w-fit mx-auto rounded-full bg-primary/10 p-3">
+          <Icon className="h-8 w-8 text-primary" />
+        </div>
+      )}
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--fifth-color)]">
         {title}
       </h2>
