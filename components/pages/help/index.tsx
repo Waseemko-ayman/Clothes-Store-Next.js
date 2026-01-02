@@ -4,7 +4,7 @@ import Layer from '@/components/atoms/Layer';
 import MainTitle from '@/components/atoms/MainTitle';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import InfoListSection from '@/components/molecules/InfoListSection';
-import CardWrapper from '@/components/Template/CardWrapper';
+import { Button } from '@/components/molecules/MovingBorders';
 import { HelpContent } from '@/mock';
 import { HelpCircle } from 'lucide-react';
 import React from 'react';
@@ -23,10 +23,10 @@ const HelpPage = () => {
 
           {/* Intro */}
           <AnimatedWrapper>
-            <CardWrapper>
-              <div className="flex flex-col gap-2">
+            <Button>
+              <div className="flex flex-col gap-2 p-5 max-md:items-center text-start">
                 <div>
-                  <p className="leading-relaxed font-semibold">
+                  <p className="leading-relaxed font-semibold text-base">
                     How do I place an order?
                   </p>
                   <p className="leading-relaxed">
@@ -35,7 +35,7 @@ const HelpPage = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="leading-relaxed font-semibold">
+                  <p className="leading-relaxed font-semibold text-base">
                     Can I modify or cancel my order?
                   </p>
                   <p className="leading-relaxed">
@@ -44,7 +44,7 @@ const HelpPage = () => {
                   </p>
                 </div>
               </div>
-            </CardWrapper>
+            </Button>
           </AnimatedWrapper>
 
           {/* Sections */}
@@ -54,7 +54,6 @@ const HelpPage = () => {
               Icon={card.Icon}
               title={card.title}
               description={card.description}
-              highlight={card.highlight}
               link={card.link}
             />
           ))}

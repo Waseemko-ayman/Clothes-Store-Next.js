@@ -4,7 +4,7 @@ import Layer from '@/components/atoms/Layer';
 import MainTitle from '@/components/atoms/MainTitle';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import InfoListSection from '@/components/molecules/InfoListSection';
-import CardWrapper from '@/components/Template/CardWrapper';
+import { Button } from '@/components/molecules/MovingBorders';
 import { PrivacyPolicyContent } from '@/mock';
 import { Shield } from 'lucide-react';
 
@@ -23,12 +23,12 @@ const PrivacyPolicyPage = () => {
 
           {/* Intro */}
           <AnimatedWrapper>
-            <CardWrapper>
-              <p className="leading-relaxed">
+            <Button>
+              <p className="leading-relaxed p-5 max-md:items-center text-start">
                 This Privacy Policy explains how we collect, use, and protect
                 your information when you use our website and services.
               </p>
-            </CardWrapper>
+            </Button>
           </AnimatedWrapper>
 
           {/* Sections */}
@@ -39,7 +39,6 @@ const PrivacyPolicyPage = () => {
               title={card.title}
               description={card.description}
               items={card.items}
-              highlight={card.highlight}
               link={card.link}
             />
           ))}
