@@ -770,7 +770,6 @@ export const PrivacyPolicyContent = [
     Icon: Mail,
     title: 'Contact Us',
     description: 'For questions about this policy, contact us at ',
-    highlight: true,
     link: true,
   },
 ];
@@ -808,7 +807,6 @@ export const HelpContent = [
     Icon: Mail,
     title: 'Still need help? Our support team is happy to assist you.',
     description: 'Still need help? Our support team is happy to assist you.',
-    highlight: true,
     link: true,
   },
 ];
