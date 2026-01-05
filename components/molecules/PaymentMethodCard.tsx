@@ -49,7 +49,7 @@ const PaymentMethodCard = ({
       <div className="flex gap-2 mt-4 pt-4 border-t border-border">
         <Button
           variant="outline"
-          otherClassName="flex-1 !py-2 !text-[var(--forth-color)] hover:!text-white"
+          otherClassName="flex-1 !py-2 !border-[var(--forth-color)] !text-[var(--forth-color)] hover:!text-white"
           disabled={method.isDefault}
         >
           Set as Default

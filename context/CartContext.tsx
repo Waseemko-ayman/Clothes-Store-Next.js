@@ -42,9 +42,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const quantityToAdd = item.quantity ?? 1;
 
     setCartItems((prev) => {
-      const existingIndex = prev.findIndex(
-        (i) => +i.id === +item.id && i.slug === item.slug
-      );
+      const existingIndex = prev.findIndex((i) => i.slug === item.slug);
 
       if (existingIndex !== -1) {
         const updatedItems = [...prev];

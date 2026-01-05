@@ -8,13 +8,13 @@ export async function generateMetadata({
 }: {
   params: Promise<any>;
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { slug } = await params;
 
   return {
     // title: `Product Details - Item ${id}`,
     // description: `Details of product with ID ${id}`,
     title: `Product Details - Clothes Shopping`,
-    description: `Details of product with ID ${id}`,
+    description: `Details of product with ${slug}`,
   };
 }
 
@@ -25,5 +25,5 @@ export default async function ProductPageWrapper({
 }) {
   const resolvedParams = await params;
 
-  return <ProductDetailsPage productId={resolvedParams.id} />;
+  return <ProductDetailsPage productSlug={resolvedParams.slug} />;
 }

@@ -9,7 +9,6 @@ interface InfoListSectionProps {
   description?: string;
   items?: string[];
   link?: boolean;
-  highlight?: boolean;
 }
 
 const InfoListSection = ({
@@ -18,16 +17,11 @@ const InfoListSection = ({
   description,
   items,
   link,
-  highlight = false,
 }: InfoListSectionProps) => {
   return (
-    <PageSection
-      highlight={highlight}
-      icon={<Icon className="h-5 w-5 text-primary" />}
-      title={title}
-    >
+    <PageSection icon={<Icon className="h-5 w-5 text-primary" />} title={title}>
       {description && (
-        <p className="mb-4 text-muted-foreground">
+        <p className="mb-4 text-muted-foreground max-md:items-center text-start">
           {description}
           {link && (
             <Link

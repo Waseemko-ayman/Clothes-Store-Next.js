@@ -23,7 +23,7 @@ const AccountSettingsCard = ({
       </div>
       <Button
         variant="outline"
-        otherClassName="!text-[var(--forth-color)] hover:!text-white !py-2 !px-4"
+        otherClassName="!border-[var(--forth-color)] !text-[var(--forth-color)] hover:!text-white !py-2 !px-4"
         handleClick={() => onManage(key)}
       >
         Manage

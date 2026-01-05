@@ -1,45 +1,47 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import Loading from '@/components/atoms/Loading';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
 import { ProductCardProps } from '@/interfaces';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
-import { useProductsContext } from '@/context/ProductsContext';
+import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 
-const Clothes = () => {
+const Clothes = ({ products }: { products: ProductCardProps[] }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-  // API Context
-  const { clothes, isLoading } = useProductsContext();
+  useEffect(() => {
+    if (products) {
+      setLoading(false);
+    }
+  }, [products]);
 
   return (
     <Layer>
       <Container>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <ProdcutsContainer>
-            {clothes.map((item: ProductCardProps, index) => (
-              <AnimatedWrapper key={item?.id} custom={index}>
-                <ProductCard
-                  key={item?.id}
-                  imgSrc={item?.src}
-                  imgText={item?.imgText}
-                  tradeMark={item?.tradeMark}
-                  productTitle={item?.productTitle}
-                  price={item?.price}
-                  productData={item}
-                  handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
-                />
-              </AnimatedWrapper>
-            ))}
-          </ProdcutsContainer>
-        )}
+        <ProdcutsContainer>
+          {loading
+            ? Array.from({ length: 8 }).map((_, i) => (
+                <ProductCardSkeleton key={i} />
+              ))
+            : products.map((item: ProductCardProps, index) => (
+                <AnimatedWrapper key={item?.id} custom={index}>
+                  <ProductCard
+                    key={item?.id}
+                    image={item.image}
+                    title={item.title}
+                    productData={item}
+                    handleClick={() =>
+                      item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
+                    }
+                  />
+                </AnimatedWrapper>
+              ))}
+        </ProdcutsContainer>
       </Container>
     </Layer>
   );

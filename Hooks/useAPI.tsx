@@ -21,6 +21,7 @@ const API_ACTIONS = {
   GET: 'GET',
   GET_SINGLE: 'GET_SINGLE',
   POST: 'POST',
+  PUT: 'PUT',
   DEL: 'DEL',
   ERROR: 'ERROR',
 } as const;
@@ -36,7 +37,10 @@ const initialState: State<any> = {
 // ⚠️ Issue: How do we know that all items returned from the API have an 'id'?
 // TypeScript has no guarantee that type T contains the 'id' property.
 // ✔️ Fix: Constrain type T to { id: string | number } so TypeScript knows 'id' exists
-const reduce = <T extends {id?: string | number},>(state: State<T>, action: Action<T>): State<T> => {
+const reduce = <T extends { id?: string | number }>(
+  state: State<T>,
+  action: Action<T>
+): State<T> => {
   switch (action.type) {
     case API_ACTIONS.SET_LOADING:
       return { ...state, isLoading: true };
@@ -49,6 +53,14 @@ const reduce = <T extends {id?: string | number},>(state: State<T>, action: Acti
         ...state,
         isLoading: false,
         data: [...state.data, action.payload],
+      };
+    case API_ACTIONS.PUT:
+      return {
+        ...state,
+        isLoading: false,
+        data: state.data.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
       };
     case API_ACTIONS.DEL:
       return {
@@ -66,7 +78,10 @@ const reduce = <T extends {id?: string | number},>(state: State<T>, action: Acti
 // ⚠️ Issue: How do we know that all items returned from the API have an 'id'?
 // TypeScript has no guarantee that type T contains the 'id' property.
 // ✔️ Fix: Constrain type T to { id: string | number } so TypeScript knows 'id' exists
-const useAPI = <T extends {id?: string | number},>(url: string, config?: AxiosRequestConfig) => {
+const useAPI = <T extends { id?: string | number }>(
+  url: string,
+  config?: AxiosRequestConfig
+) => {
   const [state, dispatch] = useReducer(reduce<T>, initialState);
 
   const get = async (getConfig?: AxiosRequestConfig) => {
@@ -90,6 +105,7 @@ const useAPI = <T extends {id?: string | number},>(url: string, config?: AxiosRe
         ...getConfig,
       });
       dispatch({ type: API_ACTIONS.GET_SINGLE, payload: res?.data });
+      return res.data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
@@ -100,6 +116,25 @@ const useAPI = <T extends {id?: string | number},>(url: string, config?: AxiosRe
       dispatch({ type: API_ACTIONS.SET_LOADING });
       const res = await axios.post<T>(url, body, config);
       dispatch({ type: API_ACTIONS.POST, payload: res?.data });
+      return res.data;
+    } catch (error) {
+      dispatch({ type: API_ACTIONS.ERROR, payload: error });
+    }
+  };
+
+  const edit = async (
+    id: string | number,
+    body: any,
+    getConfig?: AxiosRequestConfig
+  ) => {
+    try {
+      dispatch({ type: API_ACTIONS.SET_LOADING });
+      const res = await axios.post<T>(`${url}/${id}`, body, {
+        ...config,
+        ...getConfig,
+      });
+      dispatch({ type: API_ACTIONS.PUT, payload: res?.data });
+      return res.data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
@@ -115,7 +150,7 @@ const useAPI = <T extends {id?: string | number},>(url: string, config?: AxiosRe
     }
   };
 
-  return { ...state, get, getSingle, add, del };
+  return { ...state, get, getSingle, add, edit, del };
 };
 
 export default useAPI;

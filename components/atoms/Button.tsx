@@ -2,7 +2,7 @@ import React, { forwardRef, Ref } from 'react';
 import Link from 'next/link';
 import { ButtonProps } from '@/interfaces';
 
-const Button = forwardRef<
+const  Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps & { href?: string }
 >(
@@ -34,7 +34,7 @@ const Button = forwardRef<
         : variant === 'secondary'
         ? 'bg-[var(--white-color)] text-black hover:bg-[var(--forth-color)] hover:text-[var(--white-color)]'
         : variant === 'outline'
-        ? 'bg-transparent border border-[var(--forth-color)] text-[var(--white-color)] hover:bg-[var(--forth-color)] hover:text-[var(--white-color)] hover:border-[var(--forth-color)]'
+        ? 'bg-transparent border border-white text-[var(--white-color)] hover:bg-[var(--forth-color)] hover:text-[var(--white-color)] hover:border-[var(--forth-color)]'
         : variant === 'cover'
         ? 'bg-center bg-transparent bg-no-repeat text-[var(--forth-color)]'
         : variant === 'circle'
