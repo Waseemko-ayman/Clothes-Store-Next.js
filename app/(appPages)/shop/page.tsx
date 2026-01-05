@@ -1,5 +1,5 @@
 import ShopPage from '@/components/pages/shop';
-import { API_URL } from '@/config/api';
+import supabase from '@/config/api';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 };
 
 async function getProducts() {
-  const res = await fetch(`${API_URL}/clothes`, { cache: 'no-store' });
-  return res.json();
+  const res = await supabase.from('products').select();
+  return res;
 }
 
 const Shop = async () => {
-  const products = await getProducts();
+  const { data: products } = await getProducts();
 
-  return <ShopPage products={products} />;
+  return <ShopPage products={products ?? []} />;
 };
 
 export default Shop;

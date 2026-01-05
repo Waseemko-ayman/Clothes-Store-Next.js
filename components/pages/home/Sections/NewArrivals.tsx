@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
@@ -6,18 +7,42 @@ import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import ProductCard from '@/components/molecules/ProductCard';
 import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
-import { useProductsContext } from '@/context/ProductsContext';
+import supabase from '@/config/api';
+import { ProductCardProps } from '@/interfaces';
 import { PATHS } from '@/mock/paths';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const NewArrivals = () => {
+  const [, setfetchError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [clothes, setClothesError] = useState<any>(null);
   const router = useRouter();
 
   // API Context
-  const { clothes, isLoading } = useProductsContext();
+  // const { clothes, isLoading } = useProductsContext();
 
-  const newArrivals = clothes.filter((p) => p.section === 'newArrivals');
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select()
+        .eq('section', 'newArrivals');
+
+      if (error) {
+        setfetchError('Could error fetch the products');
+        setClothesError(null);
+        console.log(error);
+      }
+      if (data) {
+        setIsLoading(true);
+        setClothesError(data);
+        setIsLoading(false);
+        setfetchError('');
+      }
+    })();
+  }, []);
+
   return (
     <Layer>
       <Container>
@@ -30,17 +55,16 @@ const NewArrivals = () => {
             ? Array.from({ length: 8 }).map((_, i) => (
                 <ProductCardSkeleton key={i} />
               ))
-            : newArrivals.map((item, index) => (
+            : clothes?.map((item: ProductCardProps, index: number) => (
                 <AnimatedWrapper key={item?.id} custom={index}>
                   <ProductCard
                     key={item?.id}
-                    imgSrc={item?.src}
-                    imgText={item?.imgText}
-                    tradeMark={item?.tradeMark}
-                    productTitle={item?.productTitle}
-                    price={item?.price}
+                    image={item.image}
+                    title={item.title}
                     productData={item}
-                    handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
+                    handleClick={() =>
+                      item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
+                    }
                   />
                 </AnimatedWrapper>
               ))}

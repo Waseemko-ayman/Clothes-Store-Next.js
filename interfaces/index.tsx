@@ -25,6 +25,7 @@ export interface FormValues {
 
 export interface ProductCardProps {
   id?: number;
+  created_at?: string;
   slug?: string;
   image: string;
   title: string;
