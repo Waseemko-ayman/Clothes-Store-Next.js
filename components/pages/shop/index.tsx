@@ -1,13 +1,12 @@
 import React from 'react';
 import RepairServices from './Sections/RepairServices';
 import Clothes from './Sections/Clothes';
-import { ProductCardProps } from '@/interfaces';
 
-const ShopPage = ({ products }: { products: ProductCardProps[] }) => {
+const ShopPage = () => {
   return (
     <>
       <RepairServices />
-      <Clothes products={products} />
+      <Clothes />
     </>
   );
 };
