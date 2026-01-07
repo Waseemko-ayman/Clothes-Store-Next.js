@@ -327,3 +327,18 @@ export interface DataTableBodyProps<T> {
   onRowPatched?: (id: string | number, patch: Partial<T>) => void;
   deleteLocation?: string;
 }
+
+export interface ProductFilterProps {
+  filters: {
+    searchQuery: string;
+    category: string;
+    sortBy: string;
+    discount: boolean;
+    priceRange: number[];
+    isFiltersOpen: boolean;
+  };
+  setFilters: React.Dispatch<React.SetStateAction<any>>;
+  onSearchChange: (value: string) => void;
+  handleReset: () => void;
+  hasActiveFilters: boolean;
+}
