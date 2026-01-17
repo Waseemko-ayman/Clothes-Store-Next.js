@@ -5,10 +5,13 @@ import Image from 'next/image';
 import AnimatedWrapper from './FramerMotion/AnimatedWrapper';
 import NavItem from '../atoms/NavItem';
 import { userList } from '@/mock';
+import { useAuthContext } from '@/context/AuthContext';
 
 const UserPopover = () => {
+  const { logout } = useAuthContext();
+
   const handleLogout = () => {
-    console.log('logout');
+    logout();
   };
   return (
     <Popover>
