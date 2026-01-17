@@ -386,6 +386,33 @@ export const loginInputs = [
   },
 ];
 
+export const loginPhoneInputs = [
+  {
+    id: 1,
+    label: 'Phone Number',
+    type: 'phone',
+    name: 'phone',
+    placeholder: '+97059xxxxxxx',
+  },
+];
+
+export const signupPhoneInputs = [
+  {
+    id: 1,
+    label: 'Phone Number',
+    type: 'phone',
+    name: 'phone',
+    placeholder: '+97059xxxxxxx',
+  },
+  {
+    id: 2,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+];
+
 export const signupInputs = [
   {
     id: 1,

@@ -7,7 +7,7 @@ import {
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
-import { FieldError, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 
 export interface APIRequest {
   isLoading: boolean;
@@ -59,7 +59,8 @@ export interface ButtonProps {
   otherClassName?: string;
   variant?: ButtonVarinats;
   borderRadius?: string;
-  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  // handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleClick?: (e: any) => void;
   type?: ButtonTypes;
   Icon?: React.ElementType;
   iconPosition?: ButtonIconPosition;
@@ -142,8 +143,9 @@ export interface StatusPasswordProps {
 }
 
 export interface AuthTemplateProps {
-  error: string;
-  handleFormSubmit?: (e: React.FormEvent) => Promise<void>;
+  error?: string | Record<string, any>;
+  control?: any;
+  handleFormSubmit?: (data: any) => Promise<void>;
   headerTitle?: string;
   headerDescription?: string;
   formChildren?: React.ReactNode;
@@ -152,8 +154,15 @@ export interface AuthTemplateProps {
   submitBtnText: string;
   loading: boolean;
   fieldsTypes?: FieldType[];
-  pageName?: string;
   otherClassName?: string;
+  // isPhoneRegister?: boolean;
+  // handlePhoneSubmit?: (value: boolean) => void;
+}
+
+export interface FormProps {
+  error?: string | Record<string, any>;
+  control?: any;
+  fieldsTypes?: FieldType[];
 }
 
 export interface NavItemProps {
@@ -194,7 +203,8 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   onIconClick?: () => void;
   options?: string[];
   register?: UseFormRegister<FormValues>;
-  error?: FieldError;
+  // error?: FieldError;
+  error?: any;
   control?: any;
   isMulti?: boolean;
   value?: string;
@@ -341,4 +351,29 @@ export interface ProductFilterProps {
   onSearchChange: (value: string) => void;
   handleReset: () => void;
   hasActiveFilters: boolean;
+}
+
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+
+export interface LoginPhoneFormData {
+  phone: string;
+}
+
+export interface VerifyOtpData {
+  phone: string;
+  token: string;
+  channel: 'sms';
+}
+
+export interface SignupPhoneFormData {
+  phone: string;
+  password: string;
+}
+
+export interface signupFormData extends LoginFormData {
+  name: string;
+  password_confirmation: string;
 }
