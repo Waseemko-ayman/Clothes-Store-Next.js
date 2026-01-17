@@ -6,10 +6,16 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import ButtonLoading from '../atoms/ButtonLoading';
 import InlineError from './InlineError';
+import { useSession } from '@/Hooks/useSession';
 
 const SidebarContent = ({ pathname }: { pathname: string }) => {
   const [isLoading] = useState(false);
   const [error] = useState('');
+
+  // Session Hook
+  const session = useSession();
+  const userName = session?.user?.user_metadata?.display_name;
+  const role = session?.user?.role;
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -92,15 +98,15 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
           )}
           <div>
             <p className="text-sm font-medium">
-              {isLoading ? 'Loading...' : 'user?.name'}
+              {isLoading ? 'Loading...' : userName}
             </p>
-            {/* <p className="text-xs">
+            <p className="text-xs">
               {isLoading
                 ? 'Loading...'
-                : user?.is_admin
-                ? t('Dashboard.roles.admin')
-                : t('Dashboard.roles.user')}
-            </p> */}
+                : role === 'authenticated'
+                ? 'Admin'
+                : 'User'}
+            </p>
           </div>
         </div>
       </div>

@@ -1,21 +1,23 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import UserPopover from './UserPopover';
 import { useCartContext } from '@/context/CartContext';
 import Link from 'next/link';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
+import { useSession } from '@/Hooks/useSession';
 
 const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
-  const [loginStatus] = useState(true); // Mocked login status
-
   // API Context
   const { cartItems } = useCartContext();
 
+  // Session Hook
+  const session = useSession();
+
   return (
     <>
-      {item.name === 'Login' && loginStatus ? (
+      {item.name === 'Login' && session ? (
         <UserPopover />
       ) : item.name === 'Cart' ? (
         <Link href={item.link}>
