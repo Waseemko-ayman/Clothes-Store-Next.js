@@ -8,7 +8,7 @@ const AuthRedirect: React.FC<AuthRedirectProps> = ({
   href,
 }) => {
   return (
-    <div className="mt-8 text-center">
+    <div className="text-center">
       <p className="text-sm text-[var(--six-color)]">
         {text}{' '}
         <Link
