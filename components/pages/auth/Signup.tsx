@@ -41,30 +41,15 @@ const signUpEmailschema = yup.object().shape({
     .required('Password confirmation is required'),
 });
 
-// const signUpPhoneScheme = yup.object({
-//   phone: yup
-//     .string()
-//     .matches(phoneReqExp, 'Phone number format is incorrect')
-//     .required('Phone number is required'),
-//   password: yup
-//     .string()
-//     .matches(
-//       passwordRegex,
-//       'Password must include uppercase, lowercase, number, special character, and be at least 8 characters long',
-//     )
-//     .required('Password is required'),
-// });
-
 const SignupPage = () => {
-  // const [isPhoneRegister, setIsPhoneRegister] = useState(false);
-
-  // const fields = isPhoneRegister ? signupPhoneInputs : signupInputs;
-
   // Aith Cotntext
   const { signup, isLoading } = useAuthContext();
 
-  // Username, Email, and Password Form
-  const emailForm = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(signUpEmailschema),
     defaultValues: {
       name: '',
@@ -74,34 +59,7 @@ const SignupPage = () => {
     },
   });
 
-  // Phone, and Password Form
-  // const phoneForm = useForm({
-  //   resolver: yupResolver(signUpPhoneScheme),
-  //   defaultValues: { phone: '', password: '' },
-  // });
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = emailForm;
-  // } = isPhoneRegister ? phoneForm : emailForm;
-
-  // const onSubmit = async (data: signupFormData | SignupPhoneFormData) => {
   const onSubmit = async (data: signupFormData) => {
-    // const payload =
-    //   'email' in data
-    //     ? {
-    //         email: data.email || '',
-    //         password: data.password || '',
-    //         options: { data: { display_name: data.name || '' } },
-    //       }
-    //     : 'phone' in data
-    //     ? { phone: data.phone || '', password: data.password || '' }
-    //     : undefined;
-
-    // if (payload) signup(payload);
-
     const payload = {
       email: data.email || '',
       password: data.password || '',
@@ -113,7 +71,6 @@ const SignupPage = () => {
 
   return (
     <AuthTemplate
-      // key={isPhoneRegister ? 'phone' : 'email'}
       headerTitle="Create Your Account"
       headerDescription="Sign up to get started and enjoy all features"
       error={errors}
@@ -123,8 +80,6 @@ const SignupPage = () => {
       submitBtnText="Sign Up"
       loadingText="Signing up..."
       loading={isLoading}
-      // isPhoneRegister={isPhoneRegister}
-      // handlePhoneSubmit={() => setIsPhoneRegister((prev) => !prev)}
     >
       <AuthRedirect
         text="Already have an account?"

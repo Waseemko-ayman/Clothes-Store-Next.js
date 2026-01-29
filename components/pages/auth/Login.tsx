@@ -6,7 +6,7 @@ import AuthTemplate from '@/components/Template/AuthTemplate';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { LoginFormData, LoginPhoneFormData } from '@/interfaces';
+import { LoginFormData } from '@/interfaces';
 import { useAuthContext } from '@/context/AuthContext';
 
 const loginScheme = yup.object({
@@ -14,50 +14,25 @@ const loginScheme = yup.object({
   password: yup.string().required('password is required'),
 });
 
-// const loginPhoneScheme = yup.object({
-//   phone: yup
-//     .string()
-//     .matches(phoneReqExp, 'Phone number format is incorrect')
-//     .required('Phone number is required'),
-// });
-
 const LoginPage = () => {
-  // const [showPassword, setShowPassword] = useState(false);
-  // const [isPhoneRegister, setIsPhoneRegister] = useState(false);
-
-  // const fields = isPhoneRegister ? loginPhoneInputs : loginInputs;
-
   // Auth Context
-  const { login, signInWithPhoneOTP, isLoading } = useAuthContext();
-
-  const emailForm = useForm({
-    resolver: yupResolver(loginScheme),
-    defaultValues: { email: '', password: '' },
-  });
-
-  // const phoneForm = useForm({
-  //   resolver: yupResolver(loginPhoneScheme),
-  //   defaultValues: { phone: '' },
-  // });
+  const { login, isLoading } = useAuthContext();
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = emailForm;
-  // } = isPhoneRegister ? phoneForm : emailForm;
+  } = useForm({
+    resolver: yupResolver(loginScheme),
+    defaultValues: { email: '', password: '' },
+  });
 
-  const onSubmit = async (data: LoginFormData | LoginPhoneFormData) => {
-    if ('phone' in data) {
-      signInWithPhoneOTP(data);
-    } else {
-      login(data);
-    }
+  const onSubmit = async (data: LoginFormData) => {
+    login(data);
   };
 
   return (
     <AuthTemplate
-      // key={isPhoneRegister ? 'phone' : 'email'}
       headerTitle="Welcome Back"
       headerDescription="Sign in to your account to continue"
       error={errors}
@@ -67,8 +42,6 @@ const LoginPage = () => {
       submitBtnText="Sign In"
       loadingText="Signing in..."
       loading={isLoading}
-      // isPhoneRegister={isPhoneRegister}
-      // handlePhoneSubmit={() => setIsPhoneRegister((prev) => !prev)}
     >
       <AuthRedirect
         text="Don’t have an account?"
