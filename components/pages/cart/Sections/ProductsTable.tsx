@@ -8,7 +8,7 @@ import { useCartContext } from '@/context/CartContext';
 import useAPI from '@/Hooks/useAPI';
 import { useToast } from '@/lib/toast';
 import CartTable from '@/components/molecules/CartTable';
-import { FaBorderAll, FaTable } from 'react-icons/fa6';
+import { FaBorderAll, FaCartShopping, FaTable } from 'react-icons/fa6';
 import CartCards from '@/components/molecules/CartCards';
 import EmptyState from '@/components/molecules/EmptyState';
 
@@ -93,7 +93,8 @@ const ProductsTable = () => {
           <EmptyState
             imageSrc="empty-cart.png"
             messageText="Your shopping basket is ready and calling you to shop!"
-            buttonText="Proceed to checkout"
+            buttonText="Shop now"
+            Icon={FaCartShopping}
           />
         )}
       </Container>
