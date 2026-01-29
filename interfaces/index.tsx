@@ -155,8 +155,6 @@ export interface AuthTemplateProps {
   loading: boolean;
   fieldsTypes?: FieldType[];
   otherClassName?: string;
-  // isPhoneRegister?: boolean;
-  // handlePhoneSubmit?: (value: boolean) => void;
 }
 
 export interface FormProps {
@@ -174,6 +172,7 @@ export interface NavItemProps {
   icon?: React.ElementType | string | any;
   otherClassName?: string;
   isMobile?: boolean;
+  disablePrefetch?: boolean;
 }
 
 export interface NavItem {
