@@ -19,8 +19,8 @@ const CartCards: React.FC<CartCardseProps> = ({
             <div className="relative flex flex-col sm:flex-row justify-between gap-4 p-4 md:p-5">
               <div className="relative flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
                 <Image
-                  src={`/assets/products/${item.src}.jpg`}
-                  alt={item.productTitle}
+                  src={`/assets/products/${item.image}.jpg`}
+                  alt={item.title}
                   width={150}
                   height={150}
                   className="rounded-lg"
@@ -28,10 +28,10 @@ const CartCards: React.FC<CartCardseProps> = ({
                 <div className="flex flex-col justify-between text-center sm:text-left">
                   <div>
                     <h3 className="text-lg md:text-xl font-bold text-[var(--seconde-color)] mb-2">
-                      {item.productTitle}
+                      {item.title}
                     </h3>
                     <p className="text-2xl font-bold text-[var(--forth-color)] mb-3">
-                      ${item.price.toFixed(2)}
+                      ${item?.price?.toFixed(2)}
                     </p>
                   </div>
 
@@ -51,7 +51,7 @@ const CartCards: React.FC<CartCardseProps> = ({
               <div className="flex flex-row sm:flex-col items-center md:items-end justify-between border-t md:border-t-0 md:border-l border-[#2d2d2d10] pt-4 md:pt-0 md:pl-6">
                 <Button
                   variant="circle"
-                  handleClick={() => handleDelete(item.id, item.productTitle)}
+                  handleClick={() => handleDelete(item?.id ?? 0, item.title)}
                   otherClassName="group flex items-center justify-center w-10 h-10 border-none bg-red-50 hover:bg-red-500"
                   aria-label="Remove item"
                 >
@@ -63,7 +63,7 @@ const CartCards: React.FC<CartCardseProps> = ({
                     Subtotal
                   </p>
                   <p className="text-2xl md:text-3xl font-bold text-[var(--seconde-color)]">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    ${(item?.price && item?.quantity ? (item.price * item.quantity).toFixed(2) : 0)}
                   </p>
                 </div>
               </div>
