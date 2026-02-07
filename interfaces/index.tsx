@@ -18,7 +18,6 @@ export interface APIRequest {
 export interface FormValues {
   username: string;
   email: string;
-  password: string;
   subject: string;
   message: string;
 }
@@ -103,7 +102,7 @@ export interface AnimatedWrapperProps {
 export interface QuantityControllerProps {
   otherClassName?: string;
   item: {
-    id: number | string;
+    id?: number | string;
     slug?: string;
     quantity?: number;
   };
@@ -375,4 +374,29 @@ export interface SignupPhoneFormData {
 export interface signupFormData extends LoginFormData {
   name: string;
   password_confirmation: string;
+}
+
+export interface ButtonTrashProps {
+  handleClick?: () => void;
+  variant?: ButtonVarinats;
+  otherClassName?: string;
+  ariaLabel?: string;
+}
+
+export interface UserInfoProps {
+  id: string;
+  email: string;
+  phone: string;
+  display_name: string;
+  avatar_url: string;
+  role: string;
+  created_at: string;
+}
+
+export interface AccountSidebarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  data: UserInfoProps[];
+  isLoading: boolean;
+  uploading: boolean;
 }
