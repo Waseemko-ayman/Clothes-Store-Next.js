@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosRequestConfig } from 'axios';
+import supabase from '@/config/api';
 import { useReducer } from 'react';
 
 interface State<T> {
@@ -39,7 +39,7 @@ const initialState: State<any> = {
 // ✔️ Fix: Constrain type T to { id: string | number } so TypeScript knows 'id' exists
 const reduce = <T extends { id?: string | number }>(
   state: State<T>,
-  action: Action<T>
+  action: Action<T>,
 ): State<T> => {
   switch (action.type) {
     case API_ACTIONS.SET_LOADING:
@@ -52,14 +52,15 @@ const reduce = <T extends { id?: string | number }>(
       return {
         ...state,
         isLoading: false,
-        data: [...state.data, action.payload],
+        // data: [...state.data, action.payload],
+        data: [...state.data, ...(action.payload || [])],
       };
     case API_ACTIONS.PUT:
       return {
         ...state,
         isLoading: false,
         data: state.data.map((item) =>
-          item.id === action.payload.id ? action.payload : item
+          item.id === action.payload.id ? action.payload : item,
         ),
       };
     case API_ACTIONS.DEL:
@@ -78,34 +79,27 @@ const reduce = <T extends { id?: string | number }>(
 // ⚠️ Issue: How do we know that all items returned from the API have an 'id'?
 // TypeScript has no guarantee that type T contains the 'id' property.
 // ✔️ Fix: Constrain type T to { id: string | number } so TypeScript knows 'id' exists
-const useAPI = <T extends { id?: string | number }>(
-  url: string,
-  config?: AxiosRequestConfig
-) => {
+const useAPI = <T extends { id?: string | number }>(tableName: string) => {
   const [state, dispatch] = useReducer(reduce<T>, initialState);
 
-  const get = async (getConfig?: AxiosRequestConfig) => {
+  const get = async () => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const res = await axios.get<T[]>(url, { ...config, ...getConfig });
-      dispatch({ type: API_ACTIONS.GET, payload: res?.data });
+      const { data, error } = await supabase.from(tableName).select('*');
+      if (error) throw error;
+      dispatch({ type: API_ACTIONS.GET, payload: data });
+      return data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
   };
 
-  const getSingle = async (
-    id: string | number,
-    getConfig?: AxiosRequestConfig
-  ) => {
+  const getSingle = async (id: string | number) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const res = await axios.get<T>(`${url}/${id}`, {
-        ...config,
-        ...getConfig,
-      });
-      dispatch({ type: API_ACTIONS.GET_SINGLE, payload: res?.data });
-      return res.data;
+      const { data } = await supabase.from(tableName).select('*').eq('id', id);
+      dispatch({ type: API_ACTIONS.GET_SINGLE, payload: data });
+      return data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
@@ -114,27 +108,26 @@ const useAPI = <T extends { id?: string | number }>(
   const add = async (body: any) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const res = await axios.post<T>(url, body, config);
-      dispatch({ type: API_ACTIONS.POST, payload: res?.data });
-      return res.data;
+      const { data, error } = await supabase.from(tableName).insert([body]);
+      if (error) throw error;
+      dispatch({ type: API_ACTIONS.POST, payload: data || [] });
+      return data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
   };
 
-  const edit = async (
-    id: string | number,
-    body: any,
-    getConfig?: AxiosRequestConfig
-  ) => {
+  const edit = async (id: string | number, body: any) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const res = await axios.post<T>(`${url}/${id}`, body, {
-        ...config,
-        ...getConfig,
-      });
-      dispatch({ type: API_ACTIONS.PUT, payload: res?.data });
-      return res.data;
+      const { data, error } = await supabase
+        .from(tableName)
+        .update(body)
+        .eq('id', id)
+        .select();
+      if (error) throw error;
+      dispatch({ type: API_ACTIONS.PUT, payload: data });
+      return data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
@@ -143,8 +136,14 @@ const useAPI = <T extends { id?: string | number }>(
   const del = async (id: string | number) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const res = await axios.delete<T>(`${url}/${id}`);
+      const { data, error } = await supabase
+        .from(tableName)
+        .delete()
+        .eq('id', id)
+        .select();
+      if (error) throw error;
       dispatch({ type: API_ACTIONS.DEL, payload: id });
+      return data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
