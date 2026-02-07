@@ -60,7 +60,7 @@ const Form = ({ error, control, fieldsTypes }: FormProps) => {
             onIconClick={
               isPasswordField(name) ? () => toggleShow(name) : undefined
             }
-            otherClassName="w-full !rounded-md"
+            otherClassName="w-full rounded-md!"
             iconClassName="text-[var(--forth-color)]"
             isRequired
             control={control}
