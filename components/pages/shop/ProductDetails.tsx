@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -24,12 +22,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useCartContext } from '@/context/CartContext';
-import { useProductsContext } from '@/context/ProductsContext';
 import { ProductCardProps } from '@/interfaces';
 import { useToast } from '@/lib/toast';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import useSupabaseClient from '@/Hooks/useSupabaseClient';
 
-const ProductDetailsPage = ({ productSlug }: { productSlug: string }) => {
+const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   const [targetSrc, setTargetSrc] = useState('');
   const [size, setSize] = useState('');
 
@@ -42,15 +41,22 @@ const ProductDetailsPage = ({ productSlug }: { productSlug: string }) => {
   // Cart Context
   const { addToCart } = useCartContext();
 
-  // API Context
-  const { clothes, product, isLoading, getSingle } = useProductsContext();
-
   // Filter featured products
-  const featuredProducts = clothes.filter((p) => p.section === 'featured');
+  const {
+    data: featuredProducts,
+    isLoading,
+    error,
+  } = useSupabaseClient(
+    'products',
+    { section: product.section }, // filter by section
+  );
 
   // Shuffle the array randomly
-  const shuffled = [...featuredProducts].sort(() => 0.5 - Math.random());
-  const randomFour = shuffled.slice(0, 4);
+  let randomFour: ProductCardProps[] = [];
+  if (featuredProducts && featuredProducts.length > 0) {
+    const shuffled = [...featuredProducts].sort(() => 0.5 - Math.random());
+    randomFour = shuffled.slice(0, 4);
+  }
 
   // Pathname Settings
   let accumulatedPath = '';
@@ -76,25 +82,23 @@ const ProductDetailsPage = ({ productSlug }: { productSlug: string }) => {
   // Set initial targetSrc when product changes
   useEffect(() => {
     if (product?.gallery?.length) {
-      setTargetSrc(product.gallery[0]);
+      setTargetSrc(product.gallery[0]?.image);
     }
   }, [product]);
-
-  // Fetch single product on productSlug change
-  useEffect(() => {
-    getSingle(productSlug);
-  }, [productSlug]);
 
   return (
     <Layer>
       <Container>
         <div className="flex gap-10 max-[992px]:flex-col">
-          <div className="relative w-[500px] max-md:w-full mx-auto">
-            <img
-              src={`/assets/products/${targetSrc || product?.image}.jpg`}
-              alt={product?.title}
-              className="w-full rounded-sm max-md:max-w-full"
-            />
+          <div className="w-[500px] max-md:w-full mx-auto relative">
+            <div className="relative w-full h-[500px] max-md:h-[400px]">
+              <Image
+                src={`/assets/products/${targetSrc || product?.image}.jpg`}
+                alt={product?.title}
+                className="w-full rounded-sm object-contain"
+                fill
+              />
+            </div>
             <PrdocutGallery
               productDetails={product}
               setTargetSrc={setTargetSrc}
@@ -118,7 +122,7 @@ const ProductDetailsPage = ({ productSlug }: { productSlug: string }) => {
                             .map(
                               (item) =>
                                 item.slice(0, 1).toUpperCase() +
-                                item.slice(1).toLowerCase()
+                                item.slice(1).toLowerCase(),
                             )
                             .join(' ')}
                         </span>
@@ -140,9 +144,23 @@ const ProductDetailsPage = ({ productSlug }: { productSlug: string }) => {
             </Breadcrumb>
             <h2 className="text-3xl font-bold my-[30px]">{product?.title}</h2>
             <div className="w-fit mb-2.5">
-              <span className="block mb-2.5 text-[33px] font-bold">
-                ${product?.price}.00
-              </span>
+              <div className="flex items-end gap-2 mb-5">
+                <span className="block text-[33px] font-bold">
+                  ${product?.price}.00
+                </span>
+
+                {product?.old_price && (
+                  <>
+                    <span className="text-xl line-through text-gray-400">
+                      ${product?.old_price}.00
+                    </span>
+
+                    <span className="bg-red-500 text-white text-sm px-2 py-1 rounded-sm">
+                      -{product?.discount}%
+                    </span>
+                  </>
+                )}
+              </div>
               <div className="flex items-center flex-wrap gap-2.5 mb-5">
                 <input
                   type="number"
@@ -209,7 +227,11 @@ const ProductDetailsPage = ({ productSlug }: { productSlug: string }) => {
             </div>
           </div>
         </div>
-        <RandomFeaturedProducts randomFour={randomFour} isLoading={isLoading} />
+        <RandomFeaturedProducts
+          error={error}
+          randomFour={randomFour}
+          isLoading={isLoading}
+        />
       </Container>
     </Layer>
   );

@@ -22,13 +22,18 @@ export interface FormValues {
   message: string;
 }
 
+interface ProductImage {
+  id: number;
+  image: string;
+}
+
 export interface ProductCardProps {
   id?: number;
   created_at?: string;
   slug?: string;
   image: string;
   title: string;
-  gallery?: string[];
+  gallery?: ProductImage[];
   trade_mark?: string;
   price?: number;
   old_price?: number;
@@ -399,4 +404,17 @@ export interface AccountSidebarProps {
   data: UserInfoProps[];
   isLoading: boolean;
   uploading: boolean;
+}
+
+export interface ProductSkeletonsProps {
+  count?: number;
+}
+
+export interface RepairServicesProps {
+  title?: string;
+  subTitle?: React.ReactNode;
+  description?: string;
+  bntText?: string;
+  bgImage: string;
+  buttonHref: string;
 }
