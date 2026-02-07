@@ -6,7 +6,7 @@ import Loading from '../atoms/Loading';
 import ProdcutsContainer from '../atoms/ProdcutsContainer';
 import AnimatedWrapper from './FramerMotion/AnimatedWrapper';
 import ProductCard from './ProductCard';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 
 const RandomFeaturedProducts = ({
@@ -32,13 +32,13 @@ const RandomFeaturedProducts = ({
             <AnimatedWrapper key={item?.id} custom={index}>
               <ProductCard
                 key={item?.id}
-                imgSrc={item?.src}
-                imgText={item?.imgText}
-                tradeMark={item?.tradeMark}
-                productTitle={item?.productTitle}
+                image={item?.image}
+                title={item.title}
                 price={item?.price}
                 productData={item}
-                handleClick={() => router.push(PATHS.SHOP.ITEM(item?.id))}
+                handleClick={() =>
+                  item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
+                }
               />
             </AnimatedWrapper>
           ))}
