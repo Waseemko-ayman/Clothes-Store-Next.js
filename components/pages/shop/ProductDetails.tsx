@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -31,6 +32,7 @@ import useSupabaseClient from '@/Hooks/useSupabaseClient';
 const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   const [targetSrc, setTargetSrc] = useState('');
   const [size, setSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   const pathname = usePathname();
   const pathParts = pathname.split('/').slice(1);
@@ -74,9 +76,9 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
     });
   }
 
-  const handleAddProduct = (product: ProductCardProps) => {
-    addToCart(product);
-    showToast(`Add ${product.title} to cart`);
+  const handleAddProduct = (product: any) => {
+    addToCart({ ...product, size, quantity });
+    showToast(`Add ${product.title} (${size} x${quantity}) to cart`);
   };
 
   // Set initial targetSrc when product changes
@@ -166,24 +168,11 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                   type="number"
                   min="1"
                   placeholder="Num"
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
                   required
                   className="w-24 h-11 rounded-md shadow-xs py-2 pl-3 border border-input focus:border-[var(--forth-color)] outline-none"
                 />
-                {/* <div className="flex items-center gap-2 flex-wrap">
-                  {product?.size.map((size: string, index: number) => (
-                    <span
-                      key={index}
-                      className={`${
-                        size === sizeState
-                          ? '!bg-[var(--forth-color)] text-white'
-                          : ''
-                      } w-24 h-11 flex items-center justify-center rounded-md bg-white textc border border-[var(--forth-color)] hover:bg-[var(--forth-color)] hover:text-white cursor-pointer transition-all duration-300`}
-                      onClick={() => setSize(size)}
-                    >
-                      {size}
-                    </span>
-                  ))}
-                </div> */}
                 <Select
                   value={size}
                   onValueChange={setSize}
