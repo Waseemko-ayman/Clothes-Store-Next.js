@@ -10,8 +10,8 @@ import Link from 'next/link';
 // import { Card } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/lib/toast';
-import { resetInputs } from '@/mock';
-import { PATHS } from '@/mock/paths';
+import { resetInputs } from '@/data';
+import { PATHS } from '@/data/paths';
 import AuthTemplate from '@/components/Template/AuthTemplate';
 import StatusPassword from '@/components/molecules/StatusPassword';
 
@@ -106,7 +106,6 @@ const ResetPasswordPage = () => {
       loadingText="Resetting password..."
       loading={loading}
       fieldsTypes={resetInputs}
-      pageName="signup"
     >
       <div className="mt-8 text-center">
         <Link

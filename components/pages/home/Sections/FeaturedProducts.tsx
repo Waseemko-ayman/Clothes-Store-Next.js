@@ -10,7 +10,7 @@ import ProductCard from '@/components/molecules/ProductCard';
 import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import { ProductCardProps } from '@/interfaces';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 

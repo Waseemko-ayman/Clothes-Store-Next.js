@@ -1,7 +1,7 @@
 import Button from '@/components/atoms/Button';
 import AccountOrderCard from '@/components/molecules/AccountOrderCard';
 import AccountSectionHeader from '@/components/molecules/AccountSectionHeader';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import React from 'react';
 
 const OrdersData = [

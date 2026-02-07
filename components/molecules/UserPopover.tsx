@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import Image from 'next/image';
 import AnimatedWrapper from './FramerMotion/AnimatedWrapper';
 import NavItem from '../atoms/NavItem';
-import { userList } from '@/mock';
+import { userList } from '@/data';
 import { useAuthContext } from '@/context/AuthContext';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
 

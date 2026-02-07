@@ -2,7 +2,7 @@ import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import Banner from '@/components/molecules/Banner';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
-import { BANNERS_DATA } from '@/mock';
+import { BANNERS_DATA } from '@/data';
 import React from 'react';
 
 const Banners = () => {
@@ -22,7 +22,7 @@ const Banners = () => {
                   {...item}
                 />
               </AnimatedWrapper>
-            )
+            ),
           )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-12">
@@ -31,7 +31,7 @@ const Banners = () => {
               <AnimatedWrapper key={item.id} custom={index}>
                 <Banner key={item.id} height="h-[35vh]" {...item} />
               </AnimatedWrapper>
-            )
+            ),
           )}
         </div>
       </Container>

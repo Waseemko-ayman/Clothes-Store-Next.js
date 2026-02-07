@@ -1,6 +1,6 @@
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import { CONTACT_DATA } from '@/mock';
+import { CONTACT_DATA } from '@/data';
 import Link from 'next/link';
 import React from 'react';
 

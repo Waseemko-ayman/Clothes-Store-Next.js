@@ -2,7 +2,7 @@ import Button from '@/components/atoms/Button';
 import { useCartContext } from '@/context/CartContext';
 import { useSession } from '@/Hooks/useSession';
 import { TableRow } from '@/interfaces';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import { LogIn } from 'lucide-react';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
-import { PATHS } from './mock/paths';
+import { PATHS } from './data/paths';
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();

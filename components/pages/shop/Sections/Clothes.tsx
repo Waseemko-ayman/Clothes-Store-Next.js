@@ -4,7 +4,7 @@ import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import { ProductCardProps } from '@/interfaces';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
@@ -48,10 +48,10 @@ const Clothes = () => {
         sortBy === 'price-low'
           ? true
           : sortBy === 'price-high'
-          ? false
-          : undefined,
+            ? false
+            : undefined,
     },
-    priceRange as [number, number]
+    priceRange as [number, number],
   );
 
   const handleReset = () => {

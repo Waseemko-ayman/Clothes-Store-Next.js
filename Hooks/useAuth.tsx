@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/lib/toast';
 import supabase from '@/config/api';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import { AUTH_ACTIONS } from '@/constant/auth';
 import { LoginFormData, LoginPhoneFormData } from '@/interfaces';
 

@@ -5,7 +5,7 @@ import React from 'react';
 import { PaymentMethod } from '@/interfaces';
 import PaymentMethodCard from '@/components/molecules/PaymentMethodCard';
 import NoticeCard from '@/components/molecules/NoticeCard';
-import { paymentMethodsData } from '@/mock';
+import { paymentMethodsData } from '@/data';
 import EmptyState from '@/components/molecules/EmptyState';
 
 const PaymentMethods = () => {

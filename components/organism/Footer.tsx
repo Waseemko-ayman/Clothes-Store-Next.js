@@ -5,7 +5,7 @@ import Container from '../atoms/Container';
 import Layer from '../atoms/Layer';
 import FooterLinks from '../molecules/FooterLinks';
 import Link from 'next/link';
-import { APP_STORE, CONTACT_INFO } from '@/mock';
+import { APP_STORE, CONTACT_INFO } from '@/data';
 import { motion } from 'framer-motion';
 import Contactnformation from '../atoms/ContactInformation';
 import SecondaryHeading from '../atoms/secondaryHeading';

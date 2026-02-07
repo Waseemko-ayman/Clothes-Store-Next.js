@@ -5,7 +5,7 @@ import MainTitle from '@/components/atoms/MainTitle';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import InfoListSection from '@/components/molecules/InfoListSection';
 import { Button } from '@/components/molecules/MovingBorders';
-import { HelpContent } from '@/mock';
+import { HelpContent } from '@/data';
 import { HelpCircle } from 'lucide-react';
 import React from 'react';
 

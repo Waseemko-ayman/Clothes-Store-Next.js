@@ -3,7 +3,7 @@ import BlogCard from '@/components/atoms/BlogCard';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
-import { NEVER_READ } from '@/mock';
+import { NEVER_READ } from '@/data';
 import React from 'react';
 
 interface NeverReadProps {
@@ -38,7 +38,7 @@ const NeverRead = () => {
                 otherClassNameBox={id !== NEVER_READ.length ? 'mb-[100px]' : ''}
               />
             </AnimatedWrapper>
-          )
+          ),
         )}
       </Container>
     </Layer>
