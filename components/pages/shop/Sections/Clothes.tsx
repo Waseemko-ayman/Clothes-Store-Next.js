@@ -8,11 +8,11 @@ import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import { ProductCardProps } from '@/interfaces';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
-import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 import ProductFilter from './ProductFilter';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import ErrorFetching from '@/components/molecules/ErrorFetching';
 import { useDebounce } from 'use-debounce';
+import ProductSkeletons from '@/components/molecules/ProductSkeletons';
 
 const Clothes = () => {
   const [filters, setFilters] = useState({
@@ -89,9 +89,7 @@ const Clothes = () => {
         />
         <ProdcutsContainer>
           {isLoading ? (
-            Array.from({ length: 8 }).map((_, i) => (
-              <ProductCardSkeleton key={i} />
-            ))
+            <ProductSkeletons count={8} />
           ) : error ? (
             <ErrorFetching error={error} />
           ) : (

@@ -1,20 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProductCardProps } from '@/interfaces';
 import React from 'react';
 import Layer from '../atoms/Layer';
 import MainTitle from '../atoms/MainTitle';
-import Loading from '../atoms/Loading';
 import ProdcutsContainer from '../atoms/ProdcutsContainer';
 import AnimatedWrapper from './FramerMotion/AnimatedWrapper';
 import ProductCard from './ProductCard';
 import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
+import ErrorFetching from './ErrorFetching';
+import ProductSkeletons from './ProductSkeletons';
 
 const RandomFeaturedProducts = ({
   randomFour,
   isLoading,
+  error,
 }: {
   randomFour: ProductCardProps[];
   isLoading: boolean;
+  error: any;
 }) => {
   const router = useRouter();
 
@@ -24,11 +28,13 @@ const RandomFeaturedProducts = ({
         title="Featured Product"
         description="Summer Collection New Modern Design"
       />
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <ProdcutsContainer>
-          {randomFour.map((item, index) => (
+      <ProdcutsContainer>
+        {isLoading ? (
+          <ProductSkeletons count={4} />
+        ) : error ? (
+          <ErrorFetching />
+        ) : (
+          randomFour.map((item, index) => (
             <AnimatedWrapper key={item?.id} custom={index}>
               <ProductCard
                 key={item?.id}
@@ -41,9 +47,9 @@ const RandomFeaturedProducts = ({
                 }
               />
             </AnimatedWrapper>
-          ))}
-        </ProdcutsContainer>
-      )}
+          ))
+        )}
+      </ProdcutsContainer>
     </Layer>
   );
 };

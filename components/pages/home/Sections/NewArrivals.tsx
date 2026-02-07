@@ -6,12 +6,12 @@ import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ErrorFetching from '@/components/molecules/ErrorFetching';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import ProductCard from '@/components/molecules/ProductCard';
-import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import { ProductCardProps } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import ProductSkeletons from '@/components/molecules/ProductSkeletons';
 
 const NewArrivals = () => {
   const router = useRouter();
@@ -34,9 +34,7 @@ const NewArrivals = () => {
         />
         <ProdcutsContainer>
           {isLoading ? (
-            Array.from({ length: 8 }).map((_, i) => (
-              <ProductCardSkeleton key={i} />
-            ))
+            <ProductSkeletons count={8} />
           ) : error ? (
             <ErrorFetching error={error} />
           ) : (
