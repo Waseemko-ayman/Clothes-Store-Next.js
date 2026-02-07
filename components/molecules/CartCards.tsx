@@ -27,12 +27,31 @@ const CartCards: React.FC<CartCardseProps> = ({
                 />
                 <div className="flex flex-col justify-between text-center sm:text-left">
                   <div>
-                    <h3 className="text-lg md:text-xl font-bold text-[var(--seconde-color)] mb-2">
+                    <h3 className="text-lg md:text-xl font-bold text-[var(--seconde-color)] mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-2xl font-bold text-[var(--forth-color)] mb-3">
-                      ${item?.price?.toFixed(2)}
-                    </p>
+                    {item.size && (
+                      <p className="text-sm text-[var(--enjoy-gray-650)] mb-1 font-semibold">
+                        Size: {item.size}
+                      </p>
+                    )}
+                    {item.old_price ? (
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-xl line-through text-gray-400">
+                          ${item.old_price.toFixed(2)}
+                        </span>
+                        <span className="text-2xl font-bold text-[var(--forth-color)]">
+                          ${item.price && item.price.toFixed(2)}
+                        </span>
+                        <span className="bg-red-500 text-white text-xs px-1 py-0.5 rounded-sm">
+                          -{item.discount}%
+                        </span>
+                      </div>
+                    ) : (
+                      <p className="text-2xl font-bold text-[var(--forth-color)] mb-3">
+                        ${item.price && item.price.toFixed(2)}
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-center md:justify-start flex-wrap gap-3 mt-3">
@@ -63,7 +82,10 @@ const CartCards: React.FC<CartCardseProps> = ({
                     Subtotal
                   </p>
                   <p className="text-2xl md:text-3xl font-bold text-[var(--seconde-color)]">
-                    ${(item?.price && item?.quantity ? (item.price * item.quantity).toFixed(2) : 0)}
+                    $
+                    {item?.price && item?.quantity
+                      ? (item.price * item.quantity).toFixed(2)
+                      : 0}
                   </p>
                 </div>
               </div>
