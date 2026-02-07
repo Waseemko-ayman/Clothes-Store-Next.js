@@ -1,18 +1,13 @@
 'use client';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import AuthRedirect from '@/components/molecules/AuthRedirect';
-import { loginInputs } from '@/mock';
+import { loginInputs } from '@/data';
 import AuthTemplate from '@/components/Template/AuthTemplate';
-import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginFormData } from '@/interfaces';
 import { useAuthContext } from '@/context/AuthContext';
-
-const loginScheme = yup.object({
-  email: yup.string().email().required('Email is required'),
-  password: yup.string().required('password is required'),
-});
+import { loginScheme } from '@/validations/forms/login.shema';
 
 const LoginPage = () => {
   // Auth Context
