@@ -54,12 +54,26 @@ const Input = ({
           {isRequired && <span className="text-red-500"> *</span>}
         </label>
       )}
-      {type === 'textarea' ? (
+      {type === 'textarea' && control ? (
+        <Controller
+          name={inputName}
+          control={control}
+          render={({ field }) => (
+            <textarea
+              placeholder={placeholder}
+              className={`${StyledInput} py-2 resize-none`}
+              aria-label={ariaLabel}
+              {...field}
+              // {...(typeof register === 'function' ? register(inputName) : {})}
+            />
+          )}
+        />
+      ) : type === 'textarea' && !control ? (
         <textarea
           placeholder={placeholder}
-          className={`${StyledInput} resize-none`}
+          className={`${StyledInput} py-2 resize-none`}
           aria-label={ariaLabel}
-          {...(typeof register === 'function' ? register(inputName) : {})}
+          // {...(typeof register === 'function' ? register(inputName) : {})}
         />
       ) : isMulti && control ? (
         <MultiSelectInput
