@@ -19,31 +19,19 @@ const AuthTemplate: React.FC<AuthTemplateProps> = ({
   submitBtnText,
   loading,
   fieldsTypes,
-  // pageName,
   otherClassName,
-  // isPhoneRegister,
-  // handlePhoneSubmit,
 }) => {
   const pathname = usePathname();
-  // const isSignup = pathname.includes('signup');
+  const isAuthPage = pathname.includes('auth');
   const isLogin = pathname.includes('login');
 
-  // const buttonIcon = isPhoneRegister ? <FaEnvelope /> : <FaMobileAlt />;
-  // const buttonText = isPhoneRegister
-  //   ? 'Use Email & Password'
-  //   : 'Continue with Phone';
-
   return (
-    <div className="w-full max-w-md">
-      <div
-        className={`rounded-xl relative z-10 shadow-2xl border-0 overflow-hidden ${otherClassName}`}
-      >
+    <div className={`w-full max-w-md ${otherClassName}`}>
+      <div className="rounded-xl relative z-10 shadow-2xl border-0 overflow-hidden">
         <div className="p-5 min-[425px]:p-5 bg-white">
           {headerTitle && headerDescription && (
             <AuthHeader title={headerTitle} description={headerDescription} />
           )}
-
-          {/* {error && <FormErrorAlert error={error} />} */}
 
           <form onSubmit={handleFormSubmit} className="space-y-5">
             {formChildren ? (
@@ -60,29 +48,12 @@ const AuthTemplate: React.FC<AuthTemplateProps> = ({
             </Button>
           </form>
 
-          {/* <div>
-            <div className="flex items-center my-3">
+          {isAuthPage && (
+            <div className="flex items-center my-5">
               <div className="flex-grow h-px bg-gray-300" />
-              <span className="mx-4 text-sm text-gray-500">
-                Or {isSignup ? 'signup' : 'login'} with
-              </span>
               <div className="flex-grow h-px bg-gray-300" />
             </div>
-            <Button
-              type="button"
-              variant="outline"
-              otherClassName="w-full flex items-center justify-center gap-3 !text-[var(--forth-color)] !border-[var(--forth-color)] hover:!text-white"
-              handleClick={handlePhoneSubmit}
-            >
-              {buttonIcon}
-              {buttonText}
-            </Button>
-          </div> */}
-
-          <div className="flex items-center my-5">
-            <div className="flex-grow h-px bg-gray-300" />
-            <div className="flex-grow h-px bg-gray-300" />
-          </div>
+          )}
 
           {children}
         </div>
