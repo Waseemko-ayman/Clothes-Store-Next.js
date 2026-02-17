@@ -40,7 +40,7 @@ export const CreateProductsFields = [
     label: 'Size',
     name: 'size',
     placeholder: 'Select Size',
-    options: ['XL', 'XXL', 'Small', 'Large'],
+    options: ['S', 'M', 'L', 'XL'],
   },
   {
     id: 'discount',

@@ -1,30 +1,54 @@
 'use client';
 import React from 'react';
-import { useState } from 'react';
-// import { supabase } from '@/lib/supabase';
-// import { Button } from '@/components/ui/button';
-// import { Input } from '@/components/ui/input';
-// import { Label } from '@/components/ui/label';
-// import { Card } from '@/components/ui/card';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import AuthRedirect from '@/components/molecules/AuthRedirect';
 import AuthTemplate from '@/components/Template/AuthTemplate';
-import { signupInputs } from '@/mock';
+import { signupInputs } from '@/data';
+import { signupFormData } from '@/interfaces';
+import { useAuthContext } from '@/context/AuthContext';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { signUpEmailschema } from '@/validations/forms/signup.schema';
 
 const SignupPage = () => {
-  const [loading] = useState(false);
-  const [error] = useState('');
+  // Aith Cotntext
+  const { signup, isLoading } = useAuthContext();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signUpEmailschema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+    },
+  });
+
+  const onSubmit = async (data: signupFormData) => {
+    const payload = {
+      email: data.email || '',
+      password: data.password || '',
+      options: { data: { display_name: data.name || '' } },
+    };
+
+    if (payload) signup(payload);
+  };
 
   return (
     <AuthTemplate
       headerTitle="Create Your Account"
       headerDescription="Sign up to get started and enjoy all features"
-      error={error}
+      error={errors}
+      control={control}
+      fieldsTypes={signupInputs}
+      handleFormSubmit={handleSubmit(onSubmit)}
       submitBtnText="Sign Up"
       loadingText="Signing up..."
-      loading={loading}
-      fieldsTypes={signupInputs}
-      pageName="signup"
+      loading={isLoading}
     >
       <AuthRedirect
         text="Already have an account?"

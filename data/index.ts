@@ -277,66 +277,6 @@ export const CONTACT_DATA = [
   },
 ];
 
-export const PERSON_INFO = [
-  {
-    id: 1,
-    name: 'John Doe',
-    src: 'personal-1',
-    information: [
-      {
-        id: 1,
-        infoText: 'Senior Marking Manager',
-      },
-      {
-        id: 2,
-        infoText: 'Phone: +000 123 00 77',
-      },
-      {
-        id: 3,
-        infoText: 'Email: contact@example.com',
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'William Smith',
-    src: 'personal-2',
-    information: [
-      {
-        id: 1,
-        infoText: 'Senior Marking Manager',
-      },
-      {
-        id: 2,
-        infoText: 'Phone: +000 123 00 77',
-      },
-      {
-        id: 3,
-        infoText: 'Email: contact@example.com',
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Emma Stone',
-    src: 'personal-3',
-    information: [
-      {
-        id: 1,
-        infoText: 'Senior Marking Manager',
-      },
-      {
-        id: 2,
-        infoText: 'Phone: +000 123 00 77',
-      },
-      {
-        id: 3,
-        infoText: 'Email: contact@example.com',
-      },
-    ],
-  },
-];
-
 export const INPUT_TYPE: {
   id: number;
   type: 'text' | 'email' | 'textarea';
@@ -376,6 +316,33 @@ export const loginInputs = [
     type: 'email',
     name: 'email',
     placeholder: 'you@example.com',
+  },
+  {
+    id: 2,
+    label: 'Password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Enter your password',
+  },
+];
+
+export const loginPhoneInputs = [
+  {
+    id: 1,
+    label: 'Phone Number',
+    type: 'phone',
+    name: 'phone',
+    placeholder: '+97059xxxxxxx',
+  },
+];
+
+export const signupPhoneInputs = [
+  {
+    id: 1,
+    label: 'Phone Number',
+    type: 'phone',
+    name: 'phone',
+    placeholder: '+97059xxxxxxx',
   },
   {
     id: 2,

@@ -1,72 +1,67 @@
+'use client';
 import React from 'react';
 import Button from '@/components/atoms/Button';
 import Container from '@/components/atoms/Container';
 import Input from '@/components/atoms/Input';
 import Layer from '@/components/atoms/Layer';
-import PersonInfoCard from '@/components/molecules/PersonInfoCard';
-import { INPUT_TYPE, PERSON_INFO } from '@/mock';
+import { INPUT_TYPE } from '@/data';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 import { FormValues } from '@/interfaces';
-
-const alphanumericWithArabicRegex = /^[A-Za-z\u0621-\u064A0-9_ ]{5,}$/;
-const messageRegex = /^[\s\S]{20,}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const formSchema = Yup.object({
-  username: Yup.string()
-    .matches(
-      alphanumericWithArabicRegex,
-      'Please enter at least 5 characters for your name.'
-    )
-    .required('Name is required'),
-  email: Yup.string()
-    .email('Please enter a valid email address.')
-    .matches(emailRegex, 'Please enter a valid email address.')
-    .required('Email is required'),
-  subject: Yup.string()
-    .matches(
-      alphanumericWithArabicRegex,
-      'Please enter at least 5 characters for the subject.'
-    )
-    .required('Subject is required'),
-  message: Yup.string()
-    .matches(
-      messageRegex,
-      'Please enter at least 20 characters for your message.'
-    )
-    .required('Message is required'),
-});
+import useAPI from '@/Hooks/useAPI';
+import ButtonLoading from '@/components/atoms/ButtonLoading';
+import { useToast } from '@/lib/toast';
+import { formSchema } from '@/validations/forms/message.schema';
 
 const LeaveMessage = () => {
+  const { add, isLoading } = useAPI('messages');
+
+  // Notifications
+  const { showToast } = useToast();
+
   const {
-    register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(formSchema),
+    defaultValues: {
+      username: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
   });
 
   const onSubmit = async (data: FormValues) => {
     console.log(data);
+    await add({
+      username: data.username,
+      email: data.email,
+      subject: data.subject,
+      message: data.message,
+    });
     reset();
+    showToast('Your message has been sent successfully, thank you.');
   };
+
   return (
     <Layer>
-      <Container otherClassName="flex items-start justify-between py-[50px] px-5 border border-[var(--seven-color)] gap-10 max-[992px]:flex-wrap max-[992px]:gap-10">
-        <div className="max-w-full flex-1">
-          <Link
-            href="#"
-            className="text-[var(--six-color)] opacity-[0.5] uppercase hover:text-[var(--forth-color)] hover:opacity-[1] transition-all duration-300"
-          >
-            Leave A Message
-          </Link>
-          <h2 className="text-[var(--fifth-color)] text-3xl my-5 font-bold">
-            We love to hear from you
-          </h2>
+      <Container otherClassName="flex items-start justify-between">
+        <div className="max-w-[1025px] mx-auto flex-1 py-5 md:py-8 px-5 border border-[var(--seven-color)] gap-10 max-[992px]:flex-wrap max-[992px]:gap-10 rounded-md">
+          <div className="space-y-2 mb-7">
+            <Link
+              href="#"
+              className="text-[var(--six-color)] opacity-[0.5] uppercase hover:text-[var(--forth-color)] hover:opacity-[1] transition-all duration-300 block max-md:text-center"
+            >
+              Leave A Message
+            </Link>
+            <h2 className="text-[var(--fifth-color)] text-2xl md:text-3xl font-bold max-md:text-center">
+              We love to hear from you
+            </h2>
+          </div>
           <form
             className="max-w-full w-full flex flex-col gap-5"
             onSubmit={handleSubmit(onSubmit)}
@@ -77,32 +72,18 @@ const LeaveMessage = () => {
                   type={type}
                   inputName={name}
                   placeholder={placeholder}
-                  register={register}
-                  otherClassName={`${
+                  control={control}
+                  error={errors}
+                  otherClassName={`rounded-md! ${
                     errors[name as keyof FormValues] ? '!border-red-600' : ''
                   }${type === 'textarea' ? 'h-[205px]' : ''} w-full`}
                 />
-                {errors[name as keyof FormValues] && (
-                  <p className="bg-[rgba(255, 0, 0, 0.308)] p-2.5 text-red-500 m-0">
-                    {errors[name as keyof FormValues]?.message}
-                  </p>
-                )}
               </div>
             ))}
-            <Button variant="primary">Submit</Button>
+            <Button variant="primary" disabled={isLoading}>
+              {isLoading ? <ButtonLoading text="Submit" /> : 'Submit'}
+            </Button>
           </form>
-        </div>
-        <div className="max-md:justify-center max-[991px]:flex max-[991px]:justify-between max-[991px]:flex-wrap">
-          {PERSON_INFO.map(({ id, name, src, information }) => (
-            <PersonInfoCard
-              key={id}
-              personName={name}
-              imgSrc={`/assets/people/${src}.jpg`}
-              imgAlt={name}
-              imgTitle={name}
-              information={information}
-            />
-          ))}
         </div>
       </Container>
     </Layer>

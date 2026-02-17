@@ -2,7 +2,7 @@ import React from 'react';
 import MotionSection from './FramerMotion/MotionSection';
 import Image from 'next/image';
 import Button from '../atoms/Button';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 
 type EmptyStateProps = {
   imageSrc: string;

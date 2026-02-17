@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { initialNotifications } from '@/mock';
+import { initialNotifications } from '@/data';
 import React, { useState } from 'react';
 
 const EmailNotifications = () => {
@@ -20,7 +20,7 @@ const EmailNotifications = () => {
 
   const handleSwitchChange = (id: string, value: boolean) => {
     setNotifications((prev) =>
-      prev.map((notif) => (notif.id === id ? { ...notif, value } : notif))
+      prev.map((notif) => (notif.id === id ? { ...notif, value } : notif)),
     );
   };
 
@@ -32,7 +32,7 @@ const EmailNotifications = () => {
       // e.g., { 'order-updates': true, 'security-alerts': false, ... }
       notifications: notifications.reduce(
         (acc, n) => ({ ...acc, [n.id]: n.value }),
-        {}
+        {},
       ),
       frequency,
     };

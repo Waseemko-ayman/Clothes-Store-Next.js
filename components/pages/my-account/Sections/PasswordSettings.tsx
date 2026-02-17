@@ -1,7 +1,7 @@
 'use client';
 import NoticeCard from '@/components/molecules/NoticeCard';
 import AuthTemplate from '@/components/Template/AuthTemplate';
-import { passSettingsInputs } from '@/mock';
+import { passSettingsInputs } from '@/data';
 import React, { useState } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
@@ -18,7 +18,6 @@ const PasswordSettings = () => {
         loadingText="Update Password..."
         loading={loading}
         fieldsTypes={passSettingsInputs}
-        pageName="update-password"
       />
       <NoticeCard
         icon={<FaExclamationTriangle className="text-yellow-500" size={20} />}

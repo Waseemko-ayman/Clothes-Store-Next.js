@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountSettingsCard from './AccountSettingsCard';
-import { SettingsData } from '@/mock';
+import { SettingsData } from '@/data';
 import { SettingsStateProps } from '@/interfaces';
 
 const SettingsCards = ({

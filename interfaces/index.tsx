@@ -4,10 +4,11 @@ import {
   ButtonTypes,
   ButtonVarinats,
   InputTypes,
+  ToastType,
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
-import { FieldError, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 
 export interface APIRequest {
   isLoading: boolean;
@@ -18,9 +19,13 @@ export interface APIRequest {
 export interface FormValues {
   username: string;
   email: string;
-  password: string;
   subject: string;
   message: string;
+}
+
+interface ProductImage {
+  id: number;
+  image: string;
 }
 
 export interface ProductCardProps {
@@ -29,7 +34,7 @@ export interface ProductCardProps {
   slug?: string;
   image: string;
   title: string;
-  gallery?: string[];
+  gallery?: ProductImage[];
   trade_mark?: string;
   price?: number;
   old_price?: number;
@@ -47,10 +52,12 @@ export interface ProductCardProps {
 }
 
 export interface CartContextType {
+  user: any;
+  isLoading: boolean;
   cartItems: ProductCardProps[];
-  addToCart: (item: ProductCardProps) => void;
-  updateQuantity: (idOrSlug: number | string, quantity: number) => void;
-  removeFromCart: (idOrSlug: number | string) => void;
+  addToCart: (item: ProductCardProps, userId: string) => void;
+  updateQuantity: (idOrSlug: number, quantity: number) => void;
+  removeFromCart: (idOrSlug: number) => void;
   clearCart: () => void;
 }
 
@@ -59,7 +66,8 @@ export interface ButtonProps {
   otherClassName?: string;
   variant?: ButtonVarinats;
   borderRadius?: string;
-  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  // handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleClick?: (e: any) => void;
   type?: ButtonTypes;
   Icon?: React.ElementType;
   iconPosition?: ButtonIconPosition;
@@ -71,8 +79,8 @@ export interface ButtonProps {
 }
 
 export interface CartProps {
-  updateQuantity: (id: number | string, quantity: number) => void;
-  handleDelete: (id: number | string, itemTitle: string) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  handleDelete: (id: number, itemTitle: string) => void;
 }
 
 export interface CartTableProps extends CartProps {
@@ -102,11 +110,11 @@ export interface AnimatedWrapperProps {
 export interface QuantityControllerProps {
   otherClassName?: string;
   item: {
-    id: number | string;
+    id?: number | string;
     slug?: string;
     quantity?: number;
   };
-  updateQuantity: (key: number | string, quantity: number) => void;
+  updateQuantity: (key: number, quantity: number) => void;
 }
 
 export interface AuthHeaderProps {
@@ -142,8 +150,9 @@ export interface StatusPasswordProps {
 }
 
 export interface AuthTemplateProps {
-  error: string;
-  handleFormSubmit?: (e: React.FormEvent) => Promise<void>;
+  error?: string | Record<string, any>;
+  control?: any;
+  handleFormSubmit?: (data: any) => Promise<void>;
   headerTitle?: string;
   headerDescription?: string;
   formChildren?: React.ReactNode;
@@ -152,8 +161,13 @@ export interface AuthTemplateProps {
   submitBtnText: string;
   loading: boolean;
   fieldsTypes?: FieldType[];
-  pageName?: string;
   otherClassName?: string;
+}
+
+export interface FormProps {
+  error?: string | Record<string, any>;
+  control?: any;
+  fieldsTypes?: FieldType[];
 }
 
 export interface NavItemProps {
@@ -165,6 +179,7 @@ export interface NavItemProps {
   icon?: React.ElementType | string | any;
   otherClassName?: string;
   isMobile?: boolean;
+  disablePrefetch?: boolean;
 }
 
 export interface NavItem {
@@ -194,7 +209,8 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   onIconClick?: () => void;
   options?: string[];
   register?: UseFormRegister<FormValues>;
-  error?: FieldError;
+  // error?: FieldError;
+  error?: any;
   control?: any;
   isMulti?: boolean;
   value?: string;
@@ -326,4 +342,90 @@ export interface DataTableBodyProps<T> {
   showActionsColumn?: boolean;
   onRowPatched?: (id: string | number, patch: Partial<T>) => void;
   deleteLocation?: string;
+}
+
+export interface ProductFilterProps {
+  filters: {
+    searchQuery: string;
+    category: string;
+    sortBy: string;
+    discount: boolean;
+    priceRange: number[];
+    isFiltersOpen: boolean;
+  };
+  setFilters: React.Dispatch<React.SetStateAction<any>>;
+  onSearchChange: (value: string) => void;
+  handleReset: () => void;
+  hasActiveFilters: boolean;
+}
+
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+
+export interface LoginPhoneFormData {
+  phone: string;
+}
+
+export interface VerifyOtpData {
+  phone: string;
+  token: string;
+  channel: 'sms';
+}
+
+export interface SignupPhoneFormData {
+  phone: string;
+  password: string;
+}
+
+export interface signupFormData extends LoginFormData {
+  name: string;
+  password_confirmation: string;
+}
+
+export interface ButtonTrashProps {
+  handleClick?: () => void;
+  variant?: ButtonVarinats;
+  otherClassName?: string;
+  ariaLabel?: string;
+}
+
+export interface UserInfoProps {
+  id: string;
+  email: string;
+  phone: string;
+  display_name: string;
+  avatar_url: string;
+  role: string;
+  created_at: string;
+}
+
+export interface AccountSidebarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  data: UserInfoProps[];
+  isLoading: boolean;
+  uploading: boolean;
+}
+
+export interface ProductSkeletonsProps {
+  count?: number;
+}
+
+export interface RepairServicesProps {
+  title?: string;
+  subTitle?: React.ReactNode;
+  description?: string;
+  bntText?: string;
+  bgImage: string;
+  buttonHref: string;
+}
+
+export interface ProductDetailsInDialogProps {
+  user: any;
+  productData: any;
+  showToast: (message: string, type?: ToastType) => void;
+  addToCart: (item: ProductCardProps, userId: string) => void;
+  isLoading: boolean;
 }

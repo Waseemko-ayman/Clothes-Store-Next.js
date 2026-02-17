@@ -1,28 +1,30 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import UserPopover from './UserPopover';
 import { useCartContext } from '@/context/CartContext';
 import Link from 'next/link';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
+import { useSession } from '@/Hooks/useSession';
 
 const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
-  const [loginStatus] = useState(true); // Mocked login status
-
   // API Context
   const { cartItems } = useCartContext();
 
+  // Session Hook
+  const session = useSession();
+
   return (
     <>
-      {item.name === 'Login' && loginStatus ? (
+      {item.name === 'Login' && session ? (
         <UserPopover />
       ) : item.name === 'Cart' ? (
-        <Link href={item.link}>
+        <Link href={item.link} aria-label='My Cart'>
           <div className="flex items-center gap-1">
             <FaCartShopping
               className={`${linksStyleing} text-[var(--fifth-color)] text-base`}
-              size="25px"
+              size={25}
             />
             <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
               {cartItems?.length}
@@ -31,7 +33,7 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
         </Link>
       ) : (
         <Link href={item.link}>
-          {item.name === 'Login' ? <FiUser size="25px" /> : item.name}
+          {item.name === 'Login' ? <FiUser size={25} /> : item.name}
         </Link>
       )}
     </>

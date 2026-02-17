@@ -12,6 +12,7 @@ const NavItem: React.FC<NavItemProps> = ({
   showArrow = false,
   onClick,
   isMobile,
+  disablePrefetch,
 }) => {
   const showIcon = (icon: React.ElementType) => {
     const Icon = icon;
@@ -64,7 +65,13 @@ const NavItem: React.FC<NavItemProps> = ({
     </div>
   );
 
-  return linkPath ? <Link href={linkPath}>{content}</Link> : content;
+  return linkPath ? (
+    <Link href={linkPath} prefetch={!disablePrefetch}>
+      {content}
+    </Link>
+  ) : (
+    content
+  );
 };
 
 export default NavItem;

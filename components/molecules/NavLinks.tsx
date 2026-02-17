@@ -1,5 +1,5 @@
 'use client';
-import { navItems } from '@/mock';
+import { navItems } from '@/data';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -47,8 +47,8 @@ const NavLinks = ({
               pathname === '/' && item.name.toLowerCase() === 'home'
                 ? 'after:w-1/2 text-[var(--forth-color)]'
                 : pathname.slice(1) === item.name.toLowerCase()
-                ? 'after:w-1/2 text-[var(--forth-color)]'
-                : ''
+                  ? 'after:w-1/2 text-[var(--forth-color)]'
+                  : ''
             }`}
             onClick={onLinkClick}
           >

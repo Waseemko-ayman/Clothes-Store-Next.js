@@ -5,14 +5,7 @@ import React from 'react';
 import Layer from '../atoms/Layer';
 import { motion } from 'framer-motion';
 import Container from '../atoms/Container';
-
-interface RepairServicesProps {
-  title?: string;
-  subTitle?: React.ReactNode;
-  description?: string;
-  bntText?: string;
-  bgImage: string;
-}
+import { RepairServicesProps } from '@/interfaces';
 
 const RepairServicesComp = ({
   title,
@@ -20,6 +13,7 @@ const RepairServicesComp = ({
   description,
   bntText,
   bgImage,
+  buttonHref,
 }: RepairServicesProps) => {
   return (
     <Layer
@@ -48,7 +42,11 @@ const RepairServicesComp = ({
               {description}
             </p>
           )}
-          {bntText && <Button variant="secondary">{bntText}</Button>}
+          {bntText && (
+            <Button variant="secondary" href={buttonHref}>
+              {bntText}
+            </Button>
+          )}
         </motion.div>
       </Container>
     </Layer>

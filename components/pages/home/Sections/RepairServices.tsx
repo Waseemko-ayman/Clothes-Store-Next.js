@@ -1,4 +1,5 @@
 import RepairServicesComp from '@/components/molecules/RepairServicesSection';
+import { PATHS } from '@/data/paths';
 import React from 'react';
 
 const RepairServices = () => {
@@ -7,12 +8,13 @@ const RepairServices = () => {
       title="Repair Services"
       subTitle={
         <>
-          Up to <span className="text-red-600">70% Off</span> - All t-Shirts &
+          Up to <span className="text-red-600">10% Off</span> - All t-Shirts &
           Accessories
         </>
       }
       bntText="Explore More"
       bgImage="/assets/banner/b2.jpg"
+      buttonHref={PATHS.SHOP.ROOT}
     />
   );
 };

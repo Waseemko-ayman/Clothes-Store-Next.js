@@ -8,7 +8,7 @@ import { useState } from 'react';
 // import { Card } from '@/components/ui/card';
 import Input from '@/components/atoms/Input';
 import AuthRedirect from '@/components/molecules/AuthRedirect';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import AuthTemplate from '@/components/Template/AuthTemplate';
 import StatusPassword from '@/components/molecules/StatusPassword';
 

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ProductDetailsPage from '@/components/pages/shop/ProductDetails';
+import supabase from '@/config/api';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -25,5 +26,16 @@ export default async function ProductPageWrapper({
 }) {
   const resolvedParams = await params;
 
-  return <ProductDetailsPage productSlug={resolvedParams.slug} />;
+  const { data: product, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('slug', resolvedParams.slug)
+    .single();
+
+  if (error) {
+    console.error(error);
+    return <div>Product not found</div>;
+  }
+
+  return <ProductDetailsPage product={product} />;
 }

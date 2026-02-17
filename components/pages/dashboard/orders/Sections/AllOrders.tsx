@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import GenericAllTable from '@/components/organism/GenericAllTable';
-import { MyOrderStatuses } from '@/mock';
+import { MyOrderStatuses } from '@/data';
 import React from 'react';
 
 const AllOrders = ({
@@ -14,7 +14,7 @@ const AllOrders = ({
   const handleOrderFilter = (rows: any[], currentFilter: string) => {
     if (currentFilter === 'all') return rows;
     return rows.filter(
-      (item: any) => item.status?.toLowerCase() === currentFilter.toLowerCase()
+      (item: any) => item.status?.toLowerCase() === currentFilter.toLowerCase(),
     );
   };
 

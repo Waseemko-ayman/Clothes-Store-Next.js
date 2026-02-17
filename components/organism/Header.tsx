@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Container from '../atoms/Container';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import NavLinks from '../molecules/NavLinks';
 import { motion } from 'framer-motion';
 import {
@@ -15,7 +15,7 @@ import {
 } from '../ui/sheet';
 import { FaAlignLeft } from 'react-icons/fa6';
 import useIsMobile from '@/Hooks/useIsMobile';
-import { navItems } from '@/mock';
+import { navItems } from '@/data';
 import NavItemLink from '../molecules/NavItemLink';
 
 const Header = () => {
@@ -23,7 +23,7 @@ const Header = () => {
   const isMobile = useIsMobile(800);
 
   const MobileNavbar = navItems.filter(
-    (item) => item.name === 'Login' || item.name === 'Cart'
+    (item) => item.name === 'Login' || item.name === 'Cart',
   );
 
   // Variables

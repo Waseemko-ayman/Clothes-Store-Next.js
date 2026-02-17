@@ -15,9 +15,8 @@ const ResponsiveDialogDrawer: React.FC<ResponsiveDialogDrawerProps> = ({
 }) => {
   const Component = isMobile ? CustomDrawer : CustomDialog;
 
-  const title = 'إنجوي قيمز من إنجوي قيمز';
-  const description =
-    'اشتري أكثر واكسب الضعف واستبدل نقاطك ببطاقات! إنجوي قيمز هو نظام ولاء يمنحك نقاطًا عند كل عملية شراء، والتي يمكنك استبدالها ببطاقات رقمية أو تحويلها إلى رصيد في محفظتك.';
+  const title = 'Wénor Shop';
+  const description = 'Wénor Shop – Your style, your way';
 
   return (
     <Component

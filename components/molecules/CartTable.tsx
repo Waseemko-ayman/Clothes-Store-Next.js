@@ -1,8 +1,8 @@
 import { CartTableProps } from '@/interfaces';
 import Image from 'next/image';
 import React from 'react';
-import { FaTrash } from 'react-icons/fa6';
 import QuantityController from './QuantityController';
+import ButtonTrash from './ButtonTrash';
 
 const CartTable: React.FC<CartTableProps> = ({
   tabeleData,
@@ -32,31 +32,37 @@ const CartTable: React.FC<CartTableProps> = ({
         <tbody>
           {tabeleData.tabelContent.map((item) => (
             <tr
-              key={+item.id}
+              key={item.id ?? 0}
               className="text-[var(--seconde-color)] font-bold"
             >
-              <td className={`${commonClassName}`}>
-                <FaTrash
-                  className="mx-auto text-[var(--seconde-color)] text-lg font-black cursor-pointer transition duration-300 hover:text-red-500"
-                  onClick={() => handleDelete(item.id, item.productTitle)}
+              <td className={commonClassName}>
+                <ButtonTrash
+                  handleClick={() => handleDelete(item?.id ?? 0, item.title)}
+                  otherClassName="group flex items-center justify-center w-10 h-10 border-none bg-red-50 hover:bg-red-500 mx-auto"
+                  aria-label="Remove item"
                 />
               </td>
-              <td className={`${commonClassName}`}>
+              <td className={commonClassName}>
                 <Image
-                  src={`/assets/products/${item.src}.jpg`}
-                  alt={item.productTitle}
-                  className="max-w-full w-[100px] mx-auto"
+                  src={`/assets/products/${item.image}.jpg`}
+                  alt={item.title}
+                  className="max-w-full w-[100px] mx-auto rounded-lg"
                   width={100}
                   height={100}
                 />
               </td>
-              <td className={`${commonClassName}`}>{item.productTitle}</td>
-              <td className={`${commonClassName}`}>
+              <td className={commonClassName}>{item.title}</td>
+              <td className={commonClassName}>
                 <p
-                  id={`price${+item.id + 1}`}
+                  id={`price${item.id ?? 0 + 1}`}
                   className="relative w-fit px-2.5 my-0 mx-auto"
                 >
-                  ${item.price.toFixed(2)}
+                  ${item?.price?.toFixed(2)}
+                </p>
+              </td>
+              <td className={commonClassName}>
+                <p className="relative w-fit px-2.5 my-0 mx-auto">
+                  {item?.size}
                 </p>
               </td>
               <td className={`text-lg ${commonClassName}`}>
@@ -65,8 +71,13 @@ const CartTable: React.FC<CartTableProps> = ({
                   updateQuantity={updateQuantity}
                 />
               </td>
-              <td className={`${commonClassName}`}>
-                <p>${(item.price * item.quantity).toFixed(2)}</p>
+              <td className={commonClassName}>
+                <p>
+                  $
+                  {item?.price && item?.quantity
+                    ? (item.price * item.quantity).toFixed(2)
+                    : 0}
+                </p>
               </td>
             </tr>
           ))}

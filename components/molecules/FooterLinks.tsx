@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { FOOTER_LINKS_DATA } from '@/mock';
+import { FOOTER_LINKS_DATA } from '@/data';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import SecondaryHeading from '../atoms/secondaryHeading';

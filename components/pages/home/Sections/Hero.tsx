@@ -2,7 +2,7 @@
 import React from 'react';
 import Container from '@/components/atoms/Container';
 import Button from '@/components/atoms/Button';
-import { PATHS } from '@/mock/paths';
+import { PATHS } from '@/data/paths';
 import { BackgroundLines } from '@/components/ui/background-lines';
 import { LayoutTextFlip } from '@/components/ui/layout-text-flip';
 import { motion, useScroll, useTransform } from 'framer-motion';

@@ -5,7 +5,7 @@ import MainTitle from '@/components/atoms/MainTitle';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import InfoListSection from '@/components/molecules/InfoListSection';
 import { Button } from '@/components/molecules/MovingBorders';
-import { PrivacyPolicyContent } from '@/mock';
+import { PrivacyPolicyContent } from '@/data';
 import { Shield } from 'lucide-react';
 
 const PrivacyPolicyPage = () => {
