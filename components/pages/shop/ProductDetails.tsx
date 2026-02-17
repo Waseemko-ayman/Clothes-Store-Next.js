@@ -28,10 +28,12 @@ import { useToast } from '@/lib/toast';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
+import ButtonLoading from '@/components/atoms/ButtonLoading';
 
 const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   const [targetSrc, setTargetSrc] = useState('');
   const [size, setSize] = useState('');
+  const [errorMsgSize, setErrorMsgSize] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   const pathname = usePathname();
@@ -41,7 +43,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   const { showToast } = useToast();
 
   // Cart Context
-  const { addToCart } = useCartContext();
+  const { addToCart, user, isLoading: addIsLoading } = useCartContext();
 
   // Filter featured products
   const {
@@ -76,8 +78,19 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
     });
   }
 
-  const handleAddProduct = (product: any) => {
-    addToCart({ ...product, size, quantity });
+  const handleSelectSize = (value: string) => {
+    setSize(value);
+    setErrorMsgSize(false);
+  };
+
+  const handleAddProduct = async (product: any) => {
+    if (!size) {
+      showToast('Select size first', 'error');
+      setErrorMsgSize(true);
+      return;
+    }
+
+    await addToCart({ ...product, size, quantity }, user.id);
     showToast(`Add ${product.title} (${size} x${quantity}) to cart`);
   };
 
@@ -163,7 +176,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                   </>
                 )}
               </div>
-              <div className="flex items-center flex-wrap gap-2.5 mb-5">
+              <div className="flex items-start flex-wrap gap-2.5 mb-5">
                 <input
                   type="number"
                   min="1"
@@ -173,25 +186,28 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                   required
                   className="w-24 h-11 rounded-md shadow-xs py-2 pl-3 border border-input focus:border-[var(--forth-color)] outline-none"
                 />
-                <Select
-                  value={size}
-                  onValueChange={setSize}
-                  // disabled={!allNotifications}
-                >
-                  <SelectTrigger
-                    id="size"
-                    className="w-30 !h-11 bg-background focus:!border-[var(--forth-color)]"
-                  >
-                    <SelectValue placeholder="Select size" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {product?.size?.map((size: string, index: number) => (
-                      <SelectItem key={index} value={size}>
-                        {size}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <div>
+                  <Select value={size} onValueChange={handleSelectSize}>
+                    <SelectTrigger
+                      id="size"
+                      className={`w-30 !h-11 bg-background focus:!border-[var(--forth-color)] ${errorMsgSize ? 'border-red-500' : ''}`}
+                    >
+                      <SelectValue placeholder="Select size" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {product?.size?.map((size: string, index: number) => (
+                        <SelectItem key={index} value={size}>
+                          {size}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errorMsgSize && (
+                    <p className="text-sm text-red-500 mt-1">
+                      Please select size
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
             <div className="flex items-center flex-wrap gap-2.5 mb-10">
@@ -201,14 +217,18 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                   otherClassName="!py-2 !px-[15px]"
                   handleClick={() => product && handleAddProduct(product)}
                 >
-                  Add To Cart
+                  {addIsLoading ? (
+                    <ButtonLoading text="Adding..." />
+                  ) : (
+                    'Add To Cart'
+                  )}
                 </Button>
                 <Button variant="primary" otherClassName="!py-2 !px-[15px]">
                   Buy Now
                 </Button>
               </div>
             </div>
-            <div className="text">
+            <div>
               <h3 className="font-bold text-[22px] mb-3">Product Details</h3>
               <p className="text-[var(--seconde-color)] text-[18px] leading-normal">
                 {product?.description}
