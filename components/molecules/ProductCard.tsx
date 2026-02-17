@@ -67,7 +67,6 @@ const ProductCard = ({
   return (
     <div
       className={`relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
-      onClick={handleClick}
     >
       <GlowingEffect
         spread={40}
@@ -76,49 +75,53 @@ const ProductCard = ({
         proximity={64}
         inactiveZone={0.01}
       />
-      <div className="relative">
-        <Image
-          src={`/assets/products/${image}.jpg`}
-          alt={title}
-          title={title}
-          width={500}
-          height={500}
-          className="max-w-full rounded-[20px] mb-2.5"
-        />
-        {discount && (
-          <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-semibold px-2 py-1 rounded-lg shadow-md z-10">
-            rival %{discount}
-          </span>
-        )}
-      </div>
-      <div>
-        <span className="text-base text-[var(--first-color)]">
-          {trade_mark && trade_mark}
-        </span>
-        <h4 className="text-[var(--forth-color)] text-base mt-2 font-bold">
-          {title}
-        </h4>
-
-        <div className="flex items-center gap-1">
-          {renderStars(averageRating)}
-          <span className="ml-1 font-semibold">{averageRating.toFixed(1)}</span>
+      <div onClick={handleClick} className="cursor-pointer">
+        <div className="relative">
+          <Image
+            src={`/assets/products/${image}.jpg`}
+            alt={title}
+            title={title}
+            width={500}
+            height={500}
+            className="max-w-full rounded-[20px] mb-2.5"
+          />
+          {discount && (
+            <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-semibold px-2 py-1 rounded-lg shadow-md z-10">
+              rival %{discount}
+            </span>
+          )}
         </div>
+        <div>
+          <span className="text-base text-[var(--first-color)]">
+            {trade_mark && trade_mark}
+          </span>
+          <h4 className="text-[var(--forth-color)] text-base mt-2 font-bold">
+            {title}
+          </h4>
 
-        <div className={old_price ? 'flex items-center gap-2' : ''}>
-          {price && (
-            <h5 className="text-[var(--forth-color)] text-lg font-bold">
-              ${price}
-            </h5>
-          )}
-          {old_price && (
-            <h4
-              className={`font-semibold ${
-                price ? 'line-through text-gray-400 text-sm' : 'text-[15px]'
-              }`}
-            >
-              ${old_price}
-            </h4>
-          )}
+          <div className="flex items-center gap-1">
+            {renderStars(averageRating)}
+            <span className="ml-1 font-semibold">
+              {averageRating.toFixed(1)}
+            </span>
+          </div>
+
+          <div className={old_price ? 'flex items-center gap-2' : ''}>
+            {price && (
+              <h5 className="text-[var(--forth-color)] text-lg font-bold">
+                ${price}
+              </h5>
+            )}
+            {old_price && (
+              <h4
+                className={`font-semibold ${
+                  price ? 'line-through text-gray-400 text-sm' : 'text-[15px]'
+                }`}
+              >
+                ${old_price}
+              </h4>
+            )}
+          </div>
         </div>
       </div>
       <ResponsiveDialogDrawer
