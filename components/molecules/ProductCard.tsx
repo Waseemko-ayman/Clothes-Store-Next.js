@@ -1,5 +1,6 @@
+'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../atoms/Button';
 import { FaStar } from 'react-icons/fa';
 import { FaCartShopping, FaRegStar, FaStarHalfStroke } from 'react-icons/fa6';
@@ -7,18 +8,25 @@ import { useToast } from '@/lib/toast';
 import { useCartContext } from '@/context/CartContext';
 import { ProductCardProps } from '@/interfaces';
 import { GlowingEffect } from '../ui/glowing-effect';
+import ResponsiveDialogDrawer from '../organism/ResponsiveDialogDrawer';
+import useIsMobile from '@/Hooks/useIsMobile';
+import ProductDetailsInDialog from './ProductDetailsInDialog';
 
 const ProductCard = ({
   productData,
   handleClick,
   otherClassName,
 }: ProductCardProps) => {
+  const [open, setOpen] = useState(false);
+
   const { image, title, trade_mark, price, old_price, discount, ratings } =
     productData;
 
   // Contexts
-  const { addToCart } = useCartContext();
+  const { addToCart, user, isLoading } = useCartContext();
   const { showToast } = useToast();
+  // Hooks
+  const isMobile = useIsMobile();
 
   // حساب متوسط النجوم من الـ stars في كل rating object
   const averageRating =
@@ -34,14 +42,14 @@ const ProductCard = ({
     // النجوم الممتلئة
     for (let i = 0; i < fullStars; i++) {
       stars.push(
-        <FaStar key={`full-${i}`} className="text-lg text-yellow-500" />
+        <FaStar key={`full-${i}`} className="text-lg text-yellow-500" />,
       );
     }
 
     // النصف نجمة إن وجد
     if (hasHalfStar) {
       stars.push(
-        <FaStarHalfStroke key="half" className="text-lg text-yellow-500" />
+        <FaStarHalfStroke key="half" className="text-lg text-yellow-500" />,
       );
     }
 
@@ -49,7 +57,7 @@ const ProductCard = ({
     const emptyStars = 5 - (fullStars + (hasHalfStar ? 1 : 0));
     for (let i = 0; i < emptyStars; i++) {
       stars.push(
-        <FaRegStar key={`empty-${i}`} className="text-lg text-gray-400" />
+        <FaRegStar key={`empty-${i}`} className="text-lg text-gray-400" />,
       );
     }
 
@@ -96,7 +104,7 @@ const ProductCard = ({
           <span className="ml-1 font-semibold">{averageRating.toFixed(1)}</span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className={old_price ? 'flex items-center gap-2' : ''}>
           {price && (
             <h5 className="text-[var(--forth-color)] text-lg font-bold">
               ${price}
@@ -113,17 +121,35 @@ const ProductCard = ({
           )}
         </div>
       </div>
-      <Button
-        variant="circle"
-        otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center"
-        handleClick={(e) => {
-          e.stopPropagation();
-          addToCart?.(productData);
-          showToast(`Add ${title} to cart`);
-        }}
+      <ResponsiveDialogDrawer
+        trigger={
+          <Button
+            variant="circle"
+            otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center"
+            handleClick={(e) => {
+              e.stopPropagation();
+              addToCart?.(productData, user.id);
+              showToast(`Add ${productData?.title} to cart`);
+              setOpen(true);
+            }}
+          >
+            <FaCartShopping size="20px" />
+          </Button>
+        }
+        open={open}
+        setOpen={setOpen}
+        isMobile={isMobile}
       >
-        <FaCartShopping size="20px" />
-      </Button>
+        {open && productData && (
+          <ProductDetailsInDialog
+            addToCart={addToCart}
+            user={user}
+            productData={productData}
+            showToast={showToast}
+            isLoading={isLoading}
+          />
+        )}
+      </ResponsiveDialogDrawer>
     </div>
   );
 };

@@ -1,0 +1,121 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
+import React, { useState } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import Image from 'next/image';
+import Button from '../atoms/Button';
+import { ProductDetailsInDialogProps } from '@/interfaces';
+import ButtonLoading from '../atoms/ButtonLoading';
+
+const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
+  user,
+  productData,
+  showToast,
+  addToCart,
+  isLoading,
+}) => {
+  const [size, setSize] = useState('');
+  const [errorMsgSize, setErrorMsgSize] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleSelectSize = (value: string) => {
+    setSize(value);
+    setErrorMsgSize(false);
+  };
+
+  const handleAddProduct = async (product: any) => {
+    if (!size) {
+      showToast('Select size first', 'error');
+      setErrorMsgSize(true);
+      return;
+    }
+
+    await addToCart({ ...product, size, quantity }, user.id);
+    showToast(`Add ${product.title} (${size} x${quantity}) to cart`);
+  };
+
+  return (
+    <div className="space-y-4 px-6 max-h-[600px] overflow-y-auto scrollbar-none">
+      <Image
+        src={`/assets/products/${productData.image}.jpg`}
+        alt={productData.title}
+        className="rounded-lg mx-auto"
+        width={200}
+        height={200}
+      />
+      <h2 className="text-2xl font-bold">{productData.title}</h2>
+      <div className="flex items-end gap-2">
+        <span className="text-3xl font-bold">${productData.price}.00</span>
+        {productData.old_price && (
+          <div className="flex gap-5">
+            <span className="text-lg line-through text-gray-400">
+              ${productData?.old_price}.00
+            </span>
+
+            <span className="bg-red-500 text-white text-sm px-2 py-1 rounded-sm">
+              -{productData?.discount}%
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="flex gap-2">
+        <input
+          type="number"
+          min={1}
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          className="w-20 h-10 rounded-md border border-input px-2"
+        />
+        <div>
+          <Select value={size} onValueChange={handleSelectSize}>
+            <SelectTrigger
+              id="size"
+              className={`w-28 !h-10 bg-background focus:!border-[var(--forth-color)] ${
+                errorMsgSize ? 'border-red-500' : ''
+              }`}
+            >
+              <SelectValue placeholder="Select size" />
+            </SelectTrigger>
+            <SelectContent>
+              {productData.size?.map((s: string, index: number) => (
+                <SelectItem key={index} value={s}>
+                  {s}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errorMsgSize && (
+            <p className="text-sm text-red-500 mt-1">Please select size</p>
+          )}
+        </div>
+      </div>
+      <div className="flex gap-2">
+        <Button
+          variant="primary"
+          otherClassName="!py-2 !px-4"
+          handleClick={() => handleAddProduct(productData)}
+        >
+          {isLoading ? <ButtonLoading text="Adding..." /> : 'Add To Cart'}
+        </Button>
+        <Button variant="primary" otherClassName="!py-2 !px-4">
+          Buy Now
+        </Button>
+      </div>
+      <div>
+        <h3 className="font-bold text-[22px] mb-3">Product Details</h3>
+        <p className="text-[var(--seconde-color)] mt-3 text-sm">
+          {productData.description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetailsInDialog;

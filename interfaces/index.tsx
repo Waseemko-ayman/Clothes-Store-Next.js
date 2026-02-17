@@ -4,6 +4,7 @@ import {
   ButtonTypes,
   ButtonVarinats,
   InputTypes,
+  ToastType,
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
@@ -51,10 +52,12 @@ export interface ProductCardProps {
 }
 
 export interface CartContextType {
+  user: any;
+  isLoading: boolean;
   cartItems: ProductCardProps[];
-  addToCart: (item: ProductCardProps) => void;
-  updateQuantity: (idOrSlug: number | string, quantity: number) => void;
-  removeFromCart: (idOrSlug: number | string) => void;
+  addToCart: (item: ProductCardProps, userId: string) => void;
+  updateQuantity: (idOrSlug: number, quantity: number) => void;
+  removeFromCart: (idOrSlug: number) => void;
   clearCart: () => void;
 }
 
@@ -76,8 +79,8 @@ export interface ButtonProps {
 }
 
 export interface CartProps {
-  updateQuantity: (id: number | string, quantity: number) => void;
-  handleDelete: (id: number | string, itemTitle: string) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  handleDelete: (id: number, itemTitle: string) => void;
 }
 
 export interface CartTableProps extends CartProps {
@@ -111,7 +114,7 @@ export interface QuantityControllerProps {
     slug?: string;
     quantity?: number;
   };
-  updateQuantity: (key: number | string, quantity: number) => void;
+  updateQuantity: (key: number, quantity: number) => void;
 }
 
 export interface AuthHeaderProps {
@@ -417,4 +420,12 @@ export interface RepairServicesProps {
   bntText?: string;
   bgImage: string;
   buttonHref: string;
+}
+
+export interface ProductDetailsInDialogProps {
+  user: any;
+  productData: any;
+  showToast: (message: string, type?: ToastType) => void;
+  addToCart: (item: ProductCardProps, userId: string) => void;
+  isLoading: boolean;
 }
