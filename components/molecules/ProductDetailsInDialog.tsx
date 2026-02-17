@@ -46,9 +46,9 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
       <Image
         src={`/assets/products/${productData.image}.jpg`}
         alt={productData.title}
-        className="rounded-lg mx-auto"
         width={200}
         height={200}
+        className="rounded-lg mx-auto shadow-lg border"
       />
       <h2 className="text-2xl font-bold">{productData.title}</h2>
       <div className="flex items-end gap-2">
