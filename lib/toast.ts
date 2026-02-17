@@ -1,13 +1,9 @@
 import { toast, ToastOptions } from 'react-toastify';
-// import { useToggleLocale } from '@/hook/useToggleLocale';
 import useIsMobile from '@/Hooks/useIsMobile';
-
-type ToastType = 'success' | 'error' | 'info' | 'warning';
+import { ToastType } from '@/utils/types';
 
 export const useToast = () => {
   const isMobile = useIsMobile();
-  // const { isArabic } = useToggleLocale();
-
   const getBaseConfig = (): ToastOptions => ({
     position: isMobile ? 'top-center' : 'top-right',
     autoClose: 2000,

@@ -29,3 +29,5 @@ export type InputTypes =
   | 'file'
   | 'textarea'
   | 'checkbox';
+
+export type ToastType = 'success' | 'error' | 'info' | 'warning';
