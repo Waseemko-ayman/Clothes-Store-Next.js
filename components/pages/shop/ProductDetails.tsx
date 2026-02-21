@@ -31,6 +31,7 @@ import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import ButtonLoading from '@/components/atoms/ButtonLoading';
 
 const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [targetSrc, setTargetSrc] = useState('');
   const [size, setSize] = useState('');
   const [errorMsgSize, setErrorMsgSize] = useState(false);
@@ -107,11 +108,22 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
         <div className="flex gap-10 max-[992px]:flex-col">
           <div className="w-[500px] max-md:w-full mx-auto relative">
             <div className="relative w-full h-[500px] max-md:h-[400px]">
+              {!isLoaded && (
+                <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-sm" />
+              )}
               <Image
-                src={`/assets/products/${targetSrc || product?.image}.jpg`}
+                key={targetSrc}
+                src={
+                  product?.image
+                    ? product?.image.startsWith('http')
+                      ? targetSrc || product?.image
+                      : `/assets/products/${targetSrc || product?.image}.jpg`
+                    : '/assets/no-image-available.webp'
+                }
                 alt={product?.title}
-                className="w-full rounded-sm object-contain"
+                className={`w-full rounded-sm object-contain transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
                 fill
+                onLoadingComplete={() => setIsLoaded(true)}
               />
             </div>
             <PrdocutGallery

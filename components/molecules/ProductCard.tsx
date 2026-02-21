@@ -78,7 +78,13 @@ const ProductCard = ({
       <div onClick={handleClick} className="cursor-pointer">
         <div className="relative">
           <Image
-            src={`/assets/products/${image}.jpg`}
+            src={
+              image
+                ? image.startsWith('http')
+                  ? image
+                  : `/assets/products/${image}.jpg`
+                : '/assets/no-image-available.webp'
+            }
             alt={title}
             title={title}
             width={500}
