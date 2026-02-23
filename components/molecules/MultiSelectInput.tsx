@@ -3,16 +3,9 @@ import React from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { Controller } from 'react-hook-form';
+import { MultiSelectInputProps } from '@/interfaces';
 
 const animatedComponents = makeAnimated();
-
-interface MultiSelectInputProps {
-  inputName: string;
-  control: any;
-  options: string[];
-  placeholder?: string;
-  disabled?: boolean;
-}
 
 const MultiSelectInput: React.FC<MultiSelectInputProps> = ({
   inputName,
@@ -53,7 +46,7 @@ const MultiSelectInput: React.FC<MultiSelectInputProps> = ({
             className="mt-2"
             classNamePrefix="custom"
             styles={{
-              control: (base) => ({ ...base, cursor: 'pointer' }),
+              control: (base) => ({ ...base, cursor: 'pointer', height: 48 }),
               option: (base) => ({ ...base, cursor: 'pointer' }),
               multiValueRemove: (base) => ({ ...base, cursor: 'pointer' }),
               menuPortal: (base) => ({ ...base, zIndex: 9999 }),
