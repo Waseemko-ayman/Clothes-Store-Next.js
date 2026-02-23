@@ -3,22 +3,20 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import { useForm, SubmitHandler, FieldError } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useToast } from '@/lib/toast';
-import Image from 'next/image';
 import ErrorFetching from '@/components/molecules/ErrorFetching';
 import Loading from '@/components/atoms/Loading';
 import useAPI from '@/Hooks/useAPI';
 import SettingsTab from '@/components/molecules/SettingsTab';
-import { API_URL } from '@/config/api';
 import { CreateProductsFields } from '@/config/forms/products.forms';
 import Button from '@/components/atoms/Button';
 import ButtonLoading from '@/components/atoms/ButtonLoading';
 import Input from '@/components/atoms/Input';
 import { useUpdateContent } from '@/context/updateContentContext';
-import { InputTypes } from '@/utils/types';
 import AttachmentsUploader from '@/components/molecules/AttachmentsPreview';
+import supabase from '@/config/api';
 
 interface ProductCardProps {
   id: number;
@@ -33,6 +31,20 @@ interface ProductCardProps {
   size?: string[];
 }
 
+const initialState = {
+  title: '',
+  description: '',
+  trade_mark: '',
+  price: 0,
+  old_price: null,
+  discount: null,
+  size: [],
+  section: null,
+  category: null,
+  image: null,
+  gallery: [],
+};
+
 // ----------------------------------------------------------------
 
 const CreateProducts = ({
@@ -46,7 +58,8 @@ const CreateProducts = ({
   onEditIdChange: (id: string | number | null) => void;
   onTabChange: (val: string) => void;
 }) => {
-  const [attachments, setAttachments] = useState<File[]>([]);
+  const [sectionsOptions, setSectionsOptions] = useState<any[]>([]);
+  const [categoriesOptions, setCategoriesOptions] = useState<any[]>([]);
 
   const { showToast } = useToast();
   const { triggerRefresh } = useUpdateContent();
@@ -62,21 +75,42 @@ const CreateProducts = ({
       .number()
       .typeError('Price must be a number')
       .required('Price is required'),
-    old_price: yup.number().typeError('Old Price must be a number').nullable(),
-    discount: yup.number().typeError('Discount must be a number').nullable(),
+    old_price: yup
+      .number()
+      .transform((value, originalValue) =>
+        originalValue === '' ? null : value,
+      )
+      .nullable()
+      .typeError('Old Price must be a number'),
+
+    discount: yup
+      .number()
+      .transform((value, originalValue) =>
+        originalValue === '' ? null : value,
+      )
+      .nullable()
+      .typeError('Discount must be a number'),
+
     size: yup
       .array()
       .of(yup.string().required())
       .min(1, 'Please select at least one size')
       .required('Size is required')
       .defined(),
-    image: yup
-      .mixed<FileList>()
-      .test('required', 'Image is required', function (value) {
-        return (
-          editId !== null || (value instanceof FileList && value.length > 0)
-        );
-      }),
+
+    category: yup.string().required('Category is required'),
+
+    section: yup
+      .string()
+      .nullable()
+      .transform((val) => (val === '' ? null : val))
+      .default(null),
+
+    image: yup.mixed().test('required', 'Image is required', function (value) {
+      if (editId !== null) return true;
+      return value !== null && value !== undefined; // ملف واحد موجود
+    }),
+
     gallery: yup
       .array()
       .of(yup.mixed<File>().required())
@@ -87,9 +121,16 @@ const CreateProducts = ({
   type ProductFormData = yup.InferType<typeof createSchema>;
 
   // API
-  const { isLoading, error, getSingle, add, edit } = useAPI<ProductCardProps>(
-    `${API_URL}/clothes`
-  );
+  const { isLoading, error, getSingle, edit } =
+    useAPI<ProductCardProps>('products');
+
+  const { isLoading: addLoading, add } = useAPI<ProductCardProps>('products');
+
+  const { get: getSections, data: sections } =
+    useAPI<ProductCardProps>('sections');
+
+  const { get: getCategories, data: categories } =
+    useAPI<ProductCardProps>('categories');
 
   // ----------------------------------------------------------------
 
@@ -99,95 +140,127 @@ const CreateProducts = ({
     control,
     reset,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<any, any>({
     resolver: yupResolver(createSchema),
   });
 
-  useEffect(() => {
-    setValue('gallery', attachments);
-  }, [attachments]);
+  // We use watch to get the selected file from the controller instead of using a separate state
+  const imageFile = watch('image');
+  const galleryValue = watch('gallery') || [];
 
   // ----------------------------------------------------------------
 
   const onSubmit: SubmitHandler<ProductFormData> = async (data: any) => {
     console.log(data);
     try {
-      const formData = new FormData();
+      const formData: Record<string, any> = {
+        title: data.title,
+        description: data.description,
+        trade_mark: data.trade_mark,
+        price: data.price,
+        old_price: data.old_price || null,
+        discount: data.discount || null,
+        size: data.size,
+        section: data.section,
+        category: data.category,
+      };
 
-      formData.append('title', data.title);
-      formData.append('description', data.description);
-      formData.append('trade_mark', data.trade_mark);
-      formData.append('price', data.price);
-      if (data.old_price) formData.append('old_price', data.old_price);
-      if (data.discount) formData.append('discount', data.discount);
+      // -------------------------------- IMAGE
+      // Uploading the main image
+      if (imageFile instanceof File) {
+        const fileName = `${Date.now()}-${imageFile.name}`;
+        const { data: uploaded, error: uploadError } = await supabase.storage
+          .from('products')
+          .upload(`images/${fileName}`, imageFile);
 
-      if (data.image && data.image[0]) {
-        formData.append('image', data.image[0]);
-      } else if (!data.image && editId !== null) {
-        formData.append('image', null as any);
+        // Throw an error if the upload fails
+        if (uploadError) throw uploadError;
+
+        const { data: publicData } = supabase.storage
+          .from('products')
+          .getPublicUrl(uploaded.path);
+
+        formData.image = publicData.publicUrl;
+      } else {
+        formData.image = imageFile; // URL القديم
       }
 
-      (data.gallery || attachments).forEach((file: any) => {
-        if (file) formData.append('gallery[]', file);
-      });
+      // -------------------------------- GALLERY
+      // Array to store the URLs of uploaded images
+      if (galleryValue.length > 0) {
+        const galleryUrls = await Promise.all(
+          galleryValue.map(async (item: any) => {
+            if (item instanceof File) {
+              const fileName = `${Date.now()}-${item.name}`;
+              const { data: uploaded, error } = await supabase.storage
+                .from('products')
+                .upload(`gallery/${fileName}`, item);
 
-      let response: any | undefined;
+              if (error) throw error;
 
+              const { data: publicData } = supabase.storage
+                .from('products')
+                .getPublicUrl(uploaded.path);
+
+              return publicData.publicUrl;
+            }
+            return item; // URL قديم
+          }),
+        );
+
+        formData.gallery = galleryUrls;
+      } else {
+        formData.gallery = []; // فارغ إذا لم يكن هناك صور
+      }
+
+      let response: any;
       if (editId !== null) {
         response = await edit(editId, formData);
-        // showToast('Product updated successfully');
       } else {
         response = await add(formData);
-        // showToast('Product created successfully');
       }
 
       if (response) {
-        showToast(response?.message);
-        reset({
-          title: response.title ?? '',
-          description: response.description ?? '',
-          trade_mark: response.trade_mark ?? '',
-          price: response.price,
-          old_price: response.old_price,
-          discount: response.discount,
-          size: response.size,
-        });
-        triggerRefresh(refreshKey);
+        showToast(
+          editId !== null
+            ? 'Product updated successfully'
+            : 'Product created successfully',
+        );
+        reset(initialState);
         onTabChange('allProducts');
         onEditIdChange(null);
+        triggerRefresh(refreshKey);
       }
-    } catch (error) {
-      const apiError = (error as any)?.response?.message;
-      showToast(apiError, 'error');
+    } catch (error: any) {
+      console.error(error);
+      showToast(error?.message || 'Something went wrong', 'error');
     }
   };
 
   // ----------------------------------------------------------------
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   useEffect(() => {
-    let isActive = true;
     if (editId !== null) {
       (async () => {
         try {
           const res = await getSingle(editId);
+          console.log(res);
           if (res) {
             reset({
-              title: res.title ?? '',
-              description: res.description ?? '',
-              trade_mark: res.trade_mark ?? '',
-              price: res.price,
-              old_price: res.old_price,
-              discount: res.discount,
-              size: res.size,
+              title: res[0]?.title ?? '',
+              description: res[0]?.description ?? '',
+              trade_mark: res[0]?.trade_mark ?? '',
+              price: res[0]?.price,
+              old_price: res[0]?.old_price,
+              discount: res[0]?.discount,
+              size: res[0]?.size,
+              section: res[0]?.section,
+              category: res[0]?.category,
+              image: res[0]?.image || null,
+              gallery: res[0]?.gallery || [],
             });
-            if (isActive) {
-              setImagePreview(
-                res.image ? `/assets/products/${res.image}.jpg` : null
-              );
-            }
           }
         } catch (error) {
           console.error('فشل في جلب بيانات القسم:', error);
@@ -195,10 +268,17 @@ const CreateProducts = ({
         }
       })();
     }
-    return () => {
-      isActive = false; // يمنع setState إذا تغير editId أو unmount
-    };
-  }, [editId, getSingle, reset, showToast]);
+  }, [editId, reset]);
+
+  useEffect(() => {
+    getSections();
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    setSectionsOptions(sections || []);
+    setCategoriesOptions(categories || []);
+  }, [sections, categories]);
 
   // ----------------------------------------------------------------
 
@@ -217,19 +297,35 @@ const CreateProducts = ({
           <>
             <div className="grid gap-5 md:grid-cols-2 mb-5">
               {CreateProductsFields.map(
-                ({ id, label, name, placeholder, type, options }) => {
+                ({ id, label, name, type, placeholder, options }) => {
                   const isMultiSelect = ['size'].includes(name);
-                  return name === 'gallery' ? (
-                    <AttachmentsUploader
-                      key={id}
-                      attachments={attachments}
-                      setAttachments={setAttachments}
-                    />
-                  ) : (
+
+                  if (name === 'section') options = sectionsOptions ?? [];
+                  else if (name === 'category')
+                    options = categoriesOptions ?? [];
+
+                  if (name === 'gallery') {
+                    return (
+                      /*
+                        - We made the Controlled Component
+                        -- Meaning:
+                          - The value comes from outside.
+                          - The adjustment goes back outside.
+                      */
+                      <AttachmentsUploader
+                        key={id}
+                        value={galleryValue}
+                        onChange={(files: (File | string)[]) =>
+                          setValue('gallery', files)
+                        }
+                      />
+                    );
+                  }
+                  return (
                     <Input
                       key={id}
                       inputName={name}
-                      type={type as InputTypes}
+                      type={type}
                       label={label}
                       placeholder={placeholder}
                       register={register}
@@ -237,35 +333,19 @@ const CreateProducts = ({
                       otherClassName="w-full"
                       control={control}
                       isMulti={isMultiSelect}
-                      error={
-                        errors[name as keyof ProductFormData] as
-                          | FieldError
-                          | undefined
-                      }
-                      {...(type === 'file' ? { accept: 'image/*' } : {})}
+                      error={errors}
                     />
                   );
-                }
+                },
               )}
             </div>
 
-            {imagePreview && (
-              <div className="mb-3">
-                {isLoading ? (
-                  <Loading />
-                ) : (
-                  <Image
-                    src={imagePreview}
-                    alt="Image Preview"
-                    width={128}
-                    height={128}
-                    className="w-32 h-32 object-cover"
-                  />
-                )}
-              </div>
-            )}
             <Button type="submit">
-              {isLoading ? <ButtonLoading /> : 'Save Changes'}
+              {addLoading ? (
+                <ButtonLoading text="Save Changes..." />
+              ) : (
+                'Save Changes'
+              )}
             </Button>
           </>
         )}
