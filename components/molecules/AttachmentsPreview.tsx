@@ -6,27 +6,25 @@ import Image from 'next/image';
 import { FaX } from 'react-icons/fa6';
 import { FiUploadCloud } from 'react-icons/fi';
 import Button from '../atoms/Button';
-
-type AttachmentsUploaderProps = {
-  attachments: File[];
-  setAttachments: React.Dispatch<React.SetStateAction<File[]>>;
-};
+import { AttachmentsUploaderProps } from '@/interfaces';
 
 const AttachmentsUploader = ({
-  attachments,
-  setAttachments,
+  value = [], // upload => File | edit => string
+  onChange, // upload => File | edit => string
 }: AttachmentsUploaderProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files) {
-      setAttachments((prev) => [...prev, ...Array.from(files)]);
-    }
+    if (!files) return;
+
+    const newFiles = Array.from(files);
+    onChange([...value, ...newFiles]);
   };
 
   const removeAttachment = (index: number) => {
-    setAttachments((prev) => prev.filter((_, i) => i !== index));
+    const updated = value.filter((_, i) => i !== index);
+    onChange(updated);
   };
 
   const renderUploadTrigger = () => {
@@ -43,6 +41,11 @@ const AttachmentsUploader = ({
     );
   };
 
+  const getImageSrc = (item: File | string) => {
+    if (typeof item === 'string') return item;
+    return URL.createObjectURL(item);
+  };
+
   return (
     <div>
       {renderUploadTrigger()}
@@ -55,15 +58,15 @@ const AttachmentsUploader = ({
         onChange={handleFileSelect}
       />
 
-      {attachments.length > 0 && (
+      {value.length > 0 && (
         <div className="flex flex-wrap gap-4 mt-4">
-          {attachments.map((file, index) => (
+          {value.map((file, index) => (
             <div
               key={index}
               className="relative overflow-hidden rounded-sm group"
             >
               <Image
-                src={URL.createObjectURL(file)}
+                src={getImageSrc(file)}
                 alt="attachment"
                 width={100}
                 height={100}
