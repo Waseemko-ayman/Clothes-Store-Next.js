@@ -439,3 +439,13 @@ export interface MultiSelectInputProps {
   placeholder?: string;
   disabled?: boolean;
 }
+
+export interface EmptyStateProps {
+  imageSrc: string;
+  messageText: string;
+  buttonText: string;
+  description?: string;
+  handleClick?: () => void;
+  Icon?: React.ElementType;
+  buttonHref: string;
+}
