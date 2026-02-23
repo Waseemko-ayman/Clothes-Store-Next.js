@@ -27,7 +27,7 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
           <PurchasesFilterSelect
             value={filter}
             onChange={handleFilterChange}
-            options={filterOptions}
+            // options={filterOptions}
           />
         )}
         <p className="text-sm text-gray-500">
