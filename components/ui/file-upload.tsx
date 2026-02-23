@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from '@/lib/utils';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { IconUpload } from '@tabler/icons-react';
 import { useDropzone } from 'react-dropzone';
 import { ImagePlus } from 'lucide-react';
+import Image from 'next/image';
 
 const mainVariant = {
   initial: {
@@ -19,15 +21,36 @@ const mainVariant = {
 
 export const FileUpload = ({
   onChange,
+  value,
 }: {
   onChange: (files: File[]) => void;
+  value?: File | string | null | any;
 }) => {
-  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const isFile = value instanceof File;
+  
+  const fileName = isFile
+    ? value.name
+    : preview?.split('/').pop() || 'Current Image';
+
+  const fileSize = isFile
+    ? (value.size / (1024 * 1024)).toFixed(2) + ' MB'
+    : 'N/A';
+
+  const fileType = isFile
+    ? value.type
+    : fileName.includes('.')
+      ? `image/${fileName.split('.').pop()}`
+      : 'N/A';
+
+  const fileModified = isFile
+    ? new Date(value.lastModified).toLocaleDateString()
+    : 'N/A';
 
   const handleFileChange = (newFiles: File[]) => {
     const selectedFile = newFiles[0] ?? null;
-    setFile(selectedFile);
     if (onChange) {
       onChange(selectedFile ? [selectedFile] : []);
     }
@@ -44,6 +67,25 @@ export const FileUpload = ({
     onDropRejected: (error) => console.log(error),
   });
 
+  useEffect(() => {
+    if (!value) {
+      setPreview(null);
+      return;
+    }
+
+    // The value is a file from the user.
+    if (value instanceof File) {
+      const url = URL.createObjectURL(value);
+      setPreview(url);
+
+      // This is a cleanup; it removes the temporary link from memory when a file or component changes or is decompiled, to prevent memory leakage.
+      return () => URL.revokeObjectURL(url);
+    } else {
+      // If value is a pre-existing link (string URL, as in the case of edit)
+      setPreview(value);
+    }
+  }, [value]);
+
   return (
     <div className="w-full" {...getRootProps()}>
       <motion.div
@@ -58,30 +100,37 @@ export const FileUpload = ({
         />
         <div className="flex flex-col items-center justify-center">
           <div className="relative w-full">
-            {file ? (
+            {preview ? (
               <motion.div
                 layoutId="file-upload"
                 className={cn(
-                  'relative overflow-hidden border border-[var(--seven-color)] z-40 bg-white flex flex-col items-start justify-start md:h-24 p-4 w-full rounded-md',
+                  'relative overflow-hidden border border-[var(--seven-color)] z-40 bg-white flex items-center justify-between gap-3 md:min-h-24 p-4 w-full rounded-md',
                   'shadow-sm',
                 )}
               >
-                <div className="flex justify-between w-full items-center gap-4">
-                  <p className="text-base text-neutral-700 truncate max-w-xs">
-                    {file.name}
-                  </p>
-                  <p className="rounded-lg px-2 py-1 w-fit shrink-0 text-sm text-neutral-600 shadow-input">
-                    {(file.size / (1024 * 1024)).toFixed(2)} MB
-                  </p>
+                <div className="flex flex-col items-start justify-start w-full">
+                  <div className="flex justify-between w-full items-center gap-4">
+                    <p className="text-base text-neutral-700 truncate max-w-xs">
+                      {fileName}
+                    </p>
+                    <p className="rounded-lg px-2 py-1 w-fit shrink-0 text-sm text-neutral-600 shadow-input">
+                      {fileSize}
+                    </p>
+                  </div>
+                  <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-neutral-600">
+                    <p className="px-2 py-1 rounded-md bg-gray-100">
+                      {fileType}
+                    </p>
+                    <p>modified {fileModified}</p>
+                  </div>
                 </div>
-                <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-neutral-600">
-                  <p className="px-1 py-0.5 rounded-md bg-gray-100">
-                    {file.type}
-                  </p>
-                  <p>
-                    modified {new Date(file.lastModified).toLocaleDateString()}
-                  </p>
-                </div>
+                <Image
+                  src={preview}
+                  alt="preview"
+                  width={90}
+                  height={90}
+                  className="w-[90px] h-[90px] rounded-md mx-auto"
+                />
               </motion.div>
             ) : (
               <motion.div
