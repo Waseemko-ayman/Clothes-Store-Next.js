@@ -117,7 +117,7 @@ export function DataTable<T extends { id: number | string }>({
         filterOptions={filterOptions}
       />
       {isLoading ? (
-        <Loading />
+        <Loading otherClassName="py-20" />
       ) : error ? (
         <ErrorFetching error={error} />
       ) : (
