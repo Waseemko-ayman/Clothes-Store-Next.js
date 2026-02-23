@@ -2,6 +2,14 @@ import { InputProps } from '@/interfaces';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import MultiSelectInput from '../molecules/MultiSelectInput';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { FileUpload } from '../ui/file-upload';
 
 const Input = ({
   type,
@@ -24,6 +32,7 @@ const Input = ({
   label,
   labelClassName = '',
   isRequired = false,
+  accept,
   ...props
 }: React.PropsWithChildren<InputProps>) => {
   const StyledInput = `w-[280px] px-2.5 bg-[var(--white-color)] outline-none transition-all duration-300 ${
@@ -64,7 +73,6 @@ const Input = ({
               className={`${StyledInput} py-2 resize-none`}
               aria-label={ariaLabel}
               {...field}
-              // {...(typeof register === 'function' ? register(inputName) : {})}
             />
           )}
         />
@@ -73,7 +81,32 @@ const Input = ({
           placeholder={placeholder}
           className={`${StyledInput} py-2 resize-none`}
           aria-label={ariaLabel}
-          // {...(typeof register === 'function' ? register(inputName) : {})}
+        />
+      ) : type === 'select' && control ? (
+        <Controller
+          name={inputName}
+          control={control}
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+              disabled={disabled}
+            >
+              <SelectTrigger className={`${StyledInput} h-12!`}>
+                <SelectValue placeholder={SelectValuePlaceholder} />
+              </SelectTrigger>
+              <SelectContent>
+                {options.map((opt) => (
+                  <SelectItem
+                    key={String(opt.id)}
+                    value={'value' in opt ? String(opt.value) : String(opt.id)}
+                  >
+                    {opt.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         />
       ) : isMulti && control ? (
         <MultiSelectInput
@@ -82,6 +115,19 @@ const Input = ({
           options={options}
           placeholder={SelectValuePlaceholder}
           disabled={disabled}
+        />
+      ) : type === 'file' ? (
+        <Controller
+          name={inputName}
+          control={control}
+          render={({ field }) => (
+            <FileUpload
+              onChange={(files) => {
+                const selectedFile = files[0] || null;
+                field.onChange(selectedFile); // نمرر ملف واحد فقط
+              }}
+            />
+          )}
         />
       ) : (
         <div className={`flex items-center px-3 ${StyledInput}`}>
@@ -97,6 +143,7 @@ const Input = ({
                   placeholder={placeholder}
                   aria-label={ariaLabel}
                   className={inputClasses}
+                  accept={accept}
                   {...props}
                   {...field}
                 />
@@ -113,7 +160,9 @@ const Input = ({
               {...(typeof register === 'function' ? register(inputName) : {})}
               onChange={onChange}
               value={value}
+              accept={accept}
               {...props}
+              // required
             />
           )}
           {Icon && (
