@@ -9,12 +9,11 @@ import {
   FaLinkedin,
   FaMap,
   FaPhone,
-  FaStar,
   FaTelegram,
   FaTwitter,
   FaUser,
 } from 'react-icons/fa6';
-import { FiLogOut, FiShoppingCart } from 'react-icons/fi';
+import { FiLogOut } from 'react-icons/fi';
 import { IoMdPricetag } from 'react-icons/io';
 import {
   Bell,
@@ -598,31 +597,21 @@ export const sidebarLinks = [
     href: PATHS.DASHBOARD.PRODUCTS,
     icon: FaBox,
   },
-  {
-    title: 'ratings',
-    href: PATHS.DASHBOARD.RATINGS,
-    icon: FaStar,
-  },
-  {
-    title: 'orders',
-    href: PATHS.DASHBOARD.ORDERS.ROOT,
-    icon: FiShoppingCart,
-  },
   // {
-  //   title: 'employees',
-  //   href: PATHS.DASHBOARD.EMPLOYEES,
-  //   icon: FiUsers,
+  //   title: 'ratings',
+  //   href: PATHS.DASHBOARD.RATINGS,
+  //   icon: FaStar,
   // },
   // {
-  //   title: 'customers',
-  //   href: PATHS.DASHBOARD.CUSTOMERS,
-  //   icon: FiUsers,
+  //   title: 'orders',
+  //   href: PATHS.DASHBOARD.ORDERS.ROOT,
+  //   icon: FiShoppingCart,
   // },
-  {
-    title: 'settings',
-    href: PATHS.DASHBOARD.SETTINGS,
-    icon: Settings,
-  },
+  // {
+  //   title: 'settings',
+  //   href: PATHS.DASHBOARD.SETTINGS,
+  //   icon: Settings,
+  // },
 ];
 
 export const BANNERS_DATA = [
