@@ -114,11 +114,9 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
               <Image
                 key={targetSrc}
                 src={
-                  product?.image
-                    ? product?.image.startsWith('http')
-                      ? targetSrc || product?.image
-                      : `/assets/products/${targetSrc || product?.image}.jpg`
-                    : '/assets/no-image-available.webp'
+                  targetSrc ||
+                  product?.image ||
+                  '/assets/no-image-available.webp'
                 }
                 alt={product?.title}
                 className={`w-full rounded-sm object-contain transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}

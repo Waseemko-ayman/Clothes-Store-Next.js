@@ -15,15 +15,7 @@ const PrdocutGallery = ({
       {productDetails?.gallery?.map((src: any, index) => (
         <Image
           key={src?.id || index}
-          src={
-            typeof src === 'string'
-              ? src
-              : src?.image
-                ? src.image.startsWith('http')
-                  ? src.image
-                  : `/assets/products/${src.image}.jpg`
-                : '/assets/no-image-available.webp'
-          }
+          src={src || '/assets/no-image-available.webp'}
           alt={productDetails.title || 'Product image'}
           className="max-w-full shrink-0 w-[120px] cursor-pointer rounded-sm max-md:w-[100px] hover:scale-[1.1] transition duration-300"
           onClick={() =>

@@ -44,7 +44,7 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
   return (
     <div className="space-y-4 px-6 max-h-[600px] overflow-y-auto scrollbar-none">
       <Image
-        src={`/assets/products/${productData.image}.jpg`}
+        src={productData.image || '/assets/no-image-available.webp'}
         alt={productData.title}
         width={200}
         height={200}
