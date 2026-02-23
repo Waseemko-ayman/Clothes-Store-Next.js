@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { APP_STORE, CONTACT_INFO } from '@/data';
 import { motion } from 'framer-motion';
 import Contactnformation from '../atoms/ContactInformation';
-import SecondaryHeading from '../atoms/secondaryHeading';
+import SecondaryHeading from '../atoms/SecondaryHeading';
 
 const Footer = () => {
   return (
