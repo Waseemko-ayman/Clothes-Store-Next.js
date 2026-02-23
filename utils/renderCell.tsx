@@ -82,13 +82,6 @@ export const renderCell = (col: any, row: any) => {
     );
   }
 
-  if (
-    ['price', 'price_before', 'final_price', 'discount'].includes(columnKey) &&
-    typeof cellValue === 'object'
-  ) {
-    return `${cellValue.amount ?? ''} ${cellValue.currency ?? ''}`;
-  }
-
   if (columnKey === 'created_at') {
     return formatDistanceToNow(new Date(cellValue), {
       addSuffix: true,
