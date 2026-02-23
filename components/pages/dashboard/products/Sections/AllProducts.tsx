@@ -1,6 +1,5 @@
 'use client';
 import GenericAllTable from '@/components/organism/GenericAllTable';
-import { API_URL } from '@/config/api';
 import React from 'react';
 
 const AllProducts = ({
@@ -17,8 +16,7 @@ const AllProducts = ({
       value={value}
       title="All Products"
       description="Create and manage products for your store"
-      apiEndpoint={`${API_URL}/clothes`}
-      deleteEndpoint="product/delete"
+      tableName="products"
       createTabValue="createProducts"
       placeholder="Search for product..."
       onEditIdChange={onEditIdChange}

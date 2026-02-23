@@ -14,8 +14,7 @@ const GenericAllTable = ({
   value,
   title,
   description,
-  apiEndpoint,
-  deleteEndpoint,
+  tableName,
   createTabValue,
   placeholder,
   onEditIdChange,
@@ -35,10 +34,10 @@ const GenericAllTable = ({
   const { showToast } = useToast();
 
   const { refreshFlags } = useUpdateContent();
-  const refreshKey = refreshKeyProp || apiEndpoint || 'default';
+  const refreshKey = refreshKeyProp || tableName || 'default';
 
-  const { get, data, isLoading, error } = useAPI<any>(apiEndpoint || '');
-  const { del } = useAPI(deleteEndpoint || '');
+  const { get, data, isLoading, error } = useAPI<any>(tableName || '');
+  const { del } = useAPI(tableName || '');
 
   const handleEdit = (id: string | number) => {
     onEditIdChange?.(id);
@@ -48,7 +47,7 @@ const GenericAllTable = ({
   };
 
   const handleDelete = async (id: string | number) => {
-    if (!deleteEndpoint) return;
+    if (!tableName) return;
 
     try {
       const res = await del(id);
@@ -94,7 +93,7 @@ const GenericAllTable = ({
 
   useEffect(() => {
     get();
-  }, [apiEndpoint, refreshFlags[refreshKey]]);
+  }, [tableName, refreshFlags[refreshKey]]);
 
   return (
     <SettingsTab
@@ -108,7 +107,7 @@ const GenericAllTable = ({
         data={filteredRows}
         onRowPatched={patchRow}
         onEdit={handleEdit}
-        onDelete={deleteEndpoint ? handleDelete : undefined}
+        onDelete={tableName ? handleDelete : undefined}
         showEdit={showEdit}
         showActionsColumn={showActionsColumn}
         filter={filter}
