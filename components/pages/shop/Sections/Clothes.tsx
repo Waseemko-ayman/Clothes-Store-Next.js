@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
@@ -13,6 +14,9 @@ import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import ErrorFetching from '@/components/molecules/ErrorFetching';
 import { useDebounce } from 'use-debounce';
 import ProductSkeletons from '@/components/molecules/ProductSkeletons';
+import useAPI from '@/Hooks/useAPI';
+import EmptyState from '@/components/molecules/EmptyState';
+import { FaBoxOpen } from 'react-icons/fa6';
 
 const Clothes = () => {
   const [filters, setFilters] = useState({
@@ -27,6 +31,17 @@ const Clothes = () => {
   const { searchQuery, category, sortBy, discount, priceRange } = filters;
   const [debouncedSearchTerm] = useDebounce(searchQuery, 700);
   const router = useRouter();
+
+  // Supabase API
+  const { get: getSections, data: sections } = useAPI<{
+    id: string;
+    name: string;
+  }>('sections');
+
+  const { get: getCategories, data: categories } = useAPI<{
+    id: string;
+    name: string;
+  }>('categories');
 
   // Supabase Hook
   const {
@@ -77,26 +92,36 @@ const Clothes = () => {
     setFilters((prev) => ({ ...prev, searchQuery: value }));
   }, []);
 
+  useEffect(() => {
+    getSections();
+    getCategories();
+  }, []);
+
   return (
     <Layer>
       <Container>
-        <ProductFilter
-          filters={filters}
-          setFilters={setFilters}
-          onSearchChange={handleSearchChange}
-          handleReset={handleReset}
-          hasActiveFilters={hasActiveFilters}
-        />
+        {(isLoading || (products && products.length > 0)) && (
+          <ProductFilter
+            filters={filters}
+            setFilters={setFilters}
+            onSearchChange={handleSearchChange}
+            handleReset={handleReset}
+            hasActiveFilters={hasActiveFilters}
+            sections={sections ?? []}
+            categories={categories ?? []}
+          />
+        )}
+
         <ProdcutsContainer>
           {isLoading ? (
             <ProductSkeletons count={8} />
           ) : error ? (
             <ErrorFetching error={error} />
-          ) : (
-            products?.map((item: ProductCardProps, index: number) => (
-              <AnimatedWrapper key={item?.id} custom={index}>
+          ) : products?.length > 0 ? (
+            products.map((item: ProductCardProps, index: number) => (
+              <AnimatedWrapper key={item.id} custom={index}>
                 <ProductCard
-                  key={item?.id}
+                  key={item.id}
                   image={item.image}
                   title={item.title}
                   productData={item}
@@ -106,8 +131,19 @@ const Clothes = () => {
                 />
               </AnimatedWrapper>
             ))
-          )}
+          ) : null}
         </ProdcutsContainer>
+
+        {/* EmptyState خارج الـ container */}
+        {!isLoading && !error && (!products || products.length === 0) && (
+          <EmptyState
+            imageSrc="no-products.png"
+            messageText="Oops! There are no products available at the moment."
+            buttonText="Go to homepage"
+            Icon={FaBoxOpen}
+            buttonHref={PATHS.HOME}
+          />
+        )}
       </Container>
     </Layer>
   );

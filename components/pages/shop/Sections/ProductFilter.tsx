@@ -23,6 +23,8 @@ const ProductFilter = ({
   onSearchChange,
   handleReset,
   hasActiveFilters,
+  sections = [],
+  categories = [],
 }: ProductFilterProps) => {
   const { searchQuery, category, sortBy, discount, priceRange, isFiltersOpen } =
     filters;
@@ -57,9 +59,11 @@ const ProductFilter = ({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="tshirts_summer">T-Shirts (Summer)</SelectItem>
-              <SelectItem value="tshirts_winter">T-Shirts (Winter)</SelectItem>
-              <SelectItem value="pants">Pants</SelectItem>
+              {categories.map((cat) => (
+                <SelectItem key={cat.id} value={cat.id}>
+                  {cat.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
@@ -75,11 +79,14 @@ const ProductFilter = ({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Products</SelectItem>
-              <SelectItem value="featured">Featured</SelectItem>
               <SelectItem value="price-low">Price: Low to High</SelectItem>
               <SelectItem value="price-high">Price: High to Low</SelectItem>
-              <SelectItem value="newArrivals">Newest</SelectItem>
               <SelectItem value="rating">Highest Rated</SelectItem>
+              {sections.map((sec) => (
+                <SelectItem key={sec.id} value={sec.id}>
+                  {sec.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
