@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Verify OTP - Clothes Shopping',
+  title: 'Verify OTP - Wénor Shop',
   description: 'Verify your one-time password to access your account.',
   robots: 'noindex, nofollow', // Archiving and link tracking are prohibited
 };

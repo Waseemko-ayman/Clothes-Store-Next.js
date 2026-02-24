@@ -1,12 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../atoms/Container';
 import Layer from '../atoms/Layer';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 import { motion } from 'framer-motion';
+import { useToast } from '@/lib/toast';
+import useAPI from '@/Hooks/useAPI';
+import ButtonLoading from '../atoms/ButtonLoading';
 
 const NewsletterSignup = () => {
+  const [email, setEmail] = useState('');
+  
+  // Notifications
+  const { showToast } = useToast();
+
+  // Hooks
+  const { add, isLoading } = useAPI('newsletter_subscribers');
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await add({ email });
+      showToast('🎉 Successfully subscribed!');
+      setEmail('');
+    } catch (error: any) {
+      console.error('Error sending data to Database:', error);
+      showToast(error?.message || 'Subscription faild!', 'error');
+    }
+  };
   return (
     <Layer
       otherClassName="overflow-hidden bg-center bg-cover bg-no-repeat min-h-[25vh] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/20 flex"
@@ -33,22 +56,29 @@ const NewsletterSignup = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="max-w-full flex items-center flex-col sm:flex-row gap-2.5 sm:gap-0 justify-center"
+          onSubmit={onSubmit}
+          className="max-w-full flex flex-col "
         >
-          <Input
-            type="email"
-            inputName="email"
-            placeholder="Your email address"
-            variant="secondary"
-            otherClassName="max-sm:rounded-none"
-          />
-          <Button
-            variant="primary"
-            borderRadius="rounded-none sm:rounded-l-none sm:rounded-r-md"
-            otherClassName="w-full sm:w-fit hover:!tracking-normal"
-          >
-            Sign Up
-          </Button>
+          <div className="flex items-center flex-col sm:flex-row gap-2.5 sm:gap-0 justify-center">
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              inputName="email"
+              placeholder="Your email address"
+              variant="secondary"
+              otherClassName="max-sm:rounded-none"
+              required
+            />
+            <Button
+              variant="primary"
+              borderRadius="rounded-none sm:rounded-l-none sm:rounded-r-md"
+              otherClassName="w-full sm:w-fit hover:!tracking-normal"
+              disabled={isLoading}
+            >
+              {isLoading ? <ButtonLoading text="Sign up..." /> : 'Sign up'}
+            </Button>
+          </div>
         </motion.form>
       </Container>
     </Layer>

@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Button from '@/components/atoms/Button';
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
-import { API_URL } from '@/config/api';
 import { useCartContext } from '@/context/CartContext';
-import useAPI from '@/Hooks/useAPI';
 import { useToast } from '@/lib/toast';
 import CartTable from '@/components/molecules/CartTable';
 import { FaBorderAll, FaCartShopping, FaTable } from 'react-icons/fa6';
 import CartCards from '@/components/molecules/CartCards';
 import EmptyState from '@/components/molecules/EmptyState';
+import { PATHS } from '@/data/paths';
 
 const ProductsTable = () => {
   const [viewMode, setViewMode] = useState<'table' | 'cards'>(() => {
@@ -21,11 +20,6 @@ const ProductsTable = () => {
     return 'table';
   });
 
-  useEffect(() => {
-    localStorage.setItem('cart_view_mode', viewMode);
-  }, [viewMode]);
-
-  const { del } = useAPI(`${API_URL}/cart`);
   const { cartItems, updateQuantity, removeFromCart } = useCartContext();
   const { showToast } = useToast();
 
@@ -35,17 +29,21 @@ const ProductsTable = () => {
       'Image',
       'Product',
       'Price',
+      'Size',
       'Quantity',
       'Subtotal',
     ],
     tabelContent: cartItems,
   };
 
-  const handleDelete = async (id: number | string, itemTitle: string) => {
+  const handleDelete = async (id: number, itemTitle: string) => {
     removeFromCart(id);
-    del(id);
     showToast(`${itemTitle} removed from cart`);
   };
+
+  useEffect(() => {
+    localStorage.setItem('cart_view_mode', viewMode);
+  }, [viewMode]);
 
   return (
     <Layer>
@@ -95,6 +93,7 @@ const ProductsTable = () => {
             messageText="Your shopping basket is ready and calling you to shop!"
             buttonText="Shop now"
             Icon={FaCartShopping}
+            buttonHref={PATHS.SHOP.ROOT}
           />
         )}
       </Container>

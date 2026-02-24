@@ -26,16 +26,12 @@ export const DeleteWarningContent: React.FC<DeleteWarningContentProps> = ({
         </div>
       </div>
 
-      <div className="flex justify-end gap-3 mt-6">
-        <Button
-          otherClassName="px-5 py-2"
-          variant="third"
-          handleClick={onCancel}
-        >
+      <div className="flex justify-end gap-4 mt-6">
+        <Button otherClassName="p-2!" variant="third" handleClick={onCancel}>
           Cancel
         </Button>
         <Button
-          otherClassName="px-3 !py-2 !bg-red-500 hover:!bg-red-600"
+          otherClassName="px-2 py-3! bg-red-500! hover:bg-red-600!"
           handleClick={onDelete}
         >
           Delete

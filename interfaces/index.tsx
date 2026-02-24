@@ -221,6 +221,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   isRequired?: boolean;
   onChange?: (e: React.ChangeEvent<any>) => void;
   accept?: string;
+  required?: boolean;
 }
 
 export interface AccountOrderCardProps {
@@ -421,7 +422,7 @@ export interface RepairServicesProps {
   description?: string;
   bntText?: string;
   bgImage: string;
-  buttonHref: string;
+  buttonHref?: string;
 }
 
 export interface ProductDetailsInDialogProps {
@@ -453,4 +454,11 @@ export interface EmptyStateProps {
 export interface AttachmentsUploaderProps {
   value: (File | string)[]; // upload => File | edit => string
   onChange: (files: (File | string)[]) => void; // upload => File | edit => string
+}
+
+export interface FooterLinksProps {
+  secTitle: string;
+  listClassName?: string;
+  listName: 'followUs' | 'About' | 'myAccount';
+  otherClassName?: string;
 }

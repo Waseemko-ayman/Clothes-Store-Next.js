@@ -7,25 +7,37 @@ import NavItem from '../atoms/NavItem';
 import { userList } from '@/data';
 import { useAuthContext } from '@/context/AuthContext';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
+import Loading from '../atoms/Loading';
 
 const UserPopover = () => {
   const { logout } = useAuthContext();
 
-  const { data: userInfo } = useSupabaseClient('profiles');
+  // Supabase Hook
+  const { data: userInfo, isLoading } = useSupabaseClient('profiles');
 
   const handleLogout = () => {
     logout();
   };
+  
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Image
-          src="/assets/user-avatar.png"
-          alt="user avatar"
-          width={35}
-          height={35}
-          className="rounded-full border-2 border-[var(--forth-color)] cursor-pointer"
-        />
+        {isLoading ? (
+          <Loading
+            showText={false}
+            spinnerSize={25}
+            otherClassName="bg-transparent!"
+          />
+        ) : (
+          <Image
+            src={userInfo?.[0]?.avatar_url || '/assets/user-avatar.png'}
+            // src={'/assets/user-avatar.png'}
+            alt="user avatar"
+            width={35}
+            height={35}
+            className="rounded-full border-2 border-[var(--forth-color)] cursor-pointer"
+          />
+        )}
       </PopoverTrigger>
       <PopoverContent className="w-80">
         <ul>

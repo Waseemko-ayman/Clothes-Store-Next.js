@@ -14,6 +14,7 @@ import { resetInputs } from '@/data';
 import { PATHS } from '@/data/paths';
 import AuthTemplate from '@/components/Template/AuthTemplate';
 import StatusPassword from '@/components/molecules/StatusPassword';
+import supabase from '@/config/api';
 
 const ResetPasswordPage = () => {
   const router = useRouter();

@@ -7,6 +7,7 @@ import PaymentMethodCard from '@/components/molecules/PaymentMethodCard';
 import NoticeCard from '@/components/molecules/NoticeCard';
 import { paymentMethodsData } from '@/data';
 import EmptyState from '@/components/molecules/EmptyState';
+import { PATHS } from '@/data/paths';
 
 const PaymentMethods = () => {
   const [paymentMethods, setPaymentMethods] =
@@ -41,6 +42,7 @@ const PaymentMethods = () => {
           buttonText="Add Your First Payment Method"
           Icon={Plus}
           handleClick={handleAddNew}
+          buttonHref={PATHS.HOME}
         />
       )}
 

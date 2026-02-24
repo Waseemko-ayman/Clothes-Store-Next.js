@@ -22,18 +22,6 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
 
   return (
     <div className="px-6 py-4 border-b border-gray-200 flex items-center flex-col sm:flex-row justify-between gap-4">
-      <div className="flex items-center gap-3">
-        {showFilter && (
-          <PurchasesFilterSelect
-            value={filter}
-            onChange={handleFilterChange}
-            // options={filterOptions}
-          />
-        )}
-        <p className="text-sm text-gray-500">
-          {filteredItems} of {totalItems} an items
-        </p>
-      </div>
       {showSearch && (
         <div className="relative">
           <Input
@@ -47,6 +35,18 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
         </div>
       )}
+      <div className="flex items-center gap-3">
+        {showFilter && (
+          <PurchasesFilterSelect
+            value={filter}
+            onChange={handleFilterChange}
+            // options={filterOptions}
+          />
+        )}
+        <p className="text-sm text-gray-500">
+          {filteredItems} of {totalItems} an items
+        </p>
+      </div>
     </div>
   );
 };

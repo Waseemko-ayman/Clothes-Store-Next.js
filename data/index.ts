@@ -13,8 +13,7 @@ import {
   FaTwitter,
   FaUser,
 } from 'react-icons/fa6';
-import { FiLogOut } from 'react-icons/fi';
-import { IoMdPricetag } from 'react-icons/io';
+import { FiLogOut, FiMail } from 'react-icons/fi';
 import {
   Bell,
   Cookie,
@@ -124,21 +123,11 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 2,
-      url: '#',
-      text: 'Delivery Information',
-    },
-    {
-      id: 3,
       url: PATHS.PRIVACEY_POLICY,
       text: 'Privacy Policy',
     },
     {
-      id: 4,
-      url: '#',
-      text: 'Terms & Conditions',
-    },
-    {
-      id: 5,
+      id: 3,
       url: PATHS.CONTACT,
       text: 'Contact Us',
     },
@@ -156,16 +145,6 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 3,
-      url: '#',
-      text: 'My Wishlist',
-    },
-    {
-      id: 4,
-      url: PATHS.ORDERS,
-      text: 'Track My Order',
-    },
-    {
-      id: 5,
       url: PATHS.HELP,
       text: 'Help',
     },
@@ -408,14 +387,14 @@ export const userList = [
     link: PATHS.DASHBOARD.ROOT,
     icon: FaTachometerAlt,
   },
+  // {
+  //   id: 3,
+  //   title: 'Orders',
+  //   link: PATHS.ORDERS,
+  //   icon: IoMdPricetag,
+  // },
   {
     id: 3,
-    title: 'Orders',
-    link: PATHS.ORDERS,
-    icon: IoMdPricetag,
-  },
-  {
-    id: 4,
     title: 'logout',
     icon: FiLogOut,
   },
@@ -588,14 +567,19 @@ export const sidebarLinks = [
     icon: Home,
   },
   {
-    title: 'dashboard',
+    title: 'Dashboard',
     href: PATHS.DASHBOARD.ROOT,
     icon: FaTachometerAlt,
   },
   {
-    title: 'products',
+    title: 'Products',
     href: PATHS.DASHBOARD.PRODUCTS,
     icon: FaBox,
+  },
+  {
+    title: 'Newsletter',
+    href: PATHS.DASHBOARD.NEWSLETTER,
+    icon: FiMail,
   },
   // {
   //   title: 'ratings',
