@@ -1,80 +1,71 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import Button from '@/components/atoms/Button';
 import Loading from '@/components/atoms/Loading';
 import { useSession } from '@/Hooks/useSession';
-import { userInfoButtons } from '@/mock';
-import { CheckCircle, XCircle } from 'lucide-react';
+import { userInfoButtons } from '@/data';
+import { CheckCircle, Crown, Shield, User, XCircle } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-
-type UserInfoProps = {
-  id: string;
-  email: string;
-  phone: string;
-  display_name: string;
-  avatar_url: string;
-  created_at: string;
-};
+import { useFormContext } from 'react-hook-form';
+import { AccountSidebarProps } from '@/interfaces';
+import AccountInfoSkeleton from '@/components/Skeletons/AccountInfoSkeleton';
 
 const AccountSidebar = ({
   activeTab,
   setActiveTab,
   data: userProfile,
   isLoading,
-}: {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-  data: UserInfoProps[];
-  isLoading: boolean;
-}) => {
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  uploading,
+}: AccountSidebarProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
   // Session Hook
   const session = useSession();
 
+  const { setValue } = useFormContext<any>();
+
   const userName = userProfile?.[0]?.display_name;
   const userEmail = userProfile?.[0]?.email;
+  const avatarUrl = userProfile?.[0]?.avatar_url;
+  const userRole = userProfile?.[0]?.role;
   const emailVerified =
     session?.user?.identities?.[0]?.identity_data.email_verified;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setAvatarPreview(previewUrl);
+    if (!file || !userProfile?.[0]?.id) return;
 
-      // If you want to read the file as Data URL instead of Object URL
-      // const reader = new FileReader();
-      // reader.onloadend = () => {
-      //   setAvatarPreview(reader.result as string);
-      // };
-      // reader.readAsDataURL(file);
-    }
+    const previewUrl = URL.createObjectURL(file);
+    setAvatarPreview(previewUrl);
+    setValue('avatar_file', file, { shouldDirty: true });
   };
 
   useEffect(() => {
-    return () => {
-      if (avatarPreview) URL.revokeObjectURL(avatarPreview);
-    };
-  }, [avatarPreview]);
+    if (avatarUrl) setAvatarPreview(avatarUrl);
+  }, [avatarUrl]);
 
   return (
     <aside className="space-y-4">
-      <div className="bg-[var(--white-color)] border-[var(--seven-color)]">
+      <div className="bg-white border-(--seven-color)">
         <div className="text-center bg-white p-6 rounded-xl shadow-lg">
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
             className="relative w-[120px] h-[120px] overflow-hidden rounded-full shadow-lg flex items-center justify-center cursor-pointer mx-auto mb-3"
           >
+            {uploading && (
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center z-10">
+                <Loading spinnerSize={24} showText={false} />
+              </div>
+            )}
             <Image
               src={avatarPreview || '/assets/user-avatar.png'}
               alt="user"
               fill
               className="object-cover rounded-full border-2 border-[var(--forth-color)]"
             />
-
             <input
               type="file"
               accept="image/*"
@@ -85,39 +76,61 @@ const AccountSidebar = ({
           </button>
 
           {isLoading ? (
-            <Loading spinnerSize={20} showText={false} />
+            <AccountInfoSkeleton />
           ) : (
             <>
               <h1 className="text-[var(--fifth-color)] font-semibold">
                 {userName}
               </h1>
               <p className="text-[var(--six-color)]">{userEmail}</p>
+              {userRole && (
+                <div
+                  className={`flex item-center justify-center gap-2 w-fit mx-auto mt-2 px-3 py-1 rounded-full ${
+                    userRole === 'ADMIN'
+                      ? 'bg-red-100 text-red-700'
+                      : userRole === 'MANAGER'
+                        ? 'bg-blue-100 text-blue-700'
+                        : userRole === 'USER'
+                          ? 'bg-purple-100 text-purple-700'
+                          : 'bg-gray-100 text-gray-600'
+                  }`}
+                >
+                  {userRole === 'ADMIN' && <Shield size={14} />}
+                  {userRole === 'MANAGER' && <Crown size={14} />}
+                  {userRole === 'USER' && <User size={14} />}
+                  <span className="text-xs font-semibold capitalize">
+                    {userRole}
+                  </span>
+                </div>
+              )}
+              <div className="flex items-center justify-center gap-1 text-gray-600 mt-3 text-sm">
+                <p>Registered via: </p>
+                <span className="font-medium capitalize">
+                  {session?.user?.app_metadata?.provider === 'email'
+                    ? 'Email'
+                    : session?.user?.app_metadata?.provider}
+                </span>
+              </div>
+              <div
+                className={`flex items-center justify-center gap-1 ${
+                  emailVerified ? 'text-green-600' : 'text-red-600'
+                } font-semibold mt-1`}
+              >
+                {emailVerified ? (
+                  <CheckCircle size={16} />
+                ) : (
+                  <XCircle size={16} />
+                )}
+
+                <p>Email {emailVerified ? 'verified' : 'not verified'}</p>
+              </div>
             </>
           )}
-          <div
-            className={`flex items-center justify-center gap-1 ${
-              emailVerified ? 'text-green-600' : 'text-red-600'
-            } font-semibold mt-3`}
-          >
-            {emailVerified ? <CheckCircle size={16} /> : <XCircle size={16} />}
-
-            <p>Email {emailVerified ? 'verified' : 'not verified'}</p>
-          </div>
-          <div className="flex items-center justify-center gap-1 text-gray-600 mt-1 text-sm">
-            <p>Registered via: </p>
-            <span className="font-medium capitalize">
-              {session?.user?.app_metadata?.provider === 'email'
-                ? 'Email'
-                : session?.user?.app_metadata?.provider}
-            </span>
-          </div>
         </div>
-        <div className="bg-[var(--seven-color)]" />
+        <div className="bg-(--seven-color)" />
         <div className="pt-6 space-y-2">
-          {/* {profileButtons.map((btn) => ( */}
           {userInfoButtons.map((btn) => {
             const { id, text } = btn;
-            // const Icon = icon;
             return (
               <div key={id} className="flex flex-col gap-2">
                 <Button
@@ -128,7 +141,6 @@ const AccountSidebar = ({
                       : ''
                   }`}
                   handleClick={() => setActiveTab(text.toLowerCase())}
-                  // Icon={Icon}
                 >
                   {text}
                 </Button>

@@ -1,47 +1,59 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
+import React from 'react';
 import Input from '@/components/atoms/Input';
 import AccountSectionHeader from '@/components/molecules/AccountSectionHeader';
-import AuthTemplate from '@/components/Template/AuthTemplate';
-import { profileSecInputs } from '@/mock';
-import React, { useState } from 'react';
+import { profileSecInputs } from '@/data';
+import { Control, FieldErrors } from 'react-hook-form';
+import Loading from '@/components/atoms/Loading';
+import Button from '@/components/atoms/Button';
+import ButtonLoading from '@/components/atoms/ButtonLoading';
+import CardWrapper from '@/components/Template/CardWrapper';
 
-const Profile = () => {
-  const [loading] = useState(false);
-  const [error] = useState('');
+interface FormProps {
+  errors: FieldErrors<any>;
+  control: Control<any>;
+  isLoading: boolean;
+  loading: boolean;
+}
+
+const Profile = ({ errors, control, isLoading, loading }: FormProps) => {
   return (
     <div>
       <AccountSectionHeader
         title="Profile Information"
         description="Update your personal details"
       />
-      <AuthTemplate
-        otherClassName="mt-6 !max-w-full rounded-xl"
-        error={error}
-        submitBtnText="Save Changes"
-        loadingText="save changes..."
-        loading={loading}
-        formChildren={
-          <>
-            <div className="grid md:grid-cols-2 gap-4">
-              {profileSecInputs.map((input) => (
-                <div key={input.id} className="space-y-2">
-                  <Input
-                    id={input.name}
-                    type={input.type}
-                    label={input.label}
-                    inputName={input.name}
-                    placeholder={input.placeholder}
-                    otherClassName="w-full"
-                  />
-                </div>
-              ))}
-            </div>
-          </>
-        }
-      />
-      {/* <div className="pt-6 space-y-6">
-        <Button>Save Changes</Button>
-      </div> */}
+
+      <CardWrapper otherClassName="rounded-t-none!" withFlex={false}>
+        {isLoading ? (
+          <Loading showText={false} />
+        ) : (
+          <div className="grid md:grid-cols-2 gap-4">
+            {profileSecInputs.map((input) => (
+              <div key={input.id} className="space-y-2">
+                <Input
+                  id={input.name}
+                  type={input.type}
+                  label={input.label}
+                  inputName={input.name}
+                  placeholder={input.placeholder}
+                  otherClassName="w-full"
+                  control={control}
+                  error={errors}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        <Button
+          type="submit"
+          disabled={loading}
+          otherClassName="w-full hover:shadow-lg disabled:opacity-50 mt-6"
+        >
+          {loading ? <ButtonLoading text="save changes..." /> : 'Save Changes'}
+        </Button>
+      </CardWrapper>
     </div>
   );
 };

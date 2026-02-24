@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Profile from './Sections/Profile';
 import Orders from './Sections/Orders';
 import Addresses from './Sections/Addresses';
@@ -8,31 +10,155 @@ import Settings from './Sections/Settings';
 import AccountSidebar from './Sections/AccountSidebar';
 import Layer from '@/components/atoms/Layer';
 import Container from '@/components/atoms/Container';
+import useSupabaseClient from '@/Hooks/useSupabaseClient';
+import { FormProvider, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { profileSchema } from '@/utils/profileSchema';
+import { useToast } from '@/lib/toast';
+import supabase from '@/config/api';
 
 const MyAccountPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
+  // Notifications
+  const { showToast } = useToast();
+
+  // Subapase Hook
+  const {
+    data: userProfile,
+    refetch,
+    isLoading,
+  }: any = useSupabaseClient('profiles');
+
+  const userInfo = userProfile?.[0];
+  const userName = userInfo?.display_name || '';
+  const [firstName, ...rest] = userName?.split(' ');
+  const lastName = rest.join(' ');
+
+  const initialUserInfo = {
+    firstName: firstName || '',
+    lastName: lastName || '',
+    email: userProfile?.[0]?.email || null,
+    phone: userProfile?.[0]?.phone || null,
+    avatar_file: null, // Selected image file (do not upload here)
+    avatar_url: userProfile?.[0]?.avatar_url || '', // Image link coming from the API (for display only)
+  };
+
+  const methods = useForm<any>({
+    resolver: yupResolver(profileSchema) as any,
+    defaultValues: initialUserInfo,
+  });
+
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors, dirtyFields },
+  } = methods;
+
+  const onSubmit = async (data: any) => {
+    const payload: any = {};
+    setLoading(true);
+    try {
+      // Upload the image if available
+      // avatar_file came from AccountSidebar via useFormContext
+      if (data.avatar_file) {
+        const filePath = `avatars/${userProfile[0].id}-${Date.now()}`;
+        const { error: uploadError } = await supabase.storage
+          .from('avatars')
+          .upload(filePath, data.avatar_file, { upsert: true }); // upsert: true → If the file already exists with the same name, it will be replaced.
+
+        if (uploadError) {
+          setUploading(false);
+          showToast(String(uploadError), 'error');
+          throw uploadError;
+        }
+
+        const { data: publicData } = supabase.storage
+          .from('avatars')
+          .getPublicUrl(filePath);
+
+        payload.avatar_url = publicData.publicUrl;
+      }
+
+      // Remaining fields
+      for (const key of Object.keys(dirtyFields)) {
+        if (key === 'firstName' || key === 'lastName') {
+          payload.display_name = `${data.firstName} ${data.lastName}`;
+        } else if (key !== 'avatar_file') {
+          payload[key] = data[key];
+        }
+      }
+
+      /**
+       * Check for anything to update.
+       * If the user hasn't changed anything, the function stops without any update.
+       */
+      if (!Object.keys(payload).length) return;
+
+      // Updating data in Supabase
+      const { error } = await supabase
+        .from('profiles')
+        .update(payload)
+        .eq('id', userProfile[0].id);
+
+      if (error) throw error;
+
+      showToast('Successfully updated');
+      refetch();
+    } catch (err: any) {
+      showToast(err.message || 'Update failed', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (userProfile?.length) {
+      reset(initialUserInfo);
+    }
+  }, [userProfile, reset]);
 
   return (
-    <Layer>
-      <Container>
-        <div className="grid lg:grid-cols-[300px_1fr] gap-8">
-          {/* Sidebar */}
-          <AccountSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+    <FormProvider {...methods}>
+      <Layer>
+        <Container>
+          <div className="grid lg:grid-cols-[300px_1fr] gap-8">
+            {/* Sidebar */}
+            <AccountSidebar
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              data={userProfile}
+              isLoading={isLoading}
+              uploading={uploading}
+            />
 
-          {/* Profile Tab */}
-          {activeTab === 'profile' && <Profile />}
+            {/* Profile Tab */}
+            {activeTab === 'profile' && (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Profile
+                  errors={errors}
+                  control={control}
+                  isLoading={isLoading}
+                  loading={loading}
+                />
+              </form>
+            )}
 
-          {/* Orders Tab */}
-          {activeTab === 'orders' && <Orders />}
+            {/* Orders Tab */}
+            {activeTab === 'orders' && <Orders />}
 
-          {/* Addresses Tab */}
-          {activeTab === 'addresses' && <Addresses />}
+            {/* Addresses Tab */}
+            {activeTab === 'addresses' && <Addresses />}
 
-          {/* Settings Tab */}
-          {activeTab === 'settings' && <Settings />}
-        </div>
-      </Container>
-    </Layer>
+            {/* Settings Tab */}
+            {activeTab === 'settings' && <Settings />}
+          </div>
+        </Container>
+      </Layer>
+    </FormProvider>
   );
 };
 
