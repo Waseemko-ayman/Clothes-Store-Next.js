@@ -221,6 +221,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   isRequired?: boolean;
   onChange?: (e: React.ChangeEvent<any>) => void;
   accept?: string;
+  required?: boolean;
 }
 
 export interface AccountOrderCardProps {

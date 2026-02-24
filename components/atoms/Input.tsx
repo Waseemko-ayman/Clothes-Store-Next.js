@@ -33,6 +33,7 @@ const Input = ({
   labelClassName = '',
   isRequired = false,
   accept,
+  required,
   ...props
 }: React.PropsWithChildren<InputProps>) => {
   const StyledInput = `w-[280px] px-2.5 bg-[var(--white-color)] outline-none transition-all duration-300 ${
@@ -163,7 +164,7 @@ const Input = ({
               value={value}
               accept={accept}
               {...props}
-              // required
+              required={required}
             />
           )}
           {Icon && (
