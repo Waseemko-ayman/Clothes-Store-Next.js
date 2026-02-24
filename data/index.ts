@@ -14,7 +14,6 @@ import {
   FaUser,
 } from 'react-icons/fa6';
 import { FiLogOut, FiMail } from 'react-icons/fi';
-import { IoMdPricetag } from 'react-icons/io';
 import {
   Bell,
   Cookie,
@@ -388,14 +387,14 @@ export const userList = [
     link: PATHS.DASHBOARD.ROOT,
     icon: FaTachometerAlt,
   },
+  // {
+  //   id: 3,
+  //   title: 'Orders',
+  //   link: PATHS.ORDERS,
+  //   icon: IoMdPricetag,
+  // },
   {
     id: 3,
-    title: 'Orders',
-    link: PATHS.ORDERS,
-    icon: IoMdPricetag,
-  },
-  {
-    id: 4,
     title: 'logout',
     icon: FiLogOut,
   },
