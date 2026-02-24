@@ -7,7 +7,7 @@ const ButtonTrash: FC<ButtonTrashProps> = ({
   handleClick,
   variant = 'circle',
   otherClassName = '',
-  ariaLabel,
+  ariaLabel = 'Delete item',
 }) => {
   return (
     <Button

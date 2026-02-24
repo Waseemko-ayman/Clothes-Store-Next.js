@@ -75,6 +75,7 @@ const DataTablePagination: React.FC<DataTablePaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          aria-label="Previous page"
           className="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer flex-shrink-0"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -85,6 +86,7 @@ const DataTablePagination: React.FC<DataTablePaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
+          aria-label="Next page"
           className="inline-flex items-center justify-center h-8 w-8 rounded-lg border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
         >
           <ChevronRight className="h-4 w-4" />
@@ -95,7 +97,7 @@ const DataTablePagination: React.FC<DataTablePaginationProps> = ({
         {filteredCount > 0
           ? `Showing ${startIndex + 1} to ${Math.min(
               endIndex,
-              filteredCount
+              filteredCount,
             )} of ${filteredCount} results`
           : 'No results found'}
       </div>

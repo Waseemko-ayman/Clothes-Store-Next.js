@@ -2,7 +2,6 @@
 import React from 'react';
 import { Check, Lock } from 'lucide-react';
 import Button from '@/components/atoms/Button';
-import Link from 'next/link';
 import { StatusPasswordProps } from '@/interfaces';
 
 const StatusPassword: React.FC<StatusPasswordProps> = ({
@@ -36,9 +35,9 @@ const StatusPassword: React.FC<StatusPasswordProps> = ({
           <p className="mb-4 text-[var(--six-color)]">{description}</p>
 
           {linkText && linkHref && (
-            <Link href={linkHref}>
-              <Button otherClassName="w-full">{linkText}</Button>
-            </Link>
+            <Button otherClassName="w-full" href={linkHref}>
+              {linkText}
+            </Button>
           )}
 
           {infoText && (

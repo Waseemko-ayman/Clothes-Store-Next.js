@@ -4,7 +4,7 @@ import { ButtonProps } from '@/interfaces';
 
 const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps & { href?: string }
+  ButtonProps & { href?: string; ariaLabel?: string }
 >(
   (
     {
@@ -19,8 +19,7 @@ const Button = forwardRef<
       disabled = false,
       href,
       iconClassName,
-      // bgColor,
-      // hoverBgColor,
+      ariaLabel,
       ...props
     },
     ref,
@@ -30,7 +29,6 @@ const Button = forwardRef<
       : '';
 
     const classes = `${
-      // variant !== 'cover' ? 'py-3 px-8 hover:tracking-widest' : 'py-4 px-20'
       variant !== 'cover' ? 'py-3 px-8' : 'py-4 px-20'
     } cursor-pointer text-base outline-none font-semibold transition-all duration-200 ${borderRadius} ${
       variant === 'primary'
@@ -62,6 +60,7 @@ const Button = forwardRef<
           href={href}
           ref={ref as Ref<HTMLAnchorElement>}
           className={classes}
+          aria-label={ariaLabel}
           style={{
             backgroundImage:
               variant === 'cover'
@@ -82,6 +81,7 @@ const Button = forwardRef<
         onClick={handleClick}
         type={type}
         disabled={disabled}
+        aria-label={ariaLabel}
         style={{
           backgroundImage:
             variant === 'cover'

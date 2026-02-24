@@ -20,7 +20,7 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
       {item.name === 'Login' && session ? (
         <UserPopover />
       ) : item.name === 'Cart' ? (
-        <Link href={item.link} aria-label='My Cart'>
+        <Link href={item.link} aria-label="My Cart">
           <div className="flex items-center gap-1">
             <FaCartShopping
               className={`${linksStyleing} text-[var(--fifth-color)] text-base`}
@@ -32,7 +32,7 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
           </div>
         </Link>
       ) : (
-        <Link href={item.link}>
+        <Link href={item.link} aria-label="My Cart">
           {item.name === 'Login' ? <FiUser size={25} /> : item.name}
         </Link>
       )}

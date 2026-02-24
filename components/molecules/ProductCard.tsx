@@ -129,6 +129,7 @@ const ProductCard = ({
           <Button
             variant="circle"
             otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center"
+            ariaLabel={`Add ${productData?.title} to cart`}
             handleClick={(e) => {
               e.stopPropagation();
               addToCart?.(productData, user.id);

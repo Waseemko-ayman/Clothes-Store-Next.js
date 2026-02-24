@@ -57,6 +57,7 @@ const ProductsTable = () => {
                   : 'bg-[var(--seven-color)] text-[var(--six-color)]'
               }`}
               handleClick={() => setViewMode('table')}
+              aria-label="Switch to table view"
             >
               <FaTable size={20} />
             </Button>
@@ -67,6 +68,7 @@ const ProductsTable = () => {
                   : 'bg-[var(--seven-color)] text-[var(--six-color)]'
               }`}
               handleClick={() => setViewMode('cards')}
+              aria-label="Switch to cards view"
             >
               <FaBorderAll size={20} />
             </Button>

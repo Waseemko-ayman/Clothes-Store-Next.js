@@ -141,6 +141,7 @@ const AccountSidebar = ({
                       : ''
                   }`}
                   handleClick={() => setActiveTab(text.toLowerCase())}
+                  aria-label={text}
                 >
                   {text}
                 </Button>

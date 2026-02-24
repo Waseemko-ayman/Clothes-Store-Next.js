@@ -20,6 +20,7 @@ const AccountSectionHeader = ({
           <Button
             variant="outline"
             Icon={ArrowLeft}
+            aria-label="Go back"
             otherClassName="!rounded-full w-10 h-10 !p-2 border-white hover:bg-white hover:!text-[var(--forth-color)] hover:border-white"
             handleClick={handleBack}
           />

@@ -91,6 +91,7 @@ const DataTableBody = <T extends { id: string | number }>({
                       {onEdit && showEdit !== false && (
                         <Button
                           handleClick={() => onEdit(row.id)}
+                          aria-label="Edit item"
                           otherClassName="!px-4 text-gray-400 bg-transparent hover:text-blue-600 hover:bg-blue-50 transition-colors"
                         >
                           <Edit2 className="h-4 w-4" />
@@ -103,6 +104,7 @@ const DataTableBody = <T extends { id: string | number }>({
                               handleClick={() =>
                                 setOpenDeleteId(String(row.id))
                               }
+                              aria-label="Delete item"
                               otherClassName="px-4! text-gray-400 bg-transparent hover:text-red-600 hover:bg-red-50 transition-colors"
                             >
                               <Trash2 className="h-4 w-4" />

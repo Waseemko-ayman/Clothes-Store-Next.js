@@ -39,7 +39,6 @@ const CartTable: React.FC<CartTableProps> = ({
                 <ButtonTrash
                   handleClick={() => handleDelete(item?.id ?? 0, item.title)}
                   otherClassName="group flex items-center justify-center w-10 h-10 border-none bg-red-50 hover:bg-red-500 mx-auto"
-                  aria-label="Remove item"
                 />
               </td>
               <td className={commonClassName}>
