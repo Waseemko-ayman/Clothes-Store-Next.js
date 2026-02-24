@@ -13,7 +13,7 @@ const FooterLinks = ({
   otherClassName,
 }: FooterLinksProps) => {
   return (
-    <>
+    <div className='flex flex-col'>
       <SecondaryHeading title={secTitle} />
       <ul className={listClassName}>
         {FOOTER_LINKS_DATA[listName].map((item, index) => (
@@ -39,7 +39,7 @@ const FooterLinks = ({
           </motion.li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
