@@ -2,16 +2,7 @@ import React from 'react';
 import MotionSection from './FramerMotion/MotionSection';
 import Image from 'next/image';
 import Button from '../atoms/Button';
-import { PATHS } from '@/data/paths';
-
-type EmptyStateProps = {
-  imageSrc: string;
-  messageText: string;
-  buttonText: string;
-  description?: string;
-  handleClick?: () => void;
-  Icon?: React.ElementType;
-};
+import { EmptyStateProps } from '@/interfaces';
 
 const EmptyState = ({
   imageSrc,
@@ -20,6 +11,7 @@ const EmptyState = ({
   description,
   handleClick,
   Icon,
+  buttonHref,
 }: EmptyStateProps) => {
   return (
     <div className="py-10">
@@ -46,7 +38,7 @@ const EmptyState = ({
         )}
         <MotionSection index={description ? 3 : 2}>
           <Button
-            href={PATHS.SHOP.ROOT}
+            href={buttonHref}
             variant="primary"
             Icon={Icon}
             otherClassName="!py-2.5 !px-5 mt-3 mx-auto inline-flex"

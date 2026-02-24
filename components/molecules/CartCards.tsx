@@ -32,7 +32,10 @@ const CartCards: React.FC<CartCardseProps> = ({
                     </h3>
                     {item.size && (
                       <p className="text-sm text-[var(--enjoy-gray-650)] mb-1 font-semibold">
-                        Size: {item.size}
+                        Size:{' '}
+                        {typeof item?.size === 'string'
+                          ? item?.size
+                          : item?.size?.join(', ')}
                       </p>
                     )}
                     {item.old_price ? (

@@ -1,21 +1,23 @@
 import { cn } from '@/lib/utils';
-import { sidebarLinks } from '@/mock';
-import { PATHS } from '@/mock/paths';
+import { sidebarLinks } from '@/data';
+import { PATHS } from '@/data/paths';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import ButtonLoading from '../atoms/ButtonLoading';
 import InlineError from './InlineError';
 import { useSession } from '@/Hooks/useSession';
+import useSupabaseClient from '@/Hooks/useSupabaseClient';
 
 const SidebarContent = ({ pathname }: { pathname: string }) => {
-  const [isLoading] = useState(false);
   const [error] = useState('');
 
   // Session Hook
   const session = useSession();
   const userName = session?.user?.user_metadata?.display_name;
-  const role = session?.user?.role;
+
+  const { data: profile, isLoading } = useSupabaseClient('profiles');
+  const role = profile?.[0]?.role;
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -65,7 +67,7 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
                     href={link.href}
                     className={cn(
                       'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-black hover:bg-muted',
-                      pathname === link.href && 'bg-muted text-black'
+                      pathname === link.href && 'bg-muted text-black',
                     )}
                   >
                     <link.icon className="h-4 w-4" />
@@ -85,11 +87,6 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
             <InlineError textColor="text-black" />
           ) : (
             <Image
-              // src={
-              //   user?.photo
-              //     ? `${API_IMAGE_URL}${user?.photo}`
-              //     : '/assets/user-avatar.png'
-              // }
               src="/assets/user-avatar.png"
               alt="character"
               width={30}
@@ -100,13 +97,7 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
             <p className="text-sm font-medium">
               {isLoading ? 'Loading...' : userName}
             </p>
-            <p className="text-xs">
-              {isLoading
-                ? 'Loading...'
-                : role === 'authenticated'
-                ? 'Admin'
-                : 'User'}
-            </p>
+            <p className="text-xs">{isLoading ? 'Loading...' : role}</p>
           </div>
         </div>
       </div>

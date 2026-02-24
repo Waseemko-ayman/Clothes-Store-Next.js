@@ -207,7 +207,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   Icon?: React.ElementType;
   iconClassName?: string;
   onIconClick?: () => void;
-  options?: string[];
+  options?: any[];
   register?: UseFormRegister<FormValues>;
   // error?: FieldError;
   error?: any;
@@ -220,6 +220,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   labelClassName?: string;
   isRequired?: boolean;
   onChange?: (e: React.ChangeEvent<any>) => void;
+  accept?: string;
 }
 
 export interface AccountOrderCardProps {
@@ -289,8 +290,7 @@ export interface GenericAllProps {
   value: string;
   title: string;
   description: string;
-  apiEndpoint?: string;
-  deleteEndpoint?: string;
+  tableName: string;
   createTabValue?: string;
   placeholder?: string;
   onEditIdChange?: (id: string | number | null) => void;
@@ -357,6 +357,8 @@ export interface ProductFilterProps {
   onSearchChange: (value: string) => void;
   handleReset: () => void;
   hasActiveFilters: boolean;
+  sections?: { id: string; name: string }[];
+  categories?: { id: string; name: string }[];
 }
 
 export interface LoginFormData {
@@ -428,4 +430,27 @@ export interface ProductDetailsInDialogProps {
   showToast: (message: string, type?: ToastType) => void;
   addToCart: (item: ProductCardProps, userId: string) => void;
   isLoading: boolean;
+}
+
+export interface MultiSelectInputProps {
+  inputName: string;
+  control: any;
+  options: string[];
+  placeholder?: string;
+  disabled?: boolean;
+}
+
+export interface EmptyStateProps {
+  imageSrc: string;
+  messageText: string;
+  buttonText: string;
+  description?: string;
+  handleClick?: () => void;
+  Icon?: React.ElementType;
+  buttonHref: string;
+}
+
+export interface AttachmentsUploaderProps {
+  value: (File | string)[]; // upload => File | edit => string
+  onChange: (files: (File | string)[]) => void; // upload => File | edit => string
 }

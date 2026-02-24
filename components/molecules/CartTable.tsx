@@ -62,7 +62,9 @@ const CartTable: React.FC<CartTableProps> = ({
               </td>
               <td className={commonClassName}>
                 <p className="relative w-fit px-2.5 my-0 mx-auto">
-                  {item?.size}
+                  {typeof item?.size === 'string'
+                    ? item?.size
+                    : item?.size?.join(', ')}
                 </p>
               </td>
               <td className={`text-lg ${commonClassName}`}>
