@@ -4,10 +4,10 @@ import { PATHS } from '@/data/paths';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import ButtonLoading from '../atoms/ButtonLoading';
 import InlineError from './InlineError';
 import { useSession } from '@/Hooks/useSession';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
+import Loading from '../atoms/Loading';
 
 const SidebarContent = ({ pathname }: { pathname: string }) => {
   const [error] = useState('');
@@ -16,8 +16,9 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
   const session = useSession();
   const userName = session?.user?.user_metadata?.display_name;
 
-  const { data: profile, isLoading } = useSupabaseClient('profiles');
-  const role = profile?.[0]?.role;
+  const { data: userInfo, isLoading } = useSupabaseClient('profiles');
+  const role = userInfo?.[0]?.role;
+  const avatar = userInfo?.[0]?.avatar_url;
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -82,15 +83,20 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
       <div className="mt-auto border-t border-t-gray-300 p-3">
         <div className="flex items-center gap-2 rounded-lg border border-gray-300 p-4">
           {isLoading ? (
-            <ButtonLoading borderColor="text-black" />
+            <Loading
+              showText={false}
+              spinnerSize={30}
+              otherClassName="bg-transparent!"
+            />
           ) : error ? (
             <InlineError textColor="text-black" />
           ) : (
             <Image
-              src="/assets/user-avatar.png"
+              src={avatar || '/assets/user-avatar.png'}
               alt="character"
-              width={30}
-              height={30}
+              width={50}
+              height={50}
+              className="rounded-full border-2 border-[var(--forth-color)] cursor-pointer"
             />
           )}
           <div>
