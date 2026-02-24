@@ -13,7 +13,7 @@ import {
   FaTwitter,
   FaUser,
 } from 'react-icons/fa6';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiMail } from 'react-icons/fi';
 import { IoMdPricetag } from 'react-icons/io';
 import {
   Bell,
@@ -588,14 +588,19 @@ export const sidebarLinks = [
     icon: Home,
   },
   {
-    title: 'dashboard',
+    title: 'Dashboard',
     href: PATHS.DASHBOARD.ROOT,
     icon: FaTachometerAlt,
   },
   {
-    title: 'products',
+    title: 'Products',
     href: PATHS.DASHBOARD.PRODUCTS,
     icon: FaBox,
+  },
+  {
+    title: 'Newsletter',
+    href: PATHS.DASHBOARD.NEWSLETTER,
+    icon: FiMail,
   },
   // {
   //   title: 'ratings',
