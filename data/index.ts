@@ -124,21 +124,11 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 2,
-      url: '#',
-      text: 'Delivery Information',
-    },
-    {
-      id: 3,
       url: PATHS.PRIVACEY_POLICY,
       text: 'Privacy Policy',
     },
     {
-      id: 4,
-      url: '#',
-      text: 'Terms & Conditions',
-    },
-    {
-      id: 5,
+      id: 3,
       url: PATHS.CONTACT,
       text: 'Contact Us',
     },
@@ -156,16 +146,6 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 3,
-      url: '#',
-      text: 'My Wishlist',
-    },
-    {
-      id: 4,
-      url: PATHS.ORDERS,
-      text: 'Track My Order',
-    },
-    {
-      id: 5,
       url: PATHS.HELP,
       text: 'Help',
     },

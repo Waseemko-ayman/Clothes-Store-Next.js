@@ -4,13 +4,7 @@ import { FOOTER_LINKS_DATA } from '@/data';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import SecondaryHeading from '../atoms/SecondaryHeading';
-
-interface FooterLinksProps {
-  secTitle: string;
-  listClassName?: string;
-  listName: 'followUs' | 'About' | 'myAccount';
-  otherClassName?: string;
-}
+import { FooterLinksProps } from '@/interfaces';
 
 const FooterLinks = ({
   secTitle,

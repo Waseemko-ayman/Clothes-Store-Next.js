@@ -455,3 +455,10 @@ export interface AttachmentsUploaderProps {
   value: (File | string)[]; // upload => File | edit => string
   onChange: (files: (File | string)[]) => void; // upload => File | edit => string
 }
+
+export interface FooterLinksProps {
+  secTitle: string;
+  listClassName?: string;
+  listName: 'followUs' | 'About' | 'myAccount';
+  otherClassName?: string;
+}
