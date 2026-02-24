@@ -122,7 +122,7 @@ const Input = ({
           control={control}
           render={({ field }) => (
             <FileUpload
-              value={field.value}
+              value={field.value ?? ''}
               onChange={(files) => {
                 const selectedFile = files[0] || null;
                 field.onChange(selectedFile); // نمرر ملف واحد فقط
