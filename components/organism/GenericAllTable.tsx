@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -50,7 +49,7 @@ const GenericAllTable = ({
     if (!tableName) return;
 
     try {
-      const res = await del(id);
+      await del(id);
       showToast('Deleted successfully');
 
       // Instead of get(), we delete the row directly from rows
@@ -62,13 +61,6 @@ const GenericAllTable = ({
   };
 
   useEffect(() => {
-    // const list = Array.isArray(data?.items)
-    //   ? data.items
-    //   : Array.isArray(data?.data)
-    //   ? data.data
-    //   : Array.isArray(data)
-    //   ? data
-    //   : [];
     const list = Array.isArray(data) ? data : [];
     setRows(list);
   }, [data]);
