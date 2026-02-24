@@ -422,7 +422,7 @@ export interface RepairServicesProps {
   description?: string;
   bntText?: string;
   bgImage: string;
-  buttonHref: string;
+  buttonHref?: string;
 }
 
 export interface ProductDetailsInDialogProps {
