@@ -3,7 +3,13 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   transpilePackages: ['react-hook-form', '@hookform/resolvers'],
   images: {
-    domains: ['usodykqqnbeiohqwkwfy.supabase.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'usodykqqnbeiohqwkwfy.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
   },
 };
 
