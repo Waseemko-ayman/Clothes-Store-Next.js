@@ -463,3 +463,12 @@ export interface FooterLinksProps {
   listName: 'followUs' | 'About' | 'myAccount';
   otherClassName?: string;
 }
+
+export interface GridWrapperProps {
+  children: React.ReactNode;
+  otherClassName?: string;
+  isScrollable?: boolean;
+  gridCols?: string;
+  itemClassName?: string;
+  disableGridOnMd?: boolean;
+}
