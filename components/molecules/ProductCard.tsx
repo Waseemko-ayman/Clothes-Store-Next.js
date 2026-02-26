@@ -1,9 +1,8 @@
 'use client';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '../atoms/Button';
-import { FaStar } from 'react-icons/fa';
-import { FaCartShopping, FaRegStar, FaStarHalfStroke } from 'react-icons/fa6';
+import { FaCartShopping } from 'react-icons/fa6';
 import { useToast } from '@/lib/toast';
 import { useCartContext } from '@/context/CartContext';
 import { ProductCardProps } from '@/interfaces';
@@ -11,6 +10,7 @@ import { GlowingEffect } from '../ui/glowing-effect';
 import ResponsiveDialogDrawer from '../organism/ResponsiveDialogDrawer';
 import useIsMobile from '@/Hooks/useIsMobile';
 import ProductDetailsInDialog from './ProductDetailsInDialog';
+import { renderStars } from '@/utils/renderStars';
 
 const ProductCard = ({
   productData,
@@ -34,36 +34,6 @@ const ProductCard = ({
       ? ratings.reduce((sum: number, r: number) => sum + r, 0) / ratings.length
       : 0; // بدل null حطينا 0
 
-  const renderStars = (rating: number) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-
-    // النجوم الممتلئة
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(
-        <FaStar key={`full-${i}`} className="text-lg text-yellow-500" />,
-      );
-    }
-
-    // النصف نجمة إن وجد
-    if (hasHalfStar) {
-      stars.push(
-        <FaStarHalfStroke key="half" className="text-lg text-yellow-500" />,
-      );
-    }
-
-    // النجوم الفارغة (نكمل إلى 5 نجوم)
-    const emptyStars = 5 - (fullStars + (hasHalfStar ? 1 : 0));
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(
-        <FaRegStar key={`empty-${i}`} className="text-lg text-gray-400" />,
-      );
-    }
-
-    return stars;
-  };
-
   return (
     <div
       className={`relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
@@ -77,14 +47,15 @@ const ProductCard = ({
       />
       <div onClick={handleClick} className="cursor-pointer">
         <div className="relative">
-          <Image
-            src={image || '/assets/no-image-available.webp'}
-            alt={title}
-            title={title}
-            width={500}
-            height={500}
-            className="max-w-full rounded-[20px] mb-2.5"
-          />
+          <div className="relative w-full max-w-[500px] md:max-w-[500px] aspect-square">
+            <Image
+              src={image || '/assets/no-image-available.webp'}
+              alt={title}
+              title={title}
+              fill
+              className="object-cover rounded-[20px]"
+            />
+          </div>
           {discount && (
             <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-semibold px-2 py-1 rounded-lg shadow-md z-10">
               rival %{discount}
