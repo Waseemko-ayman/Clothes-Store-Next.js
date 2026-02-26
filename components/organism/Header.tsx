@@ -23,12 +23,19 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile(800);
 
-  const MobileNavbar = navItems.filter((item) => item.name === 'Login');
+  const MobileNavbar = navItems.filter(
+    (item) => item.name === 'Login' || item.name === 'Cart',
+  );
 
   // Variables
-  const StyledLinks = `relative py-1 text-base font-semibold cursor-pointer ${
-    isMobile ? 'text-white' : 'text-(--fifth-color)'
-  } hover:text-(--forth-color) transition duration-200`;
+  const StyledLinks = (itemName: string) =>
+    `relative py-1 text-base font-semibold cursor-pointer transition duration-200 ${
+      itemName === 'Cart'
+        ? 'text-(--fifth-color)'
+        : isMobile
+          ? 'text-white'
+          : 'text-(--fifth-color)'
+    } hover:text-(--forth-color)`;
 
   const handleLinkClick = () => {
     if (isMobile) {
@@ -55,7 +62,10 @@ const Header = () => {
                     delay: idx * 0.08,
                   }}
                 >
-                  <NavItemLink item={item} linksStyleing={StyledLinks} />
+                  <NavItemLink
+                    item={item}
+                    linksStyleing={StyledLinks(item.name)}
+                  />
                 </motion.div>
               ))}
               <motion.div
