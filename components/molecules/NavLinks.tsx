@@ -50,7 +50,11 @@ const NavLinks = ({
             }`}
             onClick={onLinkClick}
           >
-            <NavItemLink item={item} linksStyleing={linksStyleing} />
+            <NavItemLink
+              item={item}
+              linksStyleing={linksStyleing}
+              isMobile={isMobile}
+            />
           </motion.li>
         ))}
       </ul>

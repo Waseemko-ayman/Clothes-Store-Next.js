@@ -190,6 +190,7 @@ export interface NavItem {
 export interface NavItemLinkProps {
   item: NavItem;
   linksStyleing: string;
+  isMobile?: boolean;
 }
 
 export interface AccountSectionHeaderProps {

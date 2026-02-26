@@ -8,7 +8,7 @@ import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
 import { useSession } from '@/Hooks/useSession';
 
-const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
+const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
   // API Context
   const { cartItems } = useCartContext();
 
@@ -19,21 +19,26 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
     <>
       {item.name === 'Login' && session ? (
         <UserPopover />
-      ) : item.name === 'Cart' ? (
+      ) : item.name === 'Cart' && !isMobile ? (
         <Link href={item.link} aria-label="My Cart">
           <div className="flex items-center gap-1">
             <FaCartShopping
-              className={`${linksStyleing} text-(--fifth-color) text-base`}
+              className={`${linksStyleing} text-[var(--fifth-color)] text-base`}
               size={25}
             />
-            <span className="text-(--white-color) bg-(--forth-color) w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
+            <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
               {cartItems?.length}
             </span>
           </div>
         </Link>
       ) : (
-        <Link href={item.link} aria-label="My Cart">
-          {item.name === 'Login' ? <FiUser size={25} /> : item.name}
+        <Link href={item.link} aria-label={item.name}>
+          {item.name === 'Cart' && isMobile ? null : item.name === 'Login' &&
+            isMobile ? null : item.name === 'Login' ? (
+            <FiUser size={25} />
+          ) : (
+            item.name
+          )}
         </Link>
       )}
     </>
