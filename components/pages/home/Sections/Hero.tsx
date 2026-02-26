@@ -18,7 +18,7 @@ const Hero = () => {
 
   return (
     <BackgroundLines>
-      <div className="min-h-[90vh] relative flex item-center justify-center w-full flex-col">
+      <div className="min-h-[80vh] relative flex item-center justify-center w-full flex-col">
         <Container otherClassName="text-center z-10 max-sm:text-center">
           <motion.div
             initial="hidden"
@@ -80,21 +80,6 @@ const Hero = () => {
               </Button>
             </motion.div>
           </motion.div>
-          {/* <motion.img
-            src="/assets/landing/landing.png"
-            alt="person"
-            title="person"
-            width={900}
-            height={900}
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              type: 'spring',
-              stiffness: 60,
-              damping: 12,
-              delay: 0.1,
-            }}
-          /> */}
         </Container>
       </div>
     </BackgroundLines>
