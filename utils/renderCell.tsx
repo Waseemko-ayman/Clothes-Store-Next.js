@@ -47,7 +47,7 @@ export const renderCell = (col: any, row: any) => {
   }
 
   if (
-    (columnKey === 'image' || columnKey === 'photo') &&
+    (columnKey === 'image' || columnKey === 'photo' || columnKey === 'avatar_url') &&
     typeof rawValue === 'string'
   ) {
     return (

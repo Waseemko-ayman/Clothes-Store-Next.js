@@ -119,7 +119,7 @@ const DataTableBody = <T extends { id: string | number }>({
                         >
                           <DeleteWarningContent
                             deleteLocation={deleteLocation}
-                            item={row?.name || row?.title || `#${row.id}`}
+                            item={row?.name || row?.title || row?.display_name || `#${row.id}`}
                             onCancel={() => setOpenDeleteId(null)}
                             onDelete={() => {
                               onDelete(row.id);
