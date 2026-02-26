@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 export default function useSupabaseClient(
   tableName: string,
   filters?: Record<string, any>,
-  priceRange?: [number, number]
+  priceRange?: [number, number],
 ) {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,11 +61,18 @@ export default function useSupabaseClient(
   };
 
   useEffect(() => {
-    fetchData();
+    if (filters?.id) {
+      fetchData();
+    }
 
     // Use JSON.stringify to compare object values instead of references.
     // Prevents unnecessary reruns when the object is recreated with same data.
-  }, [tableName, JSON.stringify(filters), JSON.stringify(priceRange)]);
+  }, [
+    tableName,
+    JSON.stringify(filters),
+    JSON.stringify(priceRange),
+    filters?.id,
+  ]);
 
   const insertData = async (newRow: Record<string, any>) => {
     setIsLoading(true);
@@ -77,7 +84,7 @@ export default function useSupabaseClient(
       if (error) throw error;
 
       setData((prev: any) =>
-        prev ? [...prev, ...(insertedData ?? [])] : insertedData
+        prev ? [...prev, ...(insertedData ?? [])] : insertedData,
       );
 
       setIsLoading(false);
