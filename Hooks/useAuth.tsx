@@ -64,7 +64,14 @@ const useAuth = () => {
       const { data, error } = await supabase.auth.signInWithPassword(body);
 
       if (error) {
-        showToast(error.message, 'error');
+        if (error.message === 'Email not confirmed') {
+          showToast(
+            'Please check your email to verify your account before logging in.',
+            'error',
+          );
+        } else {
+          showToast(error.message, 'error');
+        }
         return;
       }
 
