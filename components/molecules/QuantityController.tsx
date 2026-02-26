@@ -9,7 +9,7 @@ const QuantityController: React.FC<QuantityControllerProps> = ({
 }) => {
   const key = Number(item.id) ?? item.slug;
   const ArrowIconStyle =
-    'text-[var(--seconde-color)] text-lg cursor-pointer transition-all hover:text-[var(--forth-color)]';
+    'text-(--seconde-color) text-lg cursor-pointer transition-all hover:text-(--forth-color)';
 
   return (
     <div className={`flex items-center justify-center gap-3 ${otherClassName}`}>
@@ -21,7 +21,7 @@ const QuantityController: React.FC<QuantityControllerProps> = ({
           }
         }}
       />
-      <span className="text-[var(--seconde-color)] font-bold mx-2.5">
+      <span className="text-(--seconde-color) font-bold mx-2.5">
         {item.quantity}
       </span>
       <FaCircleChevronRight

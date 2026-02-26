@@ -15,10 +15,8 @@ const NavLinks = ({
   const pathname = usePathname();
 
   // Variables
-  const linksStyleing = `relative py-1 text-base text-[var(--fifth-color)] font-semibold cursor-pointer hover:text-[var(--forth-color)] transition duration-200`;
-  const MobileLinkTextColor = isMobile
-    ? 'text-white'
-    : 'text-[var(--fifth-color)]';
+  const linksStyleing = `relative py-1 text-base text-(--fifth-color) font-semibold cursor-pointer hover:text-(--forth-color) transition duration-200`;
+  const MobileLinkTextColor = isMobile ? 'text-white' : 'text-(--fifth-color)';
 
   return (
     <nav className="">
@@ -42,12 +40,12 @@ const NavLinks = ({
               item.name !== 'Cart' &&
               item.name !== 'Login' &&
               !isMobile &&
-              'after:absolute after:left-0 after:bottom-0 after:bg-[var(--forth-color)] after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
+              'after:absolute after:left-0 after:bottom-0 after:bg-(--forth-color) after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
             } ${isMobile ? 'text-lg mb-4' : ''} ${
               pathname === '/' && item.name.toLowerCase() === 'home'
-                ? 'after:w-1/2 text-[var(--forth-color)]'
+                ? 'after:w-1/2 text-(--forth-color)'
                 : pathname.slice(1) === item.name.toLowerCase()
-                  ? 'after:w-1/2 text-[var(--forth-color)]'
+                  ? 'after:w-1/2 text-(--forth-color)'
                   : ''
             }`}
             onClick={onLinkClick}

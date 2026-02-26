@@ -18,7 +18,7 @@ const UserPopover = () => {
   const handleLogout = () => {
     logout();
   };
-  
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -35,7 +35,7 @@ const UserPopover = () => {
             alt="user avatar"
             width={35}
             height={35}
-            className="rounded-full border-2 border-[var(--forth-color)] cursor-pointer"
+            className="rounded-full border-2 border-(--forth-color) cursor-pointer"
           />
         )}
       </PopoverTrigger>

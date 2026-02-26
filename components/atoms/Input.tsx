@@ -36,9 +36,9 @@ const Input = ({
   required,
   ...props
 }: React.PropsWithChildren<InputProps>) => {
-  const StyledInput = `w-[280px] px-2.5 bg-[var(--white-color)] outline-none transition-all duration-300 ${
+  const StyledInput = `w-[280px] px-2.5 bg-(--white-color) outline-none transition-all duration-300 ${
     variant === 'primary'
-      ? 'border border-[var(--seven-color)] focus-within:border-[var(--forth-color)] rounded-none'
+      ? 'border border-(--seven-color) focus-within:border-(--forth-color) rounded-none'
       : 'border-none rounded-l-md rounded-r-none'
   } ${otherClassName}`;
 
@@ -58,7 +58,7 @@ const Input = ({
     <div>
       {label && (
         <label
-          className={`block text-sm font-semibold text-[var(--seconde-color)] mb-2 ${labelClassName}`}
+          className={`block text-sm font-semibold text-(--seconde-color) mb-2 ${labelClassName}`}
         >
           {label}
           {isRequired && <span className="text-red-500"> *</span>}

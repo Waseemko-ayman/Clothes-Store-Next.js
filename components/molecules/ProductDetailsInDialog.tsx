@@ -77,7 +77,7 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
           <Select value={size} onValueChange={handleSelectSize}>
             <SelectTrigger
               id="size"
-              className={`w-28 !h-10 bg-background focus:!border-[var(--forth-color)] ${
+              className={`w-28 !h-10 bg-background focus:!border-(--forth-color) ${
                 errorMsgSize ? 'border-red-500' : ''
               }`}
             >
@@ -110,7 +110,7 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
       </div>
       <div>
         <h3 className="font-bold text-[22px] mb-3">Product Details</h3>
-        <p className="text-[var(--seconde-color)] mt-3 text-sm">
+        <p className="text-(--seconde-color) mt-3 text-sm">
           {productData.description}
         </p>
       </div>

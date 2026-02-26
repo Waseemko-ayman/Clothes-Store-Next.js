@@ -11,7 +11,7 @@ const CardWrapper = ({
 }) => {
   return (
     <div
-      className={`bg-white border border-[var(--seven-color)] rounded-xl overflow-hidden hover:shadow-lg hover:border-[var(--forth-color)]/30 transition-all duration-300 group ${otherClassName}`}
+      className={`bg-white border border-(--seven-color) rounded-xl overflow-hidden hover:shadow-lg hover:border-(--forth-color)/30 transition-all duration-300 group ${otherClassName}`}
     >
       <div
         className={`
@@ -21,7 +21,7 @@ const CardWrapper = ({
       >
         {children}
       </div>
-      <div className="h-1 bg-gradient-to-r from-[var(--first-color)] via-[var(--forth-color)]/20 to-[var(--first-color)]"></div>
+      <div className="h-1 bg-gradient-to-r from-(--first-color) via-(--forth-color)/20 to-(--first-color)"></div>
     </div>
   );
 };

@@ -27,7 +27,7 @@ const CartCards: React.FC<CartCardseProps> = ({
                 />
                 <div className="flex flex-col justify-between text-center sm:text-left">
                   <div>
-                    <h3 className="text-lg md:text-xl font-bold text-[var(--seconde-color)] mb-1">
+                    <h3 className="text-lg md:text-xl font-bold text-(--seconde-color) mb-1">
                       {item.title}
                     </h3>
                     {item.size && (
@@ -43,7 +43,7 @@ const CartCards: React.FC<CartCardseProps> = ({
                         <span className="text-xl line-through text-gray-400">
                           ${item.old_price.toFixed(2)}
                         </span>
-                        <span className="text-2xl font-bold text-[var(--forth-color)]">
+                        <span className="text-2xl font-bold text-(--forth-color)">
                           ${item.price && item.price.toFixed(2)}
                         </span>
                         <span className="bg-red-500 text-white text-xs px-1 py-0.5 rounded-sm">
@@ -51,7 +51,7 @@ const CartCards: React.FC<CartCardseProps> = ({
                         </span>
                       </div>
                     ) : (
-                      <p className="text-2xl font-bold text-[var(--forth-color)] mb-3">
+                      <p className="text-2xl font-bold text-(--forth-color) mb-3">
                         ${item.price && item.price.toFixed(2)}
                       </p>
                     )}
@@ -84,7 +84,7 @@ const CartCards: React.FC<CartCardseProps> = ({
                   <p className="text-xs text-[var(--enjoy-gray-650)] mb-1 uppercase tracking-wider">
                     Subtotal
                   </p>
-                  <p className="text-2xl md:text-3xl font-bold text-[var(--seconde-color)]">
+                  <p className="text-2xl md:text-3xl font-bold text-(--seconde-color)">
                     $
                     {item?.price && item?.quantity
                       ? (item.price * item.quantity).toFixed(2)

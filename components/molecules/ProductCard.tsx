@@ -92,10 +92,10 @@ const ProductCard = ({
           )}
         </div>
         <div>
-          <span className="text-base text-[var(--first-color)]">
+          <span className="text-base text-(--first-color)">
             {trade_mark && trade_mark}
           </span>
-          <h4 className="text-[var(--forth-color)] text-base mt-2 font-bold">
+          <h4 className="text-(--forth-color) text-base mt-2 font-bold">
             {title}
           </h4>
 
@@ -108,7 +108,7 @@ const ProductCard = ({
 
           <div className={old_price ? 'flex items-center gap-2' : ''}>
             {price && (
-              <h5 className="text-[var(--forth-color)] text-lg font-bold">
+              <h5 className="text-(--forth-color) text-lg font-bold">
                 ${price}
               </h5>
             )}

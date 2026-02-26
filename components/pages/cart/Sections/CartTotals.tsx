@@ -18,12 +18,12 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
     0,
   );
 
-  const tdStyle = 'p-2.5 border border-[var(--seven-color)] w-[50%]';
+  const tdStyle = 'p-2.5 border border-(--seven-color) w-[50%]';
 
   const highlite = (row: TableRow) =>
     row.title.toLowerCase() === 'total'
-      ? 'text-[var(--fifth-color)] font-bold'
-      : 'text-[var(--six-color)]';
+      ? 'text-(--fifth-color) font-bold'
+      : 'text-(--six-color)';
 
   const tabeleData: TableRow[] = [
     {
@@ -43,7 +43,7 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
     },
   ];
   return (
-    <div className="max-w-full w-[600px] border border-[var(--seven-color)] p-[30px]">
+    <div className="max-w-full w-[600px] border border-(--seven-color) p-[30px]">
       <h3 className={TitleStyle}>Cart Totals</h3>
       <table className="max-w-full w-full border-0 mb-[15px]">
         <tbody>

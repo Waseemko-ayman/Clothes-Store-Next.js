@@ -53,8 +53,8 @@ const ProductsTable = () => {
             <Button
               otherClassName={`!px-4 !py-2 ${
                 viewMode === 'table'
-                  ? 'bg-[var(--forth-color)] text-white'
-                  : 'bg-[var(--seven-color)] text-[var(--six-color)]'
+                  ? 'bg-(--forth-color) text-white'
+                  : 'bg-(--seven-color) text-(--six-color)'
               }`}
               handleClick={() => setViewMode('table')}
               aria-label="Switch to table view"
@@ -64,8 +64,8 @@ const ProductsTable = () => {
             <Button
               otherClassName={`!px-4 !py-2 ${
                 viewMode === 'cards'
-                  ? 'bg-[var(--forth-color)] text-white'
-                  : 'bg-[var(--seven-color)] text-[var(--six-color)]'
+                  ? 'bg-(--forth-color) text-white'
+                  : 'bg-(--seven-color) text-(--six-color)'
               }`}
               handleClick={() => setViewMode('cards')}
               aria-label="Switch to cards view"

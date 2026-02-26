@@ -23,10 +23,10 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
         <Link href={item.link} aria-label="My Cart">
           <div className="flex items-center gap-1">
             <FaCartShopping
-              className={`${linksStyleing} text-[var(--fifth-color)] text-base`}
+              className={`${linksStyleing} text-(--fifth-color) text-base`}
               size={25}
             />
-            <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
+            <span className="text-(--white-color) bg-(--forth-color) w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
               {cartItems?.length}
             </span>
           </div>

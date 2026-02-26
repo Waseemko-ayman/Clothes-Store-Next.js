@@ -18,7 +18,7 @@ const NavItem: React.FC<NavItemProps> = ({
     const Icon = icon;
     return (
       <Icon
-        className={`text-sm text-[var(--forth-color)] ${
+        className={`text-sm text-(--forth-color) ${
           isMobile ? 'max-md:text-primary' : 'max-md:text-white'
         } ${otherClassNameIcon}`}
       />
@@ -38,7 +38,7 @@ const NavItem: React.FC<NavItemProps> = ({
         font-semibold
         rounded-md
         transition cursor-pointer
-        hover:text-[var(--forth-color)]
+        hover:text-(--forth-color)
         hover:bg-[#08817912]
         px-2 py-3
         max-md:!py-3

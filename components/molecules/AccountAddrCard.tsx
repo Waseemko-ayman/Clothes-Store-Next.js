@@ -5,17 +5,15 @@ import CardWrapper from '../Template/CardWrapper';
 import { AccountAddrCardProps } from '@/interfaces';
 
 const AccountAddrCard = ({ addr }: { addr: AccountAddrCardProps }) => {
-  const paraStyle = 'text-sm text-[var(--six-color)]';
+  const paraStyle = 'text-sm text-(--six-color)';
   return (
     <CardWrapper key={addr.id}>
       <div className="space-y-2">
         <div className="flex items-center max-[426px]:justify-center gap-2">
-          <MapPin className="h-4 w-4 text-[var(--forth-color)]" />
-          <h3 className="font-semibold text-[var(--fifth-color)]">
-            {addr.type}
-          </h3>
+          <MapPin className="h-4 w-4 text-(--forth-color)" />
+          <h3 className="font-semibold text-(--fifth-color)">{addr.type}</h3>
           {addr.default && (
-            <Badge className="bg-[var(--third-color)] text-[var(--white-color)]">
+            <Badge className="bg-(--third-color) text-(--white-color)">
               Default
             </Badge>
           )}

@@ -111,7 +111,7 @@ const ResetPasswordPage = () => {
       <div className="mt-8 text-center">
         <Link
           href={PATHS.AUTH.LOGIN}
-          className="text-sm hover:underline transition-colors text-[var(--forth-color)]"
+          className="text-sm hover:underline transition-colors text-(--forth-color)"
         >
           Back to Login
         </Link>

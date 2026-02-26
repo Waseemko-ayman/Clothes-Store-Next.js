@@ -9,23 +9,23 @@ const AccountOrderCard = ({ order }: { order: AccountOrderCardProps }) => {
     <CardWrapper>
       <div className="flex-1 space-y-3">
         <div className="flex items-center max-[426px]:justify-center gap-3">
-          <h3 className="font-semibold text-base text-[var(--fifth-color)] tracking-tight">
+          <h3 className="font-semibold text-base text-(--fifth-color) tracking-tight">
             {order.id}
           </h3>
           <Badge
             className={
               order.status === 'Delivered'
-                ? 'bg-[var(--forth-color)] text-[var(--white-color)]'
+                ? 'bg-(--forth-color) text-(--white-color)'
                 : order.status === 'In Transit'
-                ? 'bg-[var(--third-color)] text-[var(--white-color)]'
-                : 'bg-[var(--six-color)] text-[var(--white-color)]'
+                  ? 'bg-(--third-color) text-(--white-color)'
+                  : 'bg-(--six-color) text-(--white-color)'
             }
           >
             {order.status}
           </Badge>
         </div>
 
-        <div className="flex items-center gap-5 text-sm text-[var(--six-color)]">
+        <div className="flex items-center gap-5 text-sm text-(--six-color)">
           <span className="flex items-center gap-1.5">
             <Calendar className="h-3.5 w-3.5" />
             <span className="font-medium">{order.date}</span>
@@ -39,10 +39,10 @@ const AccountOrderCard = ({ order }: { order: AccountOrderCardProps }) => {
 
       <div className="flex items-center gap-4">
         <div className="text-right max-[426px]:text-center">
-          <div className="text-xs text-[var(--six-color)] mb-1 font-medium uppercase tracking-wide">
+          <div className="text-xs text-(--six-color) mb-1 font-medium uppercase tracking-wide">
             Total
           </div>
-          <div className="font-bold text-xl text-[var(--fifth-color)]">
+          <div className="font-bold text-xl text-(--fifth-color)">
             {order.total}
           </div>
         </div>
