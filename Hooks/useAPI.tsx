@@ -136,14 +136,27 @@ const useAPI = <T extends { id?: string | number }>(tableName: string) => {
   const del = async (id: string | number) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const { data, error } = await supabase
-        .from(tableName)
-        .delete()
-        .eq('id', id)
-        .select();
-      if (error) throw error;
-      dispatch({ type: API_ACTIONS.DEL, payload: id });
-      return data;
+      if (tableName === 'auth.users') {
+        // Special case → We send a request to the server
+        const res = await fetch('/api/delete-user', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: id }),
+        });
+        const data = await res.json();
+        console.log(data)
+        if (!res.ok) throw new Error(data.error || 'Failed to delete user');
+      } else {
+        // Normal deletion from other tables
+        const { data, error } = await supabase
+          .from(tableName)
+          .delete()
+          .eq('id', id)
+          .select();
+        if (error) throw error;
+        dispatch({ type: API_ACTIONS.DEL, payload: id });
+        return data;
+      }
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
