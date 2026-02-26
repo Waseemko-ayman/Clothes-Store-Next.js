@@ -17,19 +17,18 @@ import { FaAlignLeft } from 'react-icons/fa6';
 import useIsMobile from '@/Hooks/useIsMobile';
 import { navItems } from '@/data';
 import NavItemLink from '../molecules/NavItemLink';
+import Logo from '../atoms/Logo';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile(800);
 
-  const MobileNavbar = navItems.filter(
-    (item) => item.name === 'Login' || item.name === 'Cart',
-  );
+  const MobileNavbar = navItems.filter((item) => item.name === 'Login');
 
   // Variables
   const StyledLinks = `relative py-1 text-base font-semibold cursor-pointer ${
-    isMobile ? 'text-white' : 'text-[var(--fifth-color)]'
-  } hover:text-[var(--forth-color)] transition duration-200`;
+    isMobile ? 'text-white' : 'text-(--fifth-color)'
+  } hover:text-(--forth-color) transition duration-200`;
 
   const handleLinkClick = () => {
     if (isMobile) {
@@ -38,30 +37,11 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-[var(--first-color)] py-5 sticky top-0 z-50 shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
+    <header className="bg-(--first-color) py-5 sticky top-0 z-50 shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
       {isMobile ? (
         <Sheet open={open} onOpenChange={setOpen}>
           <Container otherClassName="flex items-center justify-between h-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: -20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{
-                type: 'spring',
-                stiffness: 60,
-                damping: 12,
-                delay: 0.1,
-              }}
-            >
-              <Link href={PATHS.HOME}>
-                <Image
-                  src="/assets/landing/logo.webp"
-                  alt="Cata Logo"
-                  title="Cata Logo"
-                  width={50}
-                  height={50}
-                />
-              </Link>
-            </motion.div>
+            <Logo />
             <div className="flex items-center gap-2">
               {MobileNavbar.map((item, idx) => (
                 <motion.div
@@ -91,7 +71,7 @@ const Header = () => {
                 <SheetTrigger>
                   <FaAlignLeft
                     fontSize="large"
-                    className="text-2xl text-[var(--fifth-color)] hover:text-[var(--forth-color)] transition duration-200 cursor-pointer"
+                    className="text-2xl text-(--fifth-color) hover:text-(--forth-color) transition duration-200 cursor-pointer"
                   />
                 </SheetTrigger>
               </motion.div>
@@ -107,17 +87,17 @@ const Header = () => {
       ) : (
         <Container>
           <div className="flex items-center justify-between">
-            <Link href={PATHS.HOME}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, x: -20 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 60,
-                  damping: 12,
-                  delay: 0.1,
-                }}
-              >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: -20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 60,
+                damping: 12,
+                delay: 0.1,
+              }}
+            >
+              <Link href={PATHS.HOME}>
                 <Image
                   src="/assets/landing/logo.webp"
                   alt="Cata Logo"
@@ -125,8 +105,8 @@ const Header = () => {
                   width={60}
                   height={60}
                 />
-              </motion.div>
-            </Link>
+              </Link>
+            </motion.div>
             <NavLinks />
           </div>
         </Container>
