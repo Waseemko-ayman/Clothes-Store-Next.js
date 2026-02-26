@@ -17,6 +17,7 @@ import { profileSchema } from '@/utils/profileSchema';
 import { useToast } from '@/lib/toast';
 import supabase from '@/config/api';
 import { useSession } from '@/Hooks/useSession';
+import { useUserInfo } from '@/context/UserInfoContext';
 
 const MyAccountPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -35,6 +36,8 @@ const MyAccountPage = () => {
   }: any = useSupabaseClient('profiles', {
     id: session?.user?.id,
   });
+
+  const { setUser } = useUserInfo();
 
   const userInfo = userProfile?.[0];
   const userName = userInfo?.display_name || '';
@@ -110,6 +113,11 @@ const MyAccountPage = () => {
 
       if (error) throw error;
 
+      // ✅ Update context only after success
+      setUser((prev: any) => ({
+        ...prev,
+        ...payload,
+      }));
       showToast('Successfully updated');
       refetch();
     } catch (err: any) {

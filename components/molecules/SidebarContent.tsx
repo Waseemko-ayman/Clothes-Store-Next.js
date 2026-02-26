@@ -3,24 +3,20 @@ import { sidebarLinks } from '@/data';
 import { PATHS } from '@/data/paths';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import InlineError from './InlineError';
-import { useSession } from '@/Hooks/useSession';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import Loading from '../atoms/Loading';
+import { useUserInfo } from '@/context/UserInfoContext';
 
 const SidebarContent = ({ pathname }: { pathname: string }) => {
   const [error] = useState('');
 
   // Session Hook
-  const session = useSession();
-  const userName = session?.user?.user_metadata?.display_name;
+  const { user, isLoading } = useUserInfo();
 
-  const { data: userInfo, isLoading } = useSupabaseClient('profiles', {
-    id: session?.user?.id,
-  });
-  const role = userInfo?.[0]?.role;
-  const avatar = userInfo?.[0]?.avatar_url;
+  const userName = user?.display_name;
+  const role = user?.role;
+  const avatar = user?.avatar_url;
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -93,13 +89,15 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
           ) : error ? (
             <InlineError textColor="text-black" />
           ) : (
-            <Image
-              src={avatar || '/assets/user-avatar.png'}
-              alt="character"
-              width={50}
-              height={50}
-              className="rounded-full border-2 border-(--forth-color) cursor-pointer"
-            />
+            <div className="w-[50px] h-[50px] rounded-full overflow-hidden border-2 border-(--forth-color)">
+              <Image
+                src={avatar || '/assets/user-avatar.png'}
+                alt="user avatar"
+                width={50}
+                height={50}
+                className="w-full h-full object-cover cursor-pointer"
+              />
+            </div>
           )}
           <div>
             <p className="text-sm font-medium">
