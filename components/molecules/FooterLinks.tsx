@@ -13,7 +13,7 @@ const FooterLinks = ({
   otherClassName,
 }: FooterLinksProps) => {
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col">
       <SecondaryHeading title={secTitle} />
       <ul className={listClassName}>
         {FOOTER_LINKS_DATA[listName].map((item, index) => (
@@ -27,11 +27,11 @@ const FooterLinks = ({
           >
             <Link
               href={item.url}
-              className="text-[var(--seconde-color)] hover:pl-1 transition-all duration-300"
+              className="text-(--seconde-color) hover:pl-1 transition-all duration-300"
             >
               {/* By type guard To check if an item is of a type that contains icon or text */}
               {'icon' in item ? (
-                <item.icon className="text-[var(--forth-color)] text-lg" />
+                <item.icon className="text-(--forth-color) text-lg" />
               ) : (
                 item.text
               )}

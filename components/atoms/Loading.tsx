@@ -16,7 +16,7 @@ const Loading = ({
 }) => {
   return (
     <div
-      className={`flex items-center justify-center bg-white text-[var(--seconde-color)] ${
+      className={`flex items-center justify-center bg-white text-(--seconde-color) ${
         MainHightScreen ? 'min-h-screen' : ''
       } ${otherClassName}`}
     >
@@ -26,7 +26,7 @@ const Loading = ({
         } animate-pulse`}
       >
         <FaSpinner
-          className="animate-spin text-[var(--forth-color)]"
+          className="animate-spin text-(--forth-color)"
           size={spinnerSize}
         />
         {showText && (

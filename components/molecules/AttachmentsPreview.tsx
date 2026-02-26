@@ -74,6 +74,7 @@ const AttachmentsUploader = ({
               <Button
                 type="button"
                 variant="circle"
+                aria-label="Remove attachment"
                 handleClick={() => removeAttachment(index)}
                 otherClassName="absolute top-0 right-0 !bg-red-500 text-white !w-6 !h-6 flex items-center justify-center hover:!bg-red-500"
               >

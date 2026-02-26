@@ -96,7 +96,7 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
               alt="character"
               width={50}
               height={50}
-              className="rounded-full border-2 border-[var(--forth-color)] cursor-pointer"
+              className="rounded-full border-2 border-(--forth-color) cursor-pointer"
             />
           )}
           <div>

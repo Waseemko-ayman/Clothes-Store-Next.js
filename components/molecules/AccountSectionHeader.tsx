@@ -11,7 +11,7 @@ const AccountSectionHeader = ({
 }: AccountSectionHeaderProps) => {
   return (
     <div
-      className={`bg-[var(--forth-color)] text-[var(--white-color)] p-4 rounded-t-lg ${
+      className={`bg-(--forth-color) text-(--white-color) p-4 rounded-t-lg ${
         action ? 'flex items-center justify-between' : ''
       }`}
     >
@@ -20,7 +20,8 @@ const AccountSectionHeader = ({
           <Button
             variant="outline"
             Icon={ArrowLeft}
-            otherClassName="!rounded-full w-10 h-10 !p-2 border-white hover:bg-white hover:!text-[var(--forth-color)] hover:border-white"
+            aria-label="Go back"
+            otherClassName="!rounded-full w-10 h-10 !p-2 border-white hover:bg-white hover:!text-(--forth-color) hover:border-white"
             handleClick={handleBack}
           />
         )}

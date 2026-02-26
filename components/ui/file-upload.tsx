@@ -30,7 +30,7 @@ export const FileUpload = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isFile = value instanceof File;
-  
+
   const fileName = isFile
     ? value.name
     : preview?.split('/').pop() || 'Current Image';
@@ -104,7 +104,7 @@ export const FileUpload = ({
               <motion.div
                 layoutId="file-upload"
                 className={cn(
-                  'relative overflow-hidden border border-[var(--seven-color)] z-40 bg-white flex items-center justify-between gap-3 md:min-h-24 p-4 w-full rounded-md',
+                  'relative overflow-hidden border border-(--seven-color) z-40 bg-white flex items-center justify-between gap-3 md:min-h-24 p-4 w-full rounded-md',
                   'shadow-sm',
                 )}
               >
@@ -138,7 +138,7 @@ export const FileUpload = ({
                 variants={mainVariant}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 className={cn(
-                  'relative z-40 bg-white border border-dashed border-[var(--seven-color)] dark:bg-neutral-900 flex items-center justify-center h-12 w-full',
+                  'relative z-40 bg-white border border-dashed border-(--seven-color) dark:bg-neutral-900 flex items-center justify-center h-12 w-full',
                 )}
               >
                 {isDragActive ? (

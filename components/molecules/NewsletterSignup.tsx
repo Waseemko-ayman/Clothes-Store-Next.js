@@ -12,7 +12,7 @@ import ButtonLoading from '../atoms/ButtonLoading';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
-  
+
   // Notifications
   const { showToast } = useToast();
 
@@ -43,12 +43,12 @@ const NewsletterSignup = () => {
           transition={{ duration: 0.6 }}
           className="text-center lg:text-start"
         >
-          <h2 className="text-[var(--white-color)] text-3xl font-bold">
+          <h2 className="text-(--white-color) text-3xl font-bold">
             Sign Up For Newsletters
           </h2>
-          <p className="text-[var(--first-color)] text-base">
+          <p className="text-(--first-color) text-base">
             Get E-mail updates about our latest shop and{' '}
-            <span className="text-[var(--third-color)]">special offers</span>
+            <span className="text-(--third-color)">special offers</span>
           </p>
         </motion.div>
         <motion.form

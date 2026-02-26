@@ -50,15 +50,15 @@ const LeaveMessage = () => {
   return (
     <Layer>
       <Container otherClassName="flex items-start justify-between">
-        <div className="max-w-[1025px] mx-auto flex-1 py-5 md:py-8 px-5 border border-[var(--seven-color)] gap-10 max-[992px]:flex-wrap max-[992px]:gap-10 rounded-md">
+        <div className="max-w-[1025px] mx-auto flex-1 py-5 md:py-8 px-5 border border-(--seven-color) gap-10 max-[992px]:flex-wrap max-[992px]:gap-10 rounded-md">
           <div className="space-y-2 mb-7">
             <Link
               href="#"
-              className="text-[var(--six-color)] opacity-[0.5] uppercase hover:text-[var(--forth-color)] hover:opacity-[1] transition-all duration-300 block max-md:text-center"
+              className="text-(--six-color) opacity-[0.5] uppercase hover:text-(--forth-color) hover:opacity-[1] transition-all duration-300 block max-md:text-center"
             >
               Leave A Message
             </Link>
-            <h2 className="text-[var(--fifth-color)] text-2xl md:text-3xl font-bold max-md:text-center">
+            <h2 className="text-(--fifth-color) text-2xl md:text-3xl font-bold max-md:text-center">
               We love to hear from you
             </h2>
           </div>

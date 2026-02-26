@@ -58,7 +58,7 @@ const AuthTemplate: React.FC<AuthTemplateProps> = ({
           {children}
         </div>
 
-        <div className="h-2 bg-gradient-to-r from-[var(--forth-color)] to-[var(--second-color)]"></div>
+        <div className="h-2 bg-gradient-to-r from-(--forth-color) to-[var(--second-color)]"></div>
       </div>
       {isLogin && (
         <div className="flex items-center justify-center gap-1 text-sm mt-5 text-[#054b46]">

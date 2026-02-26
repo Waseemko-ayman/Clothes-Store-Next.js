@@ -27,10 +27,10 @@ const KnowUs = () => {
             transition={{ duration: 0.4 }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            <h2 className="text-[46px] text-[var(--fifth-color)] font-bold">
+            <h2 className="text-[46px] text-(--fifth-color) font-bold">
               Who We Are?
             </h2>
-            <p className="text-[var(--six-color)] text-base leading-normal mt-3 mb-4">
+            <p className="text-(--six-color) text-base leading-normal mt-3 mb-4">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
               sapiente, repudiandae incidunt fugit excepturi voluptatem illo sed
               maiores perspiciatis vitae odio, iste consectetur accusamus
@@ -50,12 +50,12 @@ const KnowUs = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-[var(--fifth-color)] text-[50px] font-bold mb-6"
+            className="text-(--fifth-color) text-[50px] font-bold mb-6"
           >
             Download Our{' '}
             <Link
               href="#"
-              className="underline text-[var(--purple-color)]"
+              className="underline text-(--purple-color)"
               target="_blank"
             >
               App

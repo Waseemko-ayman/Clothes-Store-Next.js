@@ -23,8 +23,8 @@ const addressInfo = [
 const Addresses = () => {
   return (
     <div className="space-y-4">
-      <div className="bg-[var(--white-color)] border-[var(--seven-color)]">
-        <div className="bg-[var(--seconde-color)] text-[var(--white-color)] rounded-t-lg">
+      <div className="bg-(--white-color) border-(--seven-color)">
+        <div className="bg-(--seconde-color) text-(--white-color) rounded-t-lg">
           <AccountSectionHeader
             title="Shipping Addresses"
             description="Manage your delivery addresses"

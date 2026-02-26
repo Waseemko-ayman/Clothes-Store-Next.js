@@ -8,7 +8,7 @@ import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
 import { useSession } from '@/Hooks/useSession';
 
-const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
+const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
   // API Context
   const { cartItems } = useCartContext();
 
@@ -19,8 +19,8 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
     <>
       {item.name === 'Login' && session ? (
         <UserPopover />
-      ) : item.name === 'Cart' ? (
-        <Link href={item.link} aria-label='My Cart'>
+      ) : item.name === 'Cart' && !isMobile ? (
+        <Link href={item.link} aria-label="My Cart">
           <div className="flex items-center gap-1">
             <FaCartShopping
               className={`${linksStyleing} text-[var(--fifth-color)] text-base`}
@@ -32,8 +32,13 @@ const NavItemLink = ({ item, linksStyleing }: NavItemLinkProps) => {
           </div>
         </Link>
       ) : (
-        <Link href={item.link}>
-          {item.name === 'Login' ? <FiUser size={25} /> : item.name}
+        <Link href={item.link} aria-label={item.name}>
+          {item.name === 'Cart' && isMobile ? null : item.name === 'Login' &&
+            isMobile ? null : item.name === 'Login' ? (
+            <FiUser size={25} />
+          ) : (
+            item.name
+          )}
         </Link>
       )}
     </>

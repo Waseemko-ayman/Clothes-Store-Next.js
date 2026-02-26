@@ -23,7 +23,7 @@ const Settings = () => {
 
   return (
     <div className="space-y-4">
-      <div className="bg-[var(--white-color)] border-[var(--seven-color)]">
+      <div className="bg-(--white-color) border-(--seven-color)">
         <AccountSectionHeader
           title={currentSetting ? currentSetting.title : 'Account Settings'}
           description={

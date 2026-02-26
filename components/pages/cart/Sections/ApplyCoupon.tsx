@@ -6,7 +6,7 @@ import ApplyCouponCard from './ApplyCouponCard';
 import CartTotals from './CartTotals';
 
 const ApplyCoupon = () => {
-  const TitleStyle = 'text-[var(--fifth-color)] text-lg mb-4 font-bold';
+  const TitleStyle = 'text-(--fifth-color) text-lg mb-4 font-bold';
 
   return (
     <Layer otherClassName="!py-5">

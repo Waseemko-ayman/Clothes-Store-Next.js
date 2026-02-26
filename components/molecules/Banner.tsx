@@ -41,7 +41,7 @@ const Banner = ({
   return (
     <WobbleCard bgImage={bgImage}>
       <div
-        className={`relative text-[var(--white-color)] bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8 ${otherClassNameContainer}`}
+        className={`relative text-(--white-color) bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8 ${otherClassNameContainer}`}
       >
         <div className="relative flex flex-col items-start z-10">
           {renderTitle()}

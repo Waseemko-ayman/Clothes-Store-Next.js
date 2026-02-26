@@ -141,7 +141,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                   >
                     <BreadcrumbItem>
                       {index === breadcrumbs.length - 1 ? (
-                        <span className="text-[var(--forth-color)] text-base">
+                        <span className="text-(--forth-color) text-base">
                           {crumb.label
                             .split('-')
                             .map(
@@ -154,7 +154,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                       ) : (
                         <BreadcrumbLink
                           href={crumb.href}
-                          className="hover:text-[var(--forth-color)] transtion-all duration-300"
+                          className="hover:text-(--forth-color) transtion-all duration-300"
                         >
                           {crumb.label}
                         </BreadcrumbLink>
@@ -194,13 +194,13 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
                   required
-                  className="w-24 h-11 rounded-md shadow-xs py-2 pl-3 border border-input focus:border-[var(--forth-color)] outline-none"
+                  className="w-24 h-11 rounded-md shadow-xs py-2 pl-3 border border-input focus:border-(--forth-color) outline-none"
                 />
                 <div>
                   <Select value={size} onValueChange={handleSelectSize}>
                     <SelectTrigger
                       id="size"
-                      className={`w-30 !h-11 bg-background focus:!border-[var(--forth-color)] ${errorMsgSize ? 'border-red-500' : ''}`}
+                      className={`w-30 !h-11 bg-background focus:!border-(--forth-color) ${errorMsgSize ? 'border-red-500' : ''}`}
                     >
                       <SelectValue placeholder="Select size" />
                     </SelectTrigger>
@@ -240,7 +240,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
             </div>
             <div>
               <h3 className="font-bold text-[22px] mb-3">Product Details</h3>
-              <p className="text-[var(--seconde-color)] text-[18px] leading-normal">
+              <p className="text-(--seconde-color) text-[18px] leading-normal">
                 {product?.description}
               </p>
             </div>

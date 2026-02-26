@@ -22,10 +22,10 @@ const MainTitle = ({ title, description, Icon }: MainTitleProps) => {
           <Icon className="h-8 w-8 text-primary" />
         </div>
       )}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--fifth-color)]">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-(--fifth-color)">
         {title}
       </h2>
-      <p className="text-base text-[var(--seconde-color)] mt-3.5 mb-5">
+      <p className="text-base text-(--seconde-color) mt-3.5 mb-5">
         {description}
       </p>
     </motion.div>

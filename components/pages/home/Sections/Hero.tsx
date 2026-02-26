@@ -30,7 +30,7 @@ const Hero = () => {
           >
             <motion.div
               style={{ y: yTitle }}
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--forth-color)]"
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-(--forth-color)"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -43,20 +43,20 @@ const Hero = () => {
 
             <motion.h1
               style={{ y: yHeading }}
-              className="py-4 text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-[var(--fifth-color)] font-bold"
+              className="py-4 text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-(--fifth-color) font-bold"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               Define your look <br />
-              <span className="text-[var(--forth-color)]">
+              <span className="text-(--forth-color)">
                 Wear confidence every day
               </span>
             </motion.h1>
 
             <motion.p
               style={{ y: yText }}
-              className="text-base text-[var(--seconde-color)]"
+              className="text-base text-(--seconde-color)"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}

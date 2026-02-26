@@ -15,15 +15,15 @@ const AccountSettingsCard = ({
   return (
     <CardWrapper>
       <div className="flex items-center max-[426px]:flex-col gap-3">
-        <Icon className="h-5 w-5 text-[var(--forth-color)]" />
+        <Icon className="h-5 w-5 text-(--forth-color)" />
         <div>
-          <h3 className="font-semibold text-[var(--fifth-color)]">{title}</h3>
-          <p className="text-sm text-[var(--six-color)]">{description}</p>
+          <h3 className="font-semibold text-(--fifth-color)">{title}</h3>
+          <p className="text-sm text-(--six-color)">{description}</p>
         </div>
       </div>
       <Button
         variant="outline"
-        otherClassName="!border-[var(--forth-color)] !text-[var(--forth-color)] hover:!text-white !py-2 !px-4"
+        otherClassName="!border-(--forth-color) !text-(--forth-color) hover:!text-white !py-2 !px-4"
         handleClick={() => onManage(key)}
       >
         Manage

@@ -2,7 +2,6 @@
 import React from 'react';
 import { Check, Lock } from 'lucide-react';
 import Button from '@/components/atoms/Button';
-import Link from 'next/link';
 import { StatusPasswordProps } from '@/interfaces';
 
 const StatusPassword: React.FC<StatusPasswordProps> = ({
@@ -20,7 +19,7 @@ const StatusPassword: React.FC<StatusPasswordProps> = ({
   const IconComponent = icon === 'check' ? Check : Lock;
 
   return (
-    <div className="bg-[var(--first-color)] min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="bg-(--first-color) min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       <div className="w-full max-w-md shadow-2xl border-0 overflow-hidden relative z-10">
         <div className="p-8 text-center bg-white">
           <div
@@ -30,15 +29,15 @@ const StatusPassword: React.FC<StatusPasswordProps> = ({
             <IconComponent className="w-8 h-8" style={{ color: iconColor }} />
           </div>
 
-          <h2 className="text-2xl font-bold mb-2 text-[var(--fifth-color)]">
+          <h2 className="text-2xl font-bold mb-2 text-(--fifth-color)">
             {title}
           </h2>
-          <p className="mb-4 text-[var(--six-color)]">{description}</p>
+          <p className="mb-4 text-(--six-color)">{description}</p>
 
           {linkText && linkHref && (
-            <Link href={linkHref}>
-              <Button otherClassName="w-full">{linkText}</Button>
-            </Link>
+            <Button otherClassName="w-full" href={linkHref}>
+              {linkText}
+            </Button>
           )}
 
           {infoText && (

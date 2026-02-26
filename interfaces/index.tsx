@@ -190,6 +190,7 @@ export interface NavItem {
 export interface NavItemLinkProps {
   item: NavItem;
   linksStyleing: string;
+  isMobile?: boolean;
 }
 
 export interface AccountSectionHeaderProps {
@@ -461,4 +462,13 @@ export interface FooterLinksProps {
   listClassName?: string;
   listName: 'followUs' | 'About' | 'myAccount';
   otherClassName?: string;
+}
+
+export interface GridWrapperProps {
+  children: React.ReactNode;
+  otherClassName?: string;
+  isScrollable?: boolean;
+  gridCols?: string;
+  itemClassName?: string;
+  disableGridOnMd?: boolean;
 }

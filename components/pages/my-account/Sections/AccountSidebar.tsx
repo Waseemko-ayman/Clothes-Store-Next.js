@@ -64,7 +64,7 @@ const AccountSidebar = ({
               src={avatarPreview || '/assets/user-avatar.png'}
               alt="user"
               fill
-              className="object-cover rounded-full border-2 border-[var(--forth-color)]"
+              className="object-cover rounded-full border-2 border-(--forth-color)"
             />
             <input
               type="file"
@@ -79,10 +79,8 @@ const AccountSidebar = ({
             <AccountInfoSkeleton />
           ) : (
             <>
-              <h1 className="text-[var(--fifth-color)] font-semibold">
-                {userName}
-              </h1>
-              <p className="text-[var(--six-color)]">{userEmail}</p>
+              <h1 className="text-(--fifth-color) font-semibold">{userName}</h1>
+              <p className="text-(--six-color)">{userEmail}</p>
               {userRole && (
                 <div
                   className={`flex item-center justify-center gap-2 w-fit mx-auto mt-2 px-3 py-1 rounded-full ${
@@ -137,10 +135,11 @@ const AccountSidebar = ({
                   variant="primary"
                   otherClassName={`w-full justify-start ${
                     activeTab === text.toLowerCase()
-                      ? '!bg-[var(--first-color)] !text-[var(--forth-color)]'
+                      ? '!bg-(--first-color) !text-(--forth-color)'
                       : ''
                   }`}
                   handleClick={() => setActiveTab(text.toLowerCase())}
+                  aria-label={text}
                 >
                   {text}
                 </Button>

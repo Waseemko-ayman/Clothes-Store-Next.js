@@ -11,14 +11,14 @@ const Visit = () => {
         <div className="not-min-md:text-center flex-1">
           <Link
             href="#"
-            className="text-[var(--six-color)] opacity-[0.5] uppercase hover:text-[var(--forth-color)] hover:opacity-[1] transition-all duration-300"
+            className="text-(--six-color) opacity-[0.5] uppercase hover:text-(--forth-color) hover:opacity-[1] transition-all duration-300"
           >
             Get In Touch
           </Link>
-          <h2 className="text-[var(--fifth-color)] text-3xl mt-5 font-bold">
+          <h2 className="text-(--fifth-color) text-3xl mt-5 font-bold">
             Visit one of our agency locations or contact us tody
           </h2>
-          <p className="text-[var(--fifth-color)] text-bold mt-[15px] mb-5">
+          <p className="text-(--fifth-color) text-bold mt-[15px] mb-5">
             Head Office
           </p>
           <ul>
@@ -30,9 +30,7 @@ const Visit = () => {
                   className="flex items-start gap-3.5 not-last:mb-5"
                 >
                   <Icon className="" />
-                  <span className="text-[var(--six-color)]">
-                    {item.community}
-                  </span>
+                  <span className="text-(--six-color)">{item.community}</span>
                 </li>
               );
             })}

@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import React from 'react';
 import Container from '../atoms/Container';
 import Layer from '../atoms/Layer';
 import FooterLinks from '../molecules/FooterLinks';
@@ -10,22 +9,25 @@ import { motion } from 'framer-motion';
 import Contactnformation from '../atoms/ContactInformation';
 import SecondaryHeading from '../atoms/SecondaryHeading';
 
+const MotionImage = motion(Image);
+
 const Footer = () => {
   return (
     <Layer otherClassName="overflow-hidden">
       <footer>
         <Container otherClassName="flex items-start md:items-center justify-between flex-col md:flex-row flex-wrap gap-5">
           <div className="md:mr-20">
-            <motion.img
+            <MotionImage
               src="/assets/landing/logo.webp"
-              alt="logo"
+              alt="Wénor Shop Logo"
+              title="Wénor Shop Logo"
               className="mb-8"
               width={140}
               height={40}
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
             />
             <SecondaryHeading title="Contact" />
             <motion.div
@@ -67,7 +69,7 @@ const Footer = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="text-[var(--seconde-color)] text-base mt-[15px] mb-5"
+                className="text-(--seconde-color) text-base mt-[15px] mb-5"
               >
                 From App Store or Google Play
               </motion.p>
@@ -76,7 +78,7 @@ const Footer = () => {
                   <motion.a
                     key={id}
                     href={url}
-                    className="border border-[var(--forth-color)] rounded-[6px] px-1 hover:shadow-[10px_10px_34px_#08817917] transition duration-300"
+                    className="border border-(--forth-color) rounded-[6px] px-1 hover:shadow-[10px_10px_34px_#08817917] transition duration-300"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -91,7 +93,7 @@ const Footer = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="text-[var(--seconde-color)] text-base mt-[15px] mb-5"
+                className="text-(--seconde-color) text-base mt-[15px] mb-5"
               >
                 Secured Payment Gateays
               </motion.p>

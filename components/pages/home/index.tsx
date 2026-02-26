@@ -1,4 +1,3 @@
-import React from 'react';
 import Hero from './Sections/Hero';
 import FeatursSec from '../../organism/FeatursSec';
 import FeaturedProducts from './Sections/FeaturedProducts';

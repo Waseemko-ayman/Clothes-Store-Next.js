@@ -22,7 +22,7 @@ const CartTable: React.FC<CartTableProps> = ({
             {tabeleData.tableHeaders.map((header, index) => (
               <th
                 key={index}
-                className={`text-[var(--white-color)] bg-[var(--forth-color)] uppercase border-y-[var(--forth-color)] text-center ${commonClassName}`}
+                className={`text-(--white-color) bg-(--forth-color) uppercase border-y-(--forth-color) text-center ${commonClassName}`}
               >
                 {header}
               </th>
@@ -31,15 +31,11 @@ const CartTable: React.FC<CartTableProps> = ({
         </thead>
         <tbody>
           {tabeleData.tabelContent.map((item) => (
-            <tr
-              key={item.id ?? 0}
-              className="text-[var(--seconde-color)] font-bold"
-            >
+            <tr key={item.id ?? 0} className="text-(--seconde-color) font-bold">
               <td className={commonClassName}>
                 <ButtonTrash
                   handleClick={() => handleDelete(item?.id ?? 0, item.title)}
                   otherClassName="group flex items-center justify-center w-10 h-10 border-none bg-red-50 hover:bg-red-500 mx-auto"
-                  aria-label="Remove item"
                 />
               </td>
               <td className={commonClassName}>

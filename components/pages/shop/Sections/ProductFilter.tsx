@@ -102,6 +102,7 @@ const ProductFilter = ({
                 }))
               }
               className="!h-[36px]"
+              aria-label="Toggle advanced filters"
             >
               <SlidersHorizontal className="w-4 h-4" />
             </Button>

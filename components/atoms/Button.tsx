@@ -4,7 +4,7 @@ import { ButtonProps } from '@/interfaces';
 
 const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps & { href?: string }
+  ButtonProps & { href?: string; ariaLabel?: string }
 >(
   (
     {
@@ -19,8 +19,7 @@ const Button = forwardRef<
       disabled = false,
       href,
       iconClassName,
-      // bgColor,
-      // hoverBgColor,
+      ariaLabel,
       ...props
     },
     ref,
@@ -30,21 +29,20 @@ const Button = forwardRef<
       : '';
 
     const classes = `${
-      // variant !== 'cover' ? 'py-3 px-8 hover:tracking-widest' : 'py-4 px-20'
       variant !== 'cover' ? 'py-3 px-8' : 'py-4 px-20'
     } cursor-pointer text-base outline-none font-semibold transition-all duration-200 ${borderRadius} ${
       variant === 'primary'
-        ? 'bg-[var(--forth-color)] text-[var(--white-color)] hover:bg-[#054b46]'
+        ? 'bg-(--forth-color) text-(--white-color) hover:bg-[#054b46]'
         : variant === 'secondary'
-          ? 'bg-[var(--white-color)] text-black hover:bg-[var(--forth-color)] hover:text-[var(--white-color)]'
+          ? 'bg-(--white-color) text-black hover:bg-(--forth-color) hover:text-(--white-color)'
           : variant === 'outline'
-            ? 'bg-transparent border border-white text-[var(--white-color)] hover:bg-[var(--forth-color)] hover:text-[var(--white-color)] hover:border-[var(--forth-color)]'
+            ? 'bg-transparent border border-white text-(--white-color) hover:bg-(--forth-color) hover:text-(--white-color) hover:border-(--forth-color)'
             : variant === 'cover'
-              ? 'bg-center bg-transparent bg-no-repeat text-[var(--forth-color)]'
+              ? 'bg-center bg-transparent bg-no-repeat text-(--forth-color)'
               : variant === 'circle'
-                ? 'w-10 h-10 !p-0 bg-[#e8f6ea] text-[var(--forth-color)] hover:bg-[var(--forth-color)] hover:text-[var(--white-color)] hover:border-[var(--white-color)] hover:rotate-[360deg] border border-[#cce7d0] !rounded-[50%] transition-all duration-200'
+                ? 'w-10 h-10 !p-0 bg-[#e8f6ea] text-(--forth-color) hover:bg-(--forth-color) hover:text-(--white-color) hover:border-(--white-color) hover:rotate-[360deg] border border-[#cce7d0] !rounded-[50%] transition-all duration-200'
                 : variant === 'ghost'
-                  ? 'text-[var(--forth-color)] hover:bg-gray-200'
+                  ? 'text-(--forth-color) hover:bg-gray-200'
                   : ''
     } ${Icon ? '!flex items-center gap-2 w-fit' : ''} ${disabledClasses} ${otherClassName}`;
 
@@ -62,6 +60,7 @@ const Button = forwardRef<
           href={href}
           ref={ref as Ref<HTMLAnchorElement>}
           className={classes}
+          aria-label={ariaLabel}
           style={{
             backgroundImage:
               variant === 'cover'
@@ -82,6 +81,7 @@ const Button = forwardRef<
         onClick={handleClick}
         type={type}
         disabled={disabled}
+        aria-label={ariaLabel}
         style={{
           backgroundImage:
             variant === 'cover'

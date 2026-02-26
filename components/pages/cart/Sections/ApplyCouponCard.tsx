@@ -10,7 +10,7 @@ const ApplyCouponCard = ({ TitleStyle }: { TitleStyle: string }) => {
         <input
           type="text"
           placeholder="Enter Your Coupon"
-          className={`${formElStyle} p-2.5 max-w-full w-[400px] border border-[var(--seven-color)] max-md:w-[300px] placeholder:transition-all placeholder:duration-300 focus:placeholder:opacity-0`}
+          className={`${formElStyle} p-2.5 max-w-full w-[400px] border border-(--seven-color) max-md:w-[300px] placeholder:transition-all placeholder:duration-300 focus:placeholder:opacity-0`}
         />
         <Button
           variant="primary"

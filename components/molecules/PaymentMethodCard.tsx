@@ -12,7 +12,7 @@ const PaymentMethodCard = ({
   handleRemove: (id: string) => void;
 }) => {
   return (
-    <div className="relative p-5 bg-white border border-[var(--seven-color)] rounded-xl overflow-hidden shadow-lg hover:border-[var(--forth-color)]/30 transition-all duration-300">
+    <div className="relative p-5 bg-white border border-(--seven-color) rounded-xl overflow-hidden shadow-lg hover:border-(--forth-color)/30 transition-all duration-300">
       {method.isDefault && (
         <Badge className="absolute top-4 right-4 bg-primary/10 text-primary hover:bg-primary/20 border-primary/20">
           Default
@@ -49,7 +49,7 @@ const PaymentMethodCard = ({
       <div className="flex gap-2 mt-4 pt-4 border-t border-border">
         <Button
           variant="outline"
-          otherClassName="flex-1 !py-2 !border-[var(--forth-color)] !text-[var(--forth-color)] hover:!text-white"
+          otherClassName="flex-1 !py-2 !border-(--forth-color) !text-(--forth-color) hover:!text-white"
           disabled={method.isDefault}
         >
           Set as Default

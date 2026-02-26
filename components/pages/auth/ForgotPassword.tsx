@@ -54,7 +54,7 @@ const ForgotPasswordPage = () => {
   const formContent = (
     <>
       <div className="space-y-2">
-        <label htmlFor="email" className="text-[var(--fifth-color)]">
+        <label htmlFor="email" className="text-(--fifth-color)">
           Email Address
         </label>
         <Input
@@ -66,7 +66,7 @@ const ForgotPasswordPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           otherClassName="w-full !rounded-md"
         />
-        <p className="text-xs mt-2 text-[var(--six-color)]">
+        <p className="text-xs mt-2 text-(--six-color)">
           We&rsquo;ll send a password reset link to this email
         </p>
       </div>
