@@ -13,7 +13,7 @@ import {
   FaTwitter,
   FaUser,
 } from 'react-icons/fa6';
-import { FiLogOut, FiMail } from 'react-icons/fi';
+import { FiLogOut, FiMail, FiUsers } from 'react-icons/fi';
 import {
   Bell,
   Cookie,
@@ -580,6 +580,11 @@ export const sidebarLinks = [
     title: 'Newsletter',
     href: PATHS.DASHBOARD.NEWSLETTER,
     icon: FiMail,
+  },
+  {
+    title: 'Users',
+    href: PATHS.DASHBOARD.USERS,
+    icon: FiUsers,
   },
   // {
   //   title: 'ratings',

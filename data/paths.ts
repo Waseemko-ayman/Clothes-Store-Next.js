@@ -29,5 +29,6 @@ export const PATHS = {
     RATINGS: '/dashboard/ratings',
     SETTINGS: '/dashboard/settings',
     NEWSLETTER: '/dashboard/newsletter',
+    USERS: '/dashboard/users',
   },
 };
