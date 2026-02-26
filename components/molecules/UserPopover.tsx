@@ -8,12 +8,16 @@ import { userList } from '@/data';
 import { useAuthContext } from '@/context/AuthContext';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import Loading from '../atoms/Loading';
+import { useSession } from '@/Hooks/useSession';
 
 const UserPopover = () => {
   const { logout } = useAuthContext();
 
   // Supabase Hook
-  const { data: userInfo, isLoading } = useSupabaseClient('profiles');
+  const session = useSession();
+  const { data: userInfo, isLoading } = useSupabaseClient('profiles', {
+    id: session?.user?.id,
+  });
 
   const handleLogout = () => {
     logout();

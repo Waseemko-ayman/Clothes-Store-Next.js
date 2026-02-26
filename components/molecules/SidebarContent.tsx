@@ -16,7 +16,9 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
   const session = useSession();
   const userName = session?.user?.user_metadata?.display_name;
 
-  const { data: userInfo, isLoading } = useSupabaseClient('profiles');
+  const { data: userInfo, isLoading } = useSupabaseClient('profiles', {
+    id: session?.user?.id,
+  });
   const role = userInfo?.[0]?.role;
   const avatar = userInfo?.[0]?.avatar_url;
 
