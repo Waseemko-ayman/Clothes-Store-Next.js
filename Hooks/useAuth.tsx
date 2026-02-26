@@ -106,7 +106,9 @@ const useAuth = () => {
           showToast('OTP sent to your phone');
           router.replace(PATHS.AUTH.VERIFY_OTP);
         } else {
-          showToast('Account created successfully');
+          showToast(
+            'Account created successfully. Check your email to verify.',
+          );
           router.replace(PATHS.AUTH.LOGIN);
         }
       }
