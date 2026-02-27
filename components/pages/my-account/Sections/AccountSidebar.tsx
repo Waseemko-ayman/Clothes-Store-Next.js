@@ -79,11 +79,9 @@ const AccountSidebar = ({
             <AccountInfoSkeleton />
           ) : (
             <>
-              <h1 className="text-(--fifth-color) font-semibold">{userName}</h1>
-              <p className="text-(--six-color)">{userEmail}</p>
               {userRole && (
                 <div
-                  className={`flex item-center justify-center gap-2 w-fit mx-auto mt-2 px-3 py-1 rounded-full ${
+                  className={`flex item-center justify-center gap-2 w-fit mx-auto mb-2 px-3 py-1 rounded-full ${
                     userRole === 'ADMIN'
                       ? 'bg-red-100 text-red-700'
                       : userRole === 'MANAGER'
@@ -101,6 +99,8 @@ const AccountSidebar = ({
                   </span>
                 </div>
               )}
+              <h1 className="text-(--fifth-color) font-semibold">{userName}</h1>
+              <p className="text-(--six-color)">{userEmail}</p>
               <div className="flex items-center justify-center gap-1 text-gray-600 mt-3 text-sm">
                 <p>Registered via: </p>
                 <span className="font-medium capitalize">
