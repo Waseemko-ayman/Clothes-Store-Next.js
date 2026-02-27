@@ -43,9 +43,11 @@ function DialogOverlay({
 function DialogContent({
   className,
   children,
+  showLastTwo = true,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean;
+  showLastTwo?: boolean;
 }) {
   return (
     <DialogPortal data-slot="dialog-portal">
@@ -59,7 +61,7 @@ function DialogContent({
         {...props}
       >
         <div className="absolute inset-0 z-0">
-          <BackgroundGradient opacity={0.15} />
+          <BackgroundGradient opacity={0.15} showLastTwo={showLastTwo} />
         </div>
 
         {/* Scrollable Content */}

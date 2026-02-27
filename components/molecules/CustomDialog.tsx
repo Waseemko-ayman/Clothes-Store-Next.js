@@ -18,11 +18,12 @@ const CustomDialog: React.FC<CustomDialogDrawerProps> = ({
   children,
   contentClassName,
   headerClassName,
+  showLastTwo = true,
 }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className={contentClassName}>
+      <DialogContent className={contentClassName} showLastTwo={showLastTwo}>
         {(title || description) && (
           <DialogHeader className={headerClassName}>
             {title && <DialogTitle className="sr-only">{title}</DialogTitle>}
