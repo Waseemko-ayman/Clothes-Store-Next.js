@@ -17,7 +17,7 @@ const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
 
   return (
     <>
-      {item.name === 'Login' && session ? (
+      {item.name === 'Login' && session && !isMobile ? (
         <UserPopover />
       ) : item.name === 'Cart' && !isMobile ? (
         <Link href={item.link} aria-label="My Cart">
