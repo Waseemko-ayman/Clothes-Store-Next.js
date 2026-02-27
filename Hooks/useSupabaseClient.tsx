@@ -61,18 +61,12 @@ export default function useSupabaseClient(
   };
 
   useEffect(() => {
-    if (filters?.id) {
-      fetchData();
-    }
+    if (tableName === 'profiles' && !filters?.id) return;
+    fetchData();
 
     // Use JSON.stringify to compare object values instead of references.
     // Prevents unnecessary reruns when the object is recreated with same data.
-  }, [
-    tableName,
-    JSON.stringify(filters),
-    JSON.stringify(priceRange),
-    filters?.id,
-  ]);
+  }, [tableName, JSON.stringify(filters), JSON.stringify(priceRange)]);
 
   const insertData = async (newRow: Record<string, any>) => {
     setIsLoading(true);
