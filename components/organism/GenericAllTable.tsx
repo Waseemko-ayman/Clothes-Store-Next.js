@@ -49,6 +49,16 @@ const GenericAllTable = ({
     if (!tableName) return;
 
     try {
+      // ⚠️ خاصية profiles فقط
+      if (tableName === 'profiles') {
+        // 1️⃣ حذف من auth.users عبر API route آمن
+        await fetch('/api/delete-user', {
+          method: 'DELETE',
+          body: JSON.stringify({ userId: id }),
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
       await del(id);
       showToast('Deleted successfully');
 

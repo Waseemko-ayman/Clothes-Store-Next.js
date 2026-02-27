@@ -6,14 +6,14 @@ import AnimatedWrapper from './FramerMotion/AnimatedWrapper';
 import NavItem from '../atoms/NavItem';
 import { userList } from '@/data';
 import { useAuthContext } from '@/context/AuthContext';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import Loading from '../atoms/Loading';
+import { useUserInfo } from '@/context/UserInfoContext';
 
 const UserPopover = () => {
   const { logout } = useAuthContext();
 
   // Supabase Hook
-  const { data: userInfo, isLoading } = useSupabaseClient('profiles');
+  const { user: userInfo, isLoading } = useUserInfo();
 
   const handleLogout = () => {
     logout();
@@ -29,20 +29,21 @@ const UserPopover = () => {
             otherClassName="bg-transparent!"
           />
         ) : (
-          <Image
-            src={userInfo?.[0]?.avatar_url || '/assets/user-avatar.png'}
-            // src={'/assets/user-avatar.png'}
-            alt="user avatar"
-            width={35}
-            height={35}
-            className="rounded-full border-2 border-(--forth-color) cursor-pointer"
-          />
+          <div className="w-[40px] h-[40px] rounded-full overflow-hidden border-2 border-(--forth-color)">
+            <Image
+              src={userInfo?.avatar_url || '/assets/user-avatar.png'}
+              alt="user avatar"
+              width={40}
+              height={40}
+              className="w-full h-full object-cover cursor-pointer"
+            />
+          </div>
         )}
       </PopoverTrigger>
       <PopoverContent className="w-80">
         <ul>
           {userList.map((item: any, index: number) => {
-            if (item.title === 'Dashboard' && userInfo?.[0]?.role !== 'ADMIN')
+            if (item.title === 'Dashboard' && userInfo?.role !== 'ADMIN')
               return false;
             return (
               <AnimatedWrapper key={item.id} custom={index}>

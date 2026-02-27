@@ -48,8 +48,10 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL(PATHS.AUTH.LOGIN, req.url));
   }
 
-  if (profile.role !== 'ADMIN') {
-    return NextResponse.redirect(new URL(PATHS.HOME, req.url));
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    if (profile.role !== 'ADMIN') {
+      return NextResponse.redirect(new URL(PATHS.HOME, req.url));
+    }
   }
 
   return res;
