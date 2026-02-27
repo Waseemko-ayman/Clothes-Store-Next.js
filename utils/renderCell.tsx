@@ -57,7 +57,7 @@ export const renderCell = (col: any, row: any) => {
         alt={columnKey}
         width={100}
         height={100}
-        className="w-[100px] h-[100px] object-cover rounded-md border border-gray-200"
+        className={`w-[100px] h-[100px] object-cover border border-gray-200 ${columnKey === 'avatar_url' ? 'mx-auto rounded-full' : 'rounded-md'}`}
       />
     );
   }
