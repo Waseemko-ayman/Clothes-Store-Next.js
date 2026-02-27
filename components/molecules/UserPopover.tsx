@@ -49,7 +49,7 @@ const UserPopover = () => {
               <AnimatedWrapper key={item.id} custom={index}>
                 <li className="w-full">
                   <NavItem
-                    icon={item.icon}
+                    Icon={item.icon}
                     name={item.title}
                     otherClassNameIcon={
                       item.title === 'logout' ? '!text-red-500' : ''

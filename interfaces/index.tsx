@@ -176,7 +176,7 @@ export interface NavItemProps {
   otherClassNameIcon?: string;
   showArrow?: boolean;
   onClick?: () => void;
-  icon?: React.ElementType | string | any;
+  Icon?: React.ElementType | string | any;
   otherClassName?: string;
   isMobile?: boolean;
   disablePrefetch?: boolean;
