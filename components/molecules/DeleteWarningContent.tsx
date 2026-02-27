@@ -1,7 +1,9 @@
 import { AlertTriangle } from 'lucide-react';
 import Button from '../atoms/Button';
+import { cn } from '@/lib/utils';
 
 type DeleteWarningContentProps = {
+  isMobile?: boolean;
   deleteLocation?: string;
   item?: string;
   onCancel: () => void;
@@ -9,6 +11,7 @@ type DeleteWarningContentProps = {
 };
 
 export const DeleteWarningContent: React.FC<DeleteWarningContentProps> = ({
+  isMobile,
   deleteLocation,
   item,
   onCancel,
@@ -16,7 +19,12 @@ export const DeleteWarningContent: React.FC<DeleteWarningContentProps> = ({
 }) => {
   return (
     <div>
-      <div className="flex gap-3 bg-red-50 border border-red-200 rounded-xl p-4">
+      <div
+        className={cn(
+          `flex gap-3 bg-red-50 border border-red-200 rounded-xl p-4`,
+          isMobile && 'mt-4',
+        )}
+      >
         <AlertTriangle className="text-red-600" size={30} />
         <div>
           <h3 className="text-lg font-semibold text-red-700">Warning</h3>
