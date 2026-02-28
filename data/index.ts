@@ -756,7 +756,7 @@ export const HelpContent = [
   },
 ];
 
-export const permissionsOptions = [
-  { id: 1, name: 'Admin' },
-  { id: 2, name: 'User' },
+export const rolesOptions = [
+  { id: 'ADMIN', name: 'Admin' },
+  { id: 'USER', name: 'User' },
 ];
