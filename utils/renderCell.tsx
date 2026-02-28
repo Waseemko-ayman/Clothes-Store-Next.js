@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
-import { ar } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 
 export const renderCell = (col: any, row: any) => {
   const columnKey = String(col);
@@ -57,7 +57,7 @@ export const renderCell = (col: any, row: any) => {
         alt={columnKey}
         width={100}
         height={100}
-        className={`w-[100px] h-[100px] object-cover border border-gray-200 ${columnKey === 'avatar_url' ? 'mx-auto rounded-full' : 'rounded-md'}`}
+        className={`object-cover border border-gray-200 ${columnKey === 'avatar_url' ? 'mx-auto rounded-full w-[70px] md:w-[80px] h-[70px] md:h-[80px]' : 'rounded-md w-[100px] h-[100px]'}`}
       />
     );
   }
@@ -70,9 +70,17 @@ export const renderCell = (col: any, row: any) => {
         : rawValue;
 
   if (columnKey === 'created_at' || columnKey === 'last_sign_in_at') {
-    return formatDistanceToNow(new Date(cellValue), {
+    const date = new Date(cellValue);
+
+    if (columnKey === 'last_sign_in_at' && isNaN(date.getTime())) {
+      return 'Not Email verified';
+    }
+
+    if (isNaN(date.getTime())) return 'unavailable';
+
+    return formatDistanceToNow(date, {
       addSuffix: true,
-      locale: ar,
+      locale: enUS,
     });
   }
 
