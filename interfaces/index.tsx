@@ -176,7 +176,7 @@ export interface NavItemProps {
   otherClassNameIcon?: string;
   showArrow?: boolean;
   onClick?: () => void;
-  icon?: React.ElementType | string | any;
+  Icon?: React.ElementType | string | any;
   otherClassName?: string;
   isMobile?: boolean;
   disablePrefetch?: boolean;
@@ -281,6 +281,7 @@ export interface ResponsiveDialogDrawerProps {
   trigger: React.ReactNode;
   contentClassName?: string;
   headerClassName?: string;
+  showLastTwo?: boolean;
 }
 
 export interface CustomDialogDrawerProps extends ResponsiveDialogDrawerProps {
@@ -471,4 +472,9 @@ export interface GridWrapperProps {
   gridCols?: string;
   itemClassName?: string;
   disableGridOnMd?: boolean;
+}
+
+export interface BackgroundGradientProps {
+  opacity?: number;
+  showLastTwo?: boolean;
 }

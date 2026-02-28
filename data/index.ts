@@ -39,8 +39,8 @@ export const navItems = [
   { name: 'Blog', link: PATHS.BLOG },
   { name: 'About', link: PATHS.ABOUT },
   { name: 'Contact', link: PATHS.CONTACT },
-  { name: 'Login', link: PATHS.AUTH.LOGIN },
   { name: 'Cart', link: PATHS.CART },
+  { name: 'Login', link: PATHS.AUTH.LOGIN },
 ];
 
 export const FETURES = [
@@ -754,4 +754,9 @@ export const HelpContent = [
     description: 'Still need help? Our support team is happy to assist you.',
     link: true,
   },
+];
+
+export const permissionsOptions = [
+  { id: 1, name: 'Admin' },
+  { id: 2, name: 'User' },
 ];

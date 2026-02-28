@@ -4,7 +4,7 @@ import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 const NavItem: React.FC<NavItemProps> = ({
-  icon,
+  Icon,
   name,
   linkPath,
   otherClassName,
@@ -14,17 +14,6 @@ const NavItem: React.FC<NavItemProps> = ({
   isMobile,
   disablePrefetch,
 }) => {
-  const showIcon = (icon: React.ElementType) => {
-    const Icon = icon;
-    return (
-      <Icon
-        className={`text-sm text-(--forth-color) ${
-          isMobile ? 'max-md:text-primary' : 'max-md:text-white'
-        } ${otherClassNameIcon}`}
-      />
-    );
-  };
-
   const content = (
     <div
       onClick={onClick}
@@ -41,14 +30,10 @@ const NavItem: React.FC<NavItemProps> = ({
         hover:text-(--forth-color)
         hover:bg-[#08817912]
         px-2 py-3
-        max-md:!py-3
-        max-md:!pl-0
-        max-md:!pr-1
-        max-md:rounded-lg
         ${otherClassName}
       `}
     >
-      <div className={`flex items-center gap-2 ${isMobile ? 'flex-col' : ''}`}>
+      <div className="flex items-center gap-2">
         <div
           className={
             isMobile
@@ -56,7 +41,11 @@ const NavItem: React.FC<NavItemProps> = ({
               : ''
           }
         >
-          {icon && showIcon(icon)}
+          {Icon && (
+            <Icon
+              className={`text-sm text-(--forth-color) ${otherClassNameIcon}`}
+            />
+          )}
         </div>
         <span>{name}</span>
       </div>

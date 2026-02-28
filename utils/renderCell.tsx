@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
-import { API_URL } from '@/config/api';
 import { formatDistanceToNow } from 'date-fns';
 import { ar } from 'date-fns/locale';
 
@@ -47,7 +46,9 @@ export const renderCell = (col: any, row: any) => {
   }
 
   if (
-    (columnKey === 'image' || columnKey === 'photo' || columnKey === 'avatar_url') &&
+    (columnKey === 'image' ||
+      columnKey === 'photo' ||
+      columnKey === 'avatar_url') &&
     typeof rawValue === 'string'
   ) {
     return (
@@ -56,7 +57,7 @@ export const renderCell = (col: any, row: any) => {
         alt={columnKey}
         width={100}
         height={100}
-        className="w-[100px] h-[100px] object-cover rounded-md border border-gray-200"
+        className={`w-[100px] h-[100px] object-cover border border-gray-200 ${columnKey === 'avatar_url' ? 'mx-auto rounded-full' : 'rounded-md'}`}
       />
     );
   }
@@ -68,29 +69,11 @@ export const renderCell = (col: any, row: any) => {
         ? rawValue.join(', ')
         : rawValue;
 
-  if (columnKey === 'icon' && cellValue) {
-    return (
-      <div className="flex justify-center">
-        <Image
-          src={`${API_URL}${cellValue}`}
-          alt="icon"
-          width={80}
-          height={80}
-          className="w-16 h-16 object-contain"
-        />
-      </div>
-    );
-  }
-
-  if (columnKey === 'created_at') {
+  if (columnKey === 'created_at' || columnKey === 'last_sign_in_at') {
     return formatDistanceToNow(new Date(cellValue), {
       addSuffix: true,
       locale: ar,
     });
-  }
-
-  if (columnKey === 'user') {
-    return String(cellValue?.name ?? 'unavailable');
   }
 
   return String(cellValue);

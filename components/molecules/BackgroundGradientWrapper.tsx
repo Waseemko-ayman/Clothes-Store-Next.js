@@ -1,10 +1,9 @@
-import React from 'react';
+import { BackgroundGradientProps } from '@/interfaces';
 
-type Props = {
-  opacity?: number;
-};
-
-const BackgroundGradient = ({ opacity = 0.25 }: Props) => {
+const BackgroundGradient = ({
+  opacity = 0.25,
+  showLastTwo = true,
+}: BackgroundGradientProps) => {
   return (
     <div className="absolute inset-0">
       <div
@@ -15,14 +14,18 @@ const BackgroundGradient = ({ opacity = 0.25 }: Props) => {
         className="absolute bottom-0 right-0 w-80 h-80 rounded-full translate-x-1/3 translate-y-1/3"
         style={{ backgroundColor: `rgba(8, 129, 120, ${opacity * 0.7})` }}
       />
-      <div
-        className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full"
-        style={{ backgroundColor: `rgba(8, 129, 120, ${opacity * 0.85})` }}
-      />
-      <div
-        className="absolute bottom-1/4 left-1/4 w-24 h-24 rounded-full"
-        style={{ backgroundColor: `rgba(8, 129, 120, ${opacity * 0.7})` }}
-      />
+      {showLastTwo && (
+        <>
+          <div
+            className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full"
+            style={{ backgroundColor: `rgba(8, 129, 120, ${opacity * 0.85})` }}
+          />
+          <div
+            className="absolute bottom-1/4 left-1/4 w-24 h-24 rounded-full"
+            style={{ backgroundColor: `rgba(8, 129, 120, ${opacity * 0.7})` }}
+          />
+        </>
+      )}
     </div>
   );
 };

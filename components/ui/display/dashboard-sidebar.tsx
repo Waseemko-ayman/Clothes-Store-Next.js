@@ -34,7 +34,7 @@ export function DashboardSidebar() {
                 <span className="sr-only">Toggle Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent className="p-0 w-64 bg-white">
+            <SheetContent className="p-0 w-64 bg-white" closeIconColor="black">
               <SidebarContent pathname={pathname} />
             </SheetContent>
           </Sheet>

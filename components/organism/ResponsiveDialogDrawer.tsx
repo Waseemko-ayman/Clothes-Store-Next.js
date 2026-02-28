@@ -12,6 +12,7 @@ const ResponsiveDialogDrawer: React.FC<ResponsiveDialogDrawerProps> = ({
   children,
   contentClassName,
   isMobile,
+  showLastTwo,
 }) => {
   const Component = isMobile ? CustomDrawer : CustomDialog;
 
@@ -27,6 +28,7 @@ const ResponsiveDialogDrawer: React.FC<ResponsiveDialogDrawerProps> = ({
       description={description}
       contentClassName={contentClassName}
       headerClassName="p-0"
+      showLastTwo={showLastTwo}
     >
       {children}
     </Component>

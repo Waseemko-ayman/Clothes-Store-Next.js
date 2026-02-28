@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Profile from './Sections/Profile';
 import Orders from './Sections/Orders';
 import Addresses from './Sections/Addresses';
@@ -47,10 +47,10 @@ const MyAccountPage = () => {
   const initialUserInfo = {
     firstName: firstName || '',
     lastName: lastName || '',
-    email: userProfile?.[0]?.email || null,
-    phone: userProfile?.[0]?.phone || null,
+    email: userInfo?.email || null,
+    phone: userInfo?.phone || null,
     avatar_file: null, // Selected image file (do not upload here)
-    avatar_url: userProfile?.[0]?.avatar_url || '', // Image link coming from the API (for display only)
+    avatar_url: userInfo?.avatar_url || '', // Image link coming from the API (for display only)
   };
 
   const methods = useForm<any>({
