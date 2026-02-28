@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Contact - Clothes Shipping',
+  title: 'Contact - Wénor Shop',
   description: 'Get in touch with Clothes Shopping',
 };
 

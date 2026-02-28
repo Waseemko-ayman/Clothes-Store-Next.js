@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import supabase from '@/config/api';
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 
 interface State<T> {
   data: T[];
@@ -82,7 +82,7 @@ const reduce = <T extends { id?: string | number }>(
 const useAPI = <T extends { id?: string | number }>(tableName: string) => {
   const [state, dispatch] = useReducer(reduce<T>, initialState);
 
-  const get = async () => {
+  const get = useCallback(async () => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
       const { data, error } = await supabase.from(tableName).select('*');
@@ -92,7 +92,7 @@ const useAPI = <T extends { id?: string | number }>(tableName: string) => {
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
-  };
+  }, [tableName]);
 
   const getSingle = async (id: string | number) => {
     try {
@@ -144,7 +144,6 @@ const useAPI = <T extends { id?: string | number }>(tableName: string) => {
           body: JSON.stringify({ userId: id }),
         });
         const data = await res.json();
-        console.log(data)
         if (!res.ok) throw new Error(data.error || 'Failed to delete user');
       } else {
         // Normal deletion from other tables

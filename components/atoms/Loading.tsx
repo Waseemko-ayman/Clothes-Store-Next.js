@@ -16,7 +16,7 @@ const Loading = ({
 }) => {
   return (
     <div
-      className={`flex items-center justify-center bg-white text-(--seconde-color) ${
+      className={`flex items-center justify-center text-(--seconde-color) ${
         MainHightScreen ? 'min-h-screen' : ''
       } ${otherClassName}`}
     >

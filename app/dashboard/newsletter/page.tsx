@@ -1,5 +1,11 @@
 import NewsletterPage from '@/components/pages/dashboard/newsletter';
-import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Newsletter - Wénor Dashboard',
+  description:
+    'Manage and send newsletters to your subscribers from the Wénor dashboard.',
+};
 
 const Newsletter = () => <NewsletterPage />;
 

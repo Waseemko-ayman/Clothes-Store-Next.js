@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Edit2, Trash2, Search, Hash } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import useIsMobile from '@/Hooks/useIsMobile';
@@ -10,6 +10,8 @@ import { DataTableBodyProps } from '@/interfaces';
 import { renderCell } from '@/utils/renderCell';
 import { formatHeader } from '@/utils/formatHeader';
 import { getVisibleColumns } from '@/utils/visibleColumns';
+import UserPermissionsDrawer from '../UserPermissionsDrawer';
+import { FaUsers } from 'react-icons/fa6';
 
 const DataTableBody = <T extends { id: string | number }>({
   columns,
@@ -19,9 +21,11 @@ const DataTableBody = <T extends { id: string | number }>({
   searchTerm,
   showEdit,
   showActionsColumn = true,
-  // onRowPatched,
+  onRowPatched,
   deleteLocation,
 }: DataTableBodyProps<T>) => {
+  const [openUserId, setOpenUserId] = useState<string | null>(null);
+
   // Delete DialogDrawer
   const [openDeleteId, setOpenDeleteId] = useState<string | null>(null);
 
@@ -29,6 +33,7 @@ const DataTableBody = <T extends { id: string | number }>({
   const router = useRouter();
 
   const isOrdersPage = pathname?.includes('/dashboard/orders');
+  const isUsersPage = pathname?.includes('/dashboard/users');
 
   // Hooks
   const isMobile = useIsMobile();
@@ -80,7 +85,7 @@ const DataTableBody = <T extends { id: string | number }>({
                       className={
                         col === 'image'
                           ? 'py-3'
-                          : `px-6 py-4 ${col === 'gallery' ? 'min-w-xs' : 'max-w-xs'} truncate whitespace-nowrap overflow-hidden`
+                          : `px-6 py-4 ${col === 'gallery' ? 'min-w-xs' : col === 'avatar_url' ? 'min-w-[200px]' : 'max-w-xs'} truncate whitespace-nowrap overflow-hidden`
                       }
                     >
                       {renderCell(col, row)}
@@ -88,14 +93,35 @@ const DataTableBody = <T extends { id: string | number }>({
                   ))}
                   {showActionsColumn && (onEdit || onDelete) && (
                     <td className="px-2 space-x-1 whitespace-nowrap">
-                      {onEdit && showEdit !== false && (
+                      {onEdit && showEdit !== false ? (
                         <Button
                           handleClick={() => onEdit(row.id)}
                           aria-label="Edit item"
-                          otherClassName="!px-4 text-gray-400 bg-transparent hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                          otherClassName="px-4! bg-transparent hover:text-blue-600 hover:bg-blue-50 transition-colors"
                         >
-                          <Edit2 className="h-4 w-4" />
+                          <Edit2 className="h-4 w-4 text-gray-400" />
                         </Button>
+                      ) : (
+                        isUsersPage && (
+                          <UserPermissionsDrawer
+                            userId={row.id}
+                            trigger={
+                              <Button
+                                handleClick={() => setOpenUserId(row.id)}
+                                otherClassName="px-4! rounded-lg bg-transparent text-gray-400 hover:text-(--forth-color) hover:bg-[#58beb928]! transition-colors"
+                              >
+                                <FaUsers className="h-4 w-4" />
+                              </Button>
+                            }
+                            open={openUserId === row.id}
+                            setOpen={(val: boolean) =>
+                              setOpenUserId(val ? row.id : null)
+                            }
+                            onUpdated={(updatedData) =>
+                              onRowPatched?.(row.id, updatedData)
+                            }
+                          />
+                        )
                       )}
                       {onDelete && (
                         <ResponsiveDialogDrawer
@@ -115,11 +141,19 @@ const DataTableBody = <T extends { id: string | number }>({
                             setOpenDeleteId(val ? String(row.id) : null)
                           }
                           isMobile={isMobile}
-                          contentClassName="px-4!"
+                          contentClassName="px-4! pb-10!"
+                          showLastTwo={false}
                         >
                           <DeleteWarningContent
+                            isMobile={isMobile}
                             deleteLocation={deleteLocation}
-                            item={row?.name || row?.title || row?.display_name || `#${row.id}`}
+                            item={
+                              row?.name ||
+                              row?.title ||
+                              row?.display_name ||
+                              row?.email ||
+                              `#${row.id}`
+                            }
                             onCancel={() => setOpenDeleteId(null)}
                             onDelete={() => {
                               onDelete(row.id);
