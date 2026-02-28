@@ -1,10 +1,9 @@
 import HomePage from '@/components/pages/home';
 import { Metadata } from 'next';
-import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Home - Clothes Shopping',
-  description: 'Welcome to the Clothes Shopping Home Page',
+  title: 'Home - Wénor Shop',
+  description: 'Welcome to the Wénor Shop Home Page',
 };
 
 const Home = () => <HomePage />;
