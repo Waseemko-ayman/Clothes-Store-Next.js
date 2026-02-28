@@ -29,11 +29,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // Fetch basket items from the cart_items table
   const fetchCart = async (userId: string) => {
     // First, we retrieve the user's cart
+    /**
+      - .single() rejects if no row exists → gives {} as error.
+      - Replaced .single() with .maybeSingle() when fetching user's cart
+      - Prevents console errors if the user has no cart yet
+      - Ensures cartItems defaults to an empty array for new users
+     */
     const { data: cartsData, error: cartError } = await supabase
       .from('carts')
       .select('id')
       .eq('user_id', userId)
-      .single();
+      .maybeSingle();
 
     if (cartError) console.error('Fetch cart error:', cartError);
     if (!cartsData) return setCartItems([]);
